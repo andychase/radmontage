@@ -19,7 +19,7 @@ function clean($string)
 $post_data = clean($_POST['data']);
 if ($post_data && $_POST['id'] && $_POST['secret'] && strlen($post_data) < 20010) {
     $post_data = json_decode($post_data);
-    if ($_POST['id'] && is_int($_POST['id'])) {
+    if ($_POST['id'] && is_numeric($_POST['id'])) {
         $db_data = explode(":", $redis->get($id));
         if (hash_equals($_POST['secret'], $db_data[0])) {
             $redis->set($id, $_POST['secret'] . ":" . $post_data);
