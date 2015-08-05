@@ -13,8 +13,8 @@ body {
     padding: 10px;
 }
 
-.thumbnails {
-    border-right: 1px solid black;
+.thumb {
+    background-size: cover;
 }
 
 .row-container {
@@ -25,7 +25,7 @@ body {
 
 .row-box {
     min-width: 320px;
-    min-height: 140px;
+    min-height: 180px;
     border-right: 1px solid grey;
 }
 
