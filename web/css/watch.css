@@ -24,7 +24,7 @@ html, body, iframe, #container, #overlay {
     top: 0;
     left: 0;
     position: absolute;
-    height: 92%;
+    height: 80%;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;

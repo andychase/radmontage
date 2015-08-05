@@ -72,7 +72,7 @@ $(function() {
   video_index = 0;
   clearOverlay = function() {
     overlay.css('background-image', '');
-    overlay.css('height', '92%');
+    overlay.css('height', '80%');
     overlay_i = 0;
     return playing = true;
   };
