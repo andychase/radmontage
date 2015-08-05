@@ -9,7 +9,7 @@ $redis = new Predis\Client([
 ]);
 
 if ($_POST['id'] && is_int($_POST['id'])) {
-    $data = $client->get($_POST['id']);
+    $data = $redis->get($_POST['id']);
     if ($data) {
         $data = array_slice(explode(":", $data), 1);
         header('Content-Type: application/json');
