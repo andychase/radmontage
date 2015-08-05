@@ -2,6 +2,7 @@ player = undefined
 
 ready = false
 get_endpoint = "https://radmontage.herokuapp.com/get.php"
+testCardImageBasePath = "https://d12gd74eaa9d1v.cloudfront.net/"
 
 onYouTubeIframeAPIReady = ->
     player = new (YT.Player)('player',
@@ -74,7 +75,7 @@ $ ->
             i = overlay_i
             overlay.css 'height', '100%'
             overlay.css 'background-size', overlays[i][0]
-            overlay.css 'background-image', "url('img/#{overlays[i][1]}.gif')"
+            overlay.css 'background-image', "url('#{testCardImageBasePath}#{overlays[i][1]}.gif')"
             overlay_i += 1
             setTimeout(showStaticOverlay, overlays[i][2])
 
