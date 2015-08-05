@@ -1,5 +1,6 @@
 player = undefined
 
+ready = false
 get_endpoint = "https://radmontage.herokuapp.com/get.php"
 
 onYouTubeIframeAPIReady = ->
@@ -9,10 +10,12 @@ onYouTubeIframeAPIReady = ->
             showinfo: 0
 
         events:
-            'onReady': onPlayerReady
-            'onStateChange': onPlayerStateChange)
+            onReady: () -> onPlayerReady()
+            onStateChange: (e) -> onPlayerStateChange(e)
+    )
 
 onPlayerReady = () ->
+    ready = true
 
 onPlayerStateChange = () ->
 
@@ -28,6 +31,7 @@ get_param_and_start = (func) ->
             func,
             'json'
         )
+
 
 if_zero_return_null = (i) ->
     if i == 0
@@ -63,10 +67,6 @@ $ ->
         ['', 'testCard', 600],
     ]
 
-    onPlayerStateChange = (event) ->
-        if event.data == YT.PlayerState.PLAYING
-            clearOverlay()
-
     showStaticOverlay = ->
         if !playing
             if overlay_i > overlays.length - 1
@@ -91,5 +91,15 @@ $ ->
                 suggestedQuality: 'large'
             video_index += 1
 
+        onPlayerStateChange = (event) ->
+            if event.data == YT.PlayerState.PLAYING
+                clearOverlay()
+            else if event.data == YT.PlayerState.ENDED
+                click_movie_function()
+
         overlay[0].addEventListener 'click', click_movie_function, true
-        click_movie_function()
+        if ready
+            click_movie_function()
+        else
+            onPlayerReady = ->
+                click_movie_function()
