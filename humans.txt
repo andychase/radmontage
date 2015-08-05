@@ -1,0 +1,10 @@
+# humanstxt.org/
+
+# TEAM
+
+    Andy Chase -- Software Developer
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    Apache Server Configs, jQuery, Modernizr, Normalize.css
