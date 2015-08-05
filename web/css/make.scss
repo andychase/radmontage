@@ -1,0 +1,92 @@
+$primary: #545454 !default;
+
+body {
+  background-image: url('../img/background.png');
+  border-top: 2px solid #00B6D9;
+}
+
+#montage-links-container {
+  margin-bottom: 100px;
+}
+
+.left-nav {
+  border-right: 1px solid black;
+  box-shadow: -3px 0 13px -9px black inset;
+  padding: 10px;
+}
+
+.thumb {
+  background-size: cover;
+}
+
+.row-container {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid $primary;
+}
+
+.row-box {
+  min-width: 320px;
+  min-height: 180px;
+  border-right: 1px solid $primary;
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.info-box-space {
+  padding: 20px;
+}
+
+.montage-form-group #montageName {
+  width: 500px;
+  font-size: 18pt;
+}
+
+.dot-spacer {
+  padding: 10px;
+}
+
+#montage-link {
+  color: $primary;
+  margin-top: 5px;
+  span {
+    font-size: 10pt;
+    color: #a7a7a7;
+    font-style: italic;
+  }
+}
+
+.montage-form-group {
+  h2 {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: normal;
+    color: $primary;
+  }
+  .montageUrl {
+    width: 500px;
+    font-size: 18pt;
+  }
+  .montageStart, .montageEnd {
+    margin-top: 5px;
+    margin-right: 5px;
+    width: 80px;
+  }
+}
+
+.skip-border {
+  border: none;
+}
+
+.montageTitle {
+  a {
+    color: $primary;
+  }
+  span {
+    color: $primary;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}

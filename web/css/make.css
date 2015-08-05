@@ -1,93 +1,70 @@
 body {
-    background-image: url('../img/background.png');
-    border-top: 2px solid #00B6D9;
-}
+  background-image: url("../img/background.png");
+  border-top: 2px solid #00B6D9; }
 
 #montage-links-container {
-    margin-bottom: 100px;
-}
+  margin-bottom: 100px; }
 
 .left-nav {
-    border-right: 1px solid black;
-    box-shadow: -3px 0 13px -9px black inset;
-    padding: 10px;
-}
+  border-right: 1px solid black;
+  box-shadow: -3px 0 13px -9px black inset;
+  padding: 10px; }
 
 .thumb {
-    background-size: cover;
-}
+  background-size: cover; }
 
 .row-container {
-    display: flex;
-    width: 100%;
-    border-bottom: 1px solid grey;
-}
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #545454; }
 
 .row-box {
-    min-width: 320px;
-    min-height: 180px;
-    border-right: 1px solid grey;
-}
-
-.row-box:last-child {
-    border-right: none;
-}
+  min-width: 320px;
+  min-height: 180px;
+  border-right: 1px solid #545454; }
+  .row-box:last-child {
+    border-right: none; }
 
 .info-box-space {
-    padding: 20px;
-}
+  padding: 20px; }
 
 .montage-form-group #montageName {
-    width: 500px;
-    font-size: 18pt;
-    margin-top: 20px;
-}
+  width: 500px;
+  font-size: 18pt; }
 
 .dot-spacer {
-    padding: 10px;
-}
+  padding: 10px; }
 
 #montage-link {
-    color: grey;
-    margin-top: 5px;
-}
-
-#montage-link span{
+  color: #545454;
+  margin-top: 5px; }
+  #montage-link span {
     font-size: 10pt;
     color: #a7a7a7;
-    font-style: italic;
-}
-
+    font-style: italic; }
 
 .montage-form-group h2 {
-    padding: 0;
-    margin-top: 0;
-    margin-bottom: 10px;
-    font-weight: normal;
-    color: grey;
-}
-
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-weight: normal;
+  color: #545454; }
 .montage-form-group .montageUrl {
-    width: 500px;
-    font-size: 18pt;
-}
-
+  width: 500px;
+  font-size: 18pt; }
 .montage-form-group .montageStart, .montage-form-group .montageEnd {
-    margin-top: 5px;
-    margin-right: 5px;
-    width: 60px;
-}
+  margin-top: 5px;
+  margin-right: 5px;
+  width: 80px; }
 
 .skip-border {
-    border: none;
-}
+  border: none; }
 
 .montageTitle a {
-    color: grey;
-}
-
+  color: #545454; }
 .montageTitle span {
-    color: grey;
-    margin-left: 5px;
-    margin-right: 5px;
-}
+  color: #545454;
+  margin-left: 5px;
+  margin-right: 5px; }
+
+/*# sourceMappingURL=make.css.map */
