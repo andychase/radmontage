@@ -9,7 +9,6 @@ $redis = new Predis\Client([
 ]);
 
 $id = $redis->incr('id_index');
-$id = 1;
 $password = substr(hash('sha256', uniqid($more_entropy = true) . $id), 0, 30);
 $redis->set($id, $password);
 
