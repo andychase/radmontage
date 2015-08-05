@@ -1,5 +1,6 @@
 {
   "require" : {
+    "predis/predis": "1.0.1"
   },
   "require-dev": {
     "heroku/heroku-buildpack-php": "*"
