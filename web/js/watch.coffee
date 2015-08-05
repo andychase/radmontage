@@ -1,7 +1,7 @@
 player = undefined
 
 ready = false
-get_endpoint = "https://radmontage.herokuapp.com/get.php"
+get_endpoint = "/get.php"
 testCardImageBasePath = "https://d12gd74eaa9d1v.cloudfront.net/"
 
 onYouTubeIframeAPIReady = ->

@@ -9,7 +9,7 @@ youtube_video_link = "https://www.youtube.com/watch?v=";
 
 youtube_channel_link = "https://www.youtube.com/channel/";
 
-my_host_url = "https://radmontage.herokuapp.com";
+my_host_url = "";
 
 save_endpoint = my_host_url + "/save.php";
 
@@ -74,7 +74,7 @@ clear_video_title = function(target) {
   return target.html("&nbsp;");
 };
 
-make_link_container = "<div class=\"row-container\">\n        <div class=\"row-box thumb\">\n\n        </div>\n        <div class=\"row-box info-box-space\">\n            <div class=\"montage-form-group\">\n                <h2 class=\"montageTitle\">&nbsp;</h2>\n                <label for=\"montageUrl1\"></label>\n                <input type=\"text\" id=\"montageUrl1\" class=\"montageUrl\" placeholder=\"Paste the Youtube link here\"/><br/>\n                <input type=\"text\" id=\"montageStart1\" class=\"montageStart\" placeholder=\"0:00\" maxlength=\"6\"/>\n                <input type=\"text\" id=\"montageEnd1\" class=\"montageEnd\" placeholder=\"0:00\" maxlength=\"6\"/>\n            </div>\n        </div>\n    </div>";
+make_link_container = "<div class=\"row-container\">\n        <div class=\"row-box thumb\">\n\n        </div>\n        <div class=\"row-box info-box-space\">\n            <div class=\"montage-form-group\">\n                <h2 class=\"montageTitle\">&nbsp;</h2>\n                <label for=\"montageUrl1\"></label>\n                <input type=\"text\" id=\"montageUrl1\" class=\"form-control montageUrl\" placeholder=\"Paste the Youtube link here\"/>\n                <div class=\"form-inline\">\n                    <input type=\"text\" id=\"montageStart1\" class=\"form-control montageStart\" placeholder=\"0:00\" maxlength=\"6\"/>\n                    <input type=\"text\" id=\"montageEnd1\" class=\"form-control montageEnd\" placeholder=\"0:00\" maxlength=\"6\"/>\n                </div>\n            </div>\n        </div>\n    </div>";
 
 montage_link_container = void 0;
 
