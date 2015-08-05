@@ -17,12 +17,14 @@ function clean($string)
 }
 
 $post_data = clean($_POST['data']);
-if ($post_data && $_POST['id'] && $_POST['secret'] && strlen($post_data) < 20010) {
-    $post_data = json_decode($post_data);
-    if ($_POST['id'] && is_numeric($_POST['id'])) {
+$id = $_POST['id'];
+$secret = $_POST['secret'];
+
+if ($post_data && $id && $secret && strlen($post_data) < 20010) {
+    if ($id && is_numeric($id)) {
         $db_data = explode(":", $redis->get($id));
-        if (hash_equals($_POST['secret'], $db_data[0])) {
-            $redis->set($id, $_POST['secret'] . ":" . $post_data);
+        if (hash_equals($secret, $db_data[0])) {
+            $redis->set($id, $secret . ":" . $post_data);
             http_response_code(200);
             header('Content-Type: application/json');
             echo(json_encode(["ok"]));

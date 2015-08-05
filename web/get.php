@@ -8,8 +8,9 @@ $redis = new Predis\Client([
     'password' => parse_url($_ENV['REDIS_URL'], PHP_URL_PASS),
 ]);
 
-if ($_POST['id'] && is_int($_POST['id'])) {
-    $data = $redis->get($_POST['id']);
+$id = $_GET['id'];
+if ($id && is_numeric($id)) {
+    $data = $redis->get($id);
     if ($data) {
         $data = array_slice(explode(":", $data), 1);
         header('Content-Type: application/json');
