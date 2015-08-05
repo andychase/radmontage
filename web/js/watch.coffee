@@ -104,3 +104,22 @@ $ ->
         else
             onPlayerReady = ->
                 click_movie_function()
+
+    # Hide the cursor after 3 seconds
+    do ->
+        overlay = $("#overlay")
+        mouseTimer = null
+        cursorVisible = true
+
+        disappearCursor = ->
+            mouseTimer = null
+            overlay.css('cursor', 'none')
+            cursorVisible = false
+
+        document.onmousemove = ->
+            if mouseTimer
+                window.clearTimeout mouseTimer
+            if !cursorVisible
+                overlay.css('cursor', 'e-resize')
+                cursorVisible = true
+            mouseTimer = window.setTimeout(disappearCursor, 3000)

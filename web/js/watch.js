@@ -91,7 +91,7 @@ $(function() {
       return setTimeout(showStaticOverlay, overlays[i][2]);
     }
   };
-  return get_param_and_start(function(videos) {
+  get_param_and_start(function(videos) {
     var click_movie_function, montage_name;
     montage_name = videos[0];
     videos = videos.slice(1);
@@ -122,4 +122,25 @@ $(function() {
       };
     }
   });
+  return (function() {
+    var cursorVisible, disappearCursor, mouseTimer;
+    overlay = $("#overlay");
+    mouseTimer = null;
+    cursorVisible = true;
+    disappearCursor = function() {
+      mouseTimer = null;
+      overlay.css('cursor', 'none');
+      return cursorVisible = false;
+    };
+    return document.onmousemove = function() {
+      if (mouseTimer) {
+        window.clearTimeout(mouseTimer);
+      }
+      if (!cursorVisible) {
+        overlay.css('cursor', 'e-resize');
+        cursorVisible = true;
+      }
+      return mouseTimer = window.setTimeout(disappearCursor, 3000);
+    };
+  })();
 });
