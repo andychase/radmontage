@@ -12,6 +12,14 @@ montage_id = null
 montage_secret = null
 
 
+$.fn.moveUp = ->
+    $.each this, ->
+        $(this).after $(this).prev()
+
+$.fn.moveDown = ->
+    $.each this, ->
+        $(this).before $(this).next()
+
 ajax_channel_and_title = (id, func) ->
     $.ajax(
         url: youtube_api_endpoint
@@ -66,9 +74,15 @@ make_link_container = """
                     <h2 class="montageTitle">&nbsp;</h2>
                     <label for="montageUrl1"></label>
                     <input type="text" id="montageUrl1" class="form-control montageUrl" placeholder="Paste the Youtube link here"/>
-                    <div class="form-inline">
+                    <div class="form-inline montage-video-config-group">
                         <input type="text" id="montageStart1" class="form-control montageStart" placeholder="0:00" maxlength="6"/>
                         <input type="text" id="montageEnd1" class="form-control montageEnd" placeholder="0:00" maxlength="6"/>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <a href="#" class="montage-delete btn btn-default"><i class="fa fa-times"></i></a>
+                            <a href="#" class="montage-up btn btn-default"><i class="fa fa-chevron-up"></i></a>
+                            <a href="#" class="montage-down btn btn-default"><i class="fa fa-chevron-down"></i></a>
+                        </div>
+                        <a href="#" class="montage-add-here"><i class="fa fa-plus"></i></a>
                     </div>
                 </div>
             </div>
@@ -77,13 +91,36 @@ make_link_container = """
 
 montage_link_container = undefined
 get_link_from_montage_container = (container) ->
-    container.children(".info-box-space").children(".montage-form-group").children(".montageUrl")
+    container.find(".info-box-space .montage-form-group .montageUrl")
 
-append_new_video_container = ->
+do_action_button_with_save = (container, selector, action) ->
+    container.find(selector).click (e) ->
+        e.preventDefault()
+        action()
+        serializeAndSave()
+
+append_new_video_container = (target) ->
     new_container = $(make_link_container)
-    montage_link_container.append(new_container)
+    if target?
+        new_container.hide()
+        target.before(new_container)
+        new_container.slideDown 100
+    else
+        montage_link_container.append(new_container)
     url_target = get_link_from_montage_container(new_container)
     url_target.change(montage_link_entered)
+    url_target.keyup(montage_link_entered)
+    new_container.find(".montage-add-here").click (e)->
+        e.preventDefault()
+        append_new_video_container(new_container)
+    do_action_button_with_save new_container, ".montage-delete", ->
+        new_container.slideUp 100, ->
+            new_container.remove()
+    do_action_button_with_save new_container, ".montage-up", ->
+        new_container.moveUp()
+    do_action_button_with_save new_container, ".montage-down", ->
+        new_container.moveDown()
+
     $(url_target).on("paste", (e) ->
         setTimeout(->
             $(e.target).trigger('change');
@@ -96,11 +133,20 @@ append_new_video_container_if_none_left = ->
         if get_link_from_montage_container(montage_link_container.children().last()).val().trim().length
             append_new_video_container()
 
+montage_links = {}
+
 montage_link_entered = (e) ->
+    link_index = $(e.target.parentNode.parentNode.parentNode).index()
     image_target = $(e.target.parentNode.parentNode.parentNode).children(".thumb").first()
     title_target = $(e.target.parentNode).children(".montageTitle").first()
-    if e.target.value.split("=").length > 1
-        id = e.target.value.split("=")[1].split("&")[0]
+    link_target = e.target.value
+    if montage_links[link_index] == link_target
+        return
+    else
+        montage_links[link_index] = link_target
+
+    if link_target.split("=").length > 1
+        id = link_target.split("=")[1].split("&")[0]
         if id.length == 11
             serializeAndSave()
             set_video_image(image_target, link_to_img(id))

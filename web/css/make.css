@@ -5,6 +5,13 @@ body {
 #montage-links-container {
   margin-bottom: 100px; }
 
+.logo {
+  width: 40px;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  margin-top: 40px; }
+
 .left-nav {
   border-right: 1px solid black;
   box-shadow: -3px 0 13px -9px black inset;
@@ -17,6 +24,15 @@ body {
   display: flex;
   width: 100%;
   border-bottom: 1px solid #545454; }
+  .row-container .montage-add-here {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -13px;
+    font-size: 14pt;
+    width: 27px;
+    text-align: center;
+    background: #ffffff url("../img/background.png"); }
 
 .row-box {
   min-width: 320px;
@@ -26,6 +42,8 @@ body {
     border-right: none; }
 
 .info-box-space {
+  position: relative;
+  flex: 1 0;
   padding: 20px; }
 
 .montage-form-group #montageName {
@@ -53,9 +71,11 @@ body {
   width: 500px;
   font-size: 18pt; }
 .montage-form-group .montageStart, .montage-form-group .montageEnd {
-  margin-top: 5px;
-  margin-right: 5px;
   width: 80px; }
+.montage-form-group .montage-video-config-group {
+  margin-top: 5px; }
+  .montage-form-group .montage-video-config-group .btn-group {
+    margin-left: 40px; }
 
 .skip-border {
   border: none; }
