@@ -52,6 +52,7 @@ get_video_end = (videos, video_index) ->
 
 $ ->
     overlay = $('#overlay')
+    bgvid = $('#bgvid')
     overlay_i = 0
     video_index = 0
 
@@ -59,13 +60,14 @@ $ ->
     clearOverlay = ->
         overlay.css 'background-image', ''
         overlay.css 'height', '80%'
+        bgvid.hide()
         overlay_i = 0
         playing = true
 
     overlays = [
-        ['', 'testCard', 150],
-        ['contain', 'testCard2', 600],
-        ['', 'testCard', 600],
+        [false, 'testCard', 150],
+        [true,          '', 900],
+        [false, 'testCard', 600],
     ]
 
     showStaticOverlay = ->
@@ -74,8 +76,11 @@ $ ->
                 overlay_i = 0
             i = overlay_i
             overlay.css 'height', '100%'
-            overlay.css 'background-size', overlays[i][0]
             overlay.css 'background-image', "url('#{testCardImageBasePath}#{overlays[i][1]}.gif')"
+            if overlays[i][0] == true
+                bgvid.show()
+            else
+                bgvid.hide()
             overlay_i += 1
             setTimeout(showStaticOverlay, overlays[i][2])
 

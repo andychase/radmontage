@@ -66,17 +66,19 @@ get_video_end = function(videos, video_index) {
 };
 
 $(function() {
-  var clearOverlay, overlay, overlay_i, overlays, showStaticOverlay, video_index;
+  var bgvid, clearOverlay, overlay, overlay_i, overlays, showStaticOverlay, video_index;
   overlay = $('#overlay');
+  bgvid = $('#bgvid');
   overlay_i = 0;
   video_index = 0;
   clearOverlay = function() {
     overlay.css('background-image', '');
     overlay.css('height', '80%');
+    bgvid.hide();
     overlay_i = 0;
     return playing = true;
   };
-  overlays = [['', 'testCard', 150], ['contain', 'testCard2', 600], ['', 'testCard', 600]];
+  overlays = [[false, 'testCard', 150], [true, '', 900], [false, 'testCard', 600]];
   showStaticOverlay = function() {
     var i;
     if (!playing) {
@@ -85,8 +87,12 @@ $(function() {
       }
       i = overlay_i;
       overlay.css('height', '100%');
-      overlay.css('background-size', overlays[i][0]);
       overlay.css('background-image', "url('" + testCardImageBasePath + overlays[i][1] + ".gif')");
+      if (overlays[i][0] === true) {
+        bgvid.show();
+      } else {
+        bgvid.hide();
+      }
       overlay_i += 1;
       return setTimeout(showStaticOverlay, overlays[i][2]);
     }
