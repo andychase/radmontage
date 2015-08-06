@@ -110,10 +110,13 @@ make_link_container = """
                            placeholder="Paste the Youtube link here"/>
                 </div>
                 <span class="form-inline">
+                    <label>Start:</label>
                     <input type="text" class="form-control montageStart" placeholder="0:00" maxlength="6"/>
+
                 </span>
                 <span class="form-inline">
-                    <input type="text" class="form-control montageEnd" placeholder="0:00" maxlength="6"/>
+                    <label>Stop:</label>
+                    <input type="text" class="form-control montageEnd" placeholder="99:99" maxlength="6"/>
                 </span>
                 <span class="btn-group" role="group" aria-label="...">
                     <a href="#" class="montage-delete btn btn-default"><i class="fa fa-times"></i></a>
@@ -168,6 +171,11 @@ append_new_video_container = (target) ->
         new_container.moveDown()
 
     $(url_target).on("paste", (e) ->
+        setTimeout(->
+            $(e.target).trigger('change');
+        , 1);
+    )
+    new_container.find(".montageEnd, .montageStart").on("paste keydown", (e) ->
         setTimeout(->
             $(e.target).trigger('change');
         , 1);
@@ -250,6 +258,7 @@ serialize = () ->
                         stop.parent().addClass("has-success")
                     else
                         end_time = 0
+                        stop.parent().removeClass("has-success")
                         stop.parent().addClass("has-error")
                 else
                     stop.parent().removeClass("has-error")

@@ -115,3 +115,14 @@ body {
     margin-right: 5px;
   }
 }
+
+.montage-form-group .form-inline label {
+  color: #949494;
+  margin-left: 8px;
+  margin-right: 2px;
+  transition: color 200ms;
+}
+
+.montage-form-group .form-inline.has-success label {
+  color: black;
+}
