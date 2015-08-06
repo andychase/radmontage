@@ -210,8 +210,8 @@ unserialize = function(data) {
   number_of_videos = data.length / 3;
   for (video_index = j = 0, ref = number_of_videos - 1; 0 <= ref ? j <= ref : j >= ref; video_index = 0 <= ref ? ++j : --j) {
     link = append_new_video_container();
-    start = link.siblings(".montageStart").first();
-    stop = link.siblings(".montageEnd").first();
+    start = link.parent().parent().find(".montageStart");
+    stop = link.parent().parent().find(".montageEnd");
     link.attr("value", youtube_video_link + data[video_index * 3]);
     if (data[video_index * 3 + 1] !== 0) {
       start.attr("value", data[video_index * 3 + 1]);
@@ -231,21 +231,39 @@ serialize = function() {
   montage_name = $("#montageName").val();
   data.push(montage_name);
   montage_link_container.children().each(function(i, container) {
-    var link, link_data, start, stop;
+    var end_time, link, link_data, start, start_time, stop;
     link = get_link_from_montage_container($(container));
     if ((link != null) && link.length && link.val().trim().split("=").length > 1) {
-      start = link.siblings(".montageStart").first();
-      stop = link.siblings(".montageEnd").first();
+      start = link.parent().parent().find(".montageStart");
+      stop = link.parent().parent().find(".montageEnd");
       link_data = link.val().trim().split("=")[1];
       data.push(link_data);
+      start_time = 0;
       if (start.val() !== "") {
-        data.push(start.val());
+        start_time = text_to_time(start.val());
+        if (start_time > 0) {
+          start.parent().addClass("has-success");
+        }
+        data.push(start_time);
       } else {
+        start.parent().removeClass("has-success");
         data.push(0);
       }
       if (stop.val() !== "") {
-        return data.push(stop.val());
+        end_time = text_to_time(stop.val());
+        if (end_time > 0) {
+          if (end_time > start_time) {
+            stop.parent().removeClass("has-error");
+            stop.parent().addClass("has-success");
+          } else {
+            end_time = 0;
+            stop.parent().addClass("has-error");
+          }
+        }
+        return data.push(end_time);
       } else {
+        stop.parent().removeClass("has-error");
+        stop.parent().removeClass("has-success");
         return data.push(0);
       }
     }

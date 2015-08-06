@@ -191,8 +191,8 @@ unserialize = (data) ->
     number_of_videos = data.length / 3
     for video_index in [0..number_of_videos - 1]
         link = append_new_video_container()
-        start = link.siblings(".montageStart").first()
-        stop = link.siblings(".montageEnd").first()
+        start = link.parent().parent().find(".montageStart")
+        stop = link.parent().parent().find(".montageEnd")
         link.attr("value", youtube_video_link + data[video_index * 3])
         if data[video_index * 3 + 1] != 0
             start.attr("value", data[video_index * 3 + 1])
@@ -209,17 +209,32 @@ serialize = () ->
     montage_link_container.children().each (i, container) ->
         link = get_link_from_montage_container($(container))
         if link? and link.length and link.val().trim().split("=").length > 1
-            start = link.siblings(".montageStart").first()
-            stop = link.siblings(".montageEnd").first()
+            start = link.parent().parent().find(".montageStart")
+            stop = link.parent().parent().find(".montageEnd")
             link_data = link.val().trim().split("=")[1]
             data.push(link_data)
+            start_time = 0
             if start.val() != ""
-                data.push(start.val())
+                start_time = text_to_time(start.val())
+                if start_time > 0
+                    start.parent().addClass("has-success")
+                data.push(start_time)
             else
+                start.parent().removeClass("has-success")
                 data.push(0)
             if stop.val() != ""
-                data.push(stop.val())
+                end_time = text_to_time(stop.val())
+                if end_time > 0
+                    if end_time > start_time
+                        stop.parent().removeClass("has-error")
+                        stop.parent().addClass("has-success")
+                    else
+                        end_time = 0
+                        stop.parent().addClass("has-error")
+                data.push(end_time)
             else
+                stop.parent().removeClass("has-error")
+                stop.parent().removeClass("has-success")
                 data.push(0)
     data.join(":")
 
