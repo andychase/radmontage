@@ -69,11 +69,11 @@ text_to_time = (value) ->
     value = value.replace(allowed_in_time_field, "")
     output = 0
     parts = value.split(":")
-    if parts.length > 0 and parseInt(parts[parts.length-1])
+    if parts.length > 0 and parseInt(parts[parts.length - 1])
         output += parseInt(parts.pop())
-    if parts.length > 0 and parseInt(parts[parts.length-1])
+    if parts.length > 0 and parseInt(parts[parts.length - 1])
         output += parseInt(parts.pop()) * 60
-    if parts.length > 0 and parseInt(parts[parts.length-1])
+    if parts.length > 0 and parseInt(parts[parts.length - 1])
         output += parseInt(parts.pop()) * 60 * 60
     output
 
@@ -81,9 +81,9 @@ time_to_text = (value) ->
     if not parseInt(value)
         return 0
     value = parseInt(value)
-    hours = value // (60*60)
-    minutes = (value - (hours*60*60)) // 60
-    seconds = value - (hours*60*60) - (minutes*60)
+    hours = value // (60 * 60)
+    minutes = (value - (hours * 60 * 60)) // 60
+    seconds = value - (hours * 60 * 60) - (minutes * 60)
     if hours and minutes < 10
         minutes = "0" + minutes
     if minutes and seconds < 10
@@ -140,7 +140,7 @@ do_action_button_with_save = (container, selector, action) ->
         serializeAndSave()
 
 append_new_video_container = (target) ->
-    # Make and add container
+# Make and add container
     new_container = $(make_link_container)
     new_container.hide()
     if target?
@@ -165,7 +165,7 @@ append_new_video_container = (target) ->
             new_container.remove()
             serializeAndSave()
     do_action_button_with_save new_container, ".montage-up", ->
-        if new_container.index() != 1
+        if new_container.index() != 2
             new_container.moveUp()
     do_action_button_with_save new_container, ".montage-down", ->
         new_container.moveDown()
@@ -271,7 +271,8 @@ serialize = () ->
     data.join(":")
 
 finishedSerializing = () ->
-    $("#montage-link").html("<a href='#{watch_link}#{montage_id}'>https://radmontage.herokuapp.com#{watch_link}#{montage_id}</a>")
+    $("#montage-link").html("""Link to montage: <a href='#{watch_link}#{montage_id}'>
+        https://radmontage.herokuapp.com#{watch_link}#{montage_id}</a>""")
 
 serializeAndSave = () ->
     data = serialize()

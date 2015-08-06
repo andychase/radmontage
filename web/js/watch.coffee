@@ -41,14 +41,14 @@ if_zero_return_null = (i) ->
         i
 
 get_video_url = (videos, video_index) ->
-    videos[3*video_index]
+    videos[3 * video_index]
 
 get_video_start = (videos, video_index) ->
-    if_zero_return_null(videos[3*video_index + 1])
+    if_zero_return_null(videos[3 * video_index + 1])
 
 
 get_video_end = (videos, video_index) ->
-    if_zero_return_null(videos[3*video_index + 2])
+    if_zero_return_null(videos[3 * video_index + 2])
 
 $ ->
     overlay = $('#overlay')
@@ -72,7 +72,7 @@ $ ->
 
     overlays = [
         [false, 'testCard', 150],
-        [true,  'testCard', 900],
+        [true, 'testCard', 900],
         [false, 'testCard', 600],
     ]
 

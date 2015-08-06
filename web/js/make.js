@@ -176,7 +176,7 @@ append_new_video_container = function(target) {
     });
   });
   do_action_button_with_save(new_container, ".montage-up", function() {
-    if (new_container.index() !== 1) {
+    if (new_container.index() !== 2) {
       return new_container.moveUp();
     }
   });
@@ -307,7 +307,7 @@ serialize = function() {
 };
 
 finishedSerializing = function() {
-  return $("#montage-link").html("<a href='" + watch_link + montage_id + "'>https://radmontage.herokuapp.com" + watch_link + montage_id + "</a>");
+  return $("#montage-link").html("Link to montage: <a href='" + watch_link + montage_id + "'>\nhttps://radmontage.herokuapp.com" + watch_link + montage_id + "</a>");
 };
 
 serializeAndSave = function() {
