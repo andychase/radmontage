@@ -227,7 +227,7 @@ serialize = function() {
 };
 
 finishedSerializing = function() {
-  return $("#montage-link").html("<a href='" + watch_link + montage_id + "'>https://radmontage.herokuapp.com/" + watch_link + montage_id + "</a>");
+  return $("#montage-link").html("<a href='" + watch_link + montage_id + "'>https://radmontage.herokuapp.com" + watch_link + montage_id + "</a>");
 };
 
 serializeAndSave = function() {
