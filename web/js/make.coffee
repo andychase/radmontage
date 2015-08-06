@@ -12,6 +12,7 @@ montage_id = null
 montage_secret = null
 
 allowed_in_time_field = /[^0-9:]/g
+allowed_in_title_field = /[^A-Za-z0-9_ ]/
 
 $.fn.moveUp = ->
     $.each this, ->
@@ -20,6 +21,16 @@ $.fn.moveUp = ->
 $.fn.moveDown = ->
     $.each this, ->
         $(this).before $(this).next()
+
+get_url_parameter = (sParam) ->
+    sPageURL = window.location.search.substring(1)
+    sURLVariables = sPageURL.split('&')
+    i = 0
+    while i < sURLVariables.length
+        sParameterName = sURLVariables[i].split('=')
+        if sParameterName[0] == sParam
+            return sParameterName[1]
+        i++
 
 ajax_channel_and_title = (id, func) ->
     $.ajax(
@@ -64,6 +75,9 @@ set_video_title = (target, id) ->
 
 clear_video_title = (target) ->
     target.html("&nbsp;")
+
+get_montage_title = ->
+    $("#montageName").val().replace(allowed_in_title_field, "")
 
 text_to_time = (value) ->
     value = value.replace(allowed_in_time_field, "")
@@ -164,6 +178,7 @@ append_new_video_container = (target) ->
         new_container.slideUp 100, ->
             new_container.remove()
             serializeAndSave()
+#            append_new_video_container_if_none_left
     do_action_button_with_save new_container, ".montage-up", ->
         if new_container.index() != 2
             new_container.moveUp()
@@ -215,7 +230,9 @@ montage_link_entered = (e) ->
 
 unserialize = (data) ->
     data = data.split(":")
-    data = data.slice(1)
+    montage_secret = data[0]
+    montage_link_container.find("#montageName").val(data[1])
+    data = data.slice(2)
     number_of_videos = data.length / 3
     for video_index in [0..number_of_videos - 1]
         link = append_new_video_container()
@@ -232,7 +249,8 @@ unserialize = (data) ->
 
 serialize = () ->
     data = []
-    montage_name = $("#montageName").val()
+    montage_name = get_montage_title()
+    data.push(montage_secret)
     data.push(montage_name)
     montage_link_container.children().each (i, container) ->
         link = get_link_from_montage_container($(container))
@@ -270,6 +288,37 @@ serialize = () ->
                 data.push(0)
     data.join(":")
 
+update_previous_montages = (link_data) ->
+    list_location = $("#previous-montages .dest")
+    data = window.localStorage.getItem("data")
+    if data != ""
+        data = data.split("||")
+    else
+        data = []
+    previous_titles = {}
+    for record_string in data
+        # Id => title
+        record = record_string.split(":")
+        previous_titles[record[0]] = record[1]
+
+    if montage_id?
+        date = new Date()
+        previous_titles[""+montage_id] = "#{get_montage_title()} #{date.getMonth()+1}/#{date.getDate()}/#{date.getFullYear()}"
+#        if link_data.length == 0
+#            delete previous_titles[""+montage_id]
+        output = for id, title of previous_titles
+            [id, title].join(":")
+        window.localStorage.setItem("data", output.join("||"))
+
+    previous_ids = Object.keys(previous_titles).sort()
+    if previous_ids.length > 0
+        list_location.empty()
+    for id in previous_ids
+        list_location.append($("<li><a href='?m=#{id}'>#{previous_titles[id]}</a></li>"))
+        if id + 1 < previous_ids.length
+            list_location.append($("<span>,</span>"))
+
+
 finishedSerializing = () ->
     $("#montage-link").html("""Link to montage: <a href='#{watch_link}#{montage_id}'>
         https://radmontage.herokuapp.com#{watch_link}#{montage_id}</a>""")
@@ -280,12 +329,13 @@ serializeAndSave = () ->
     # Get new id and secret if we don't have one
     if data.length
         $("#montage-link").html("Saving...")
-        if not montage_id? or not montage_secret?
+        if not montage_secret?
             $.get(new_endpoint, {
                 },
                 (result) ->
                     montage_id = result.id
                     montage_secret = result.secret
+                    history.replaceState(stateObj, "", "?m=#{montage_id}");
                     serializeAndSave()
             ,
                 'json'
@@ -293,9 +343,8 @@ serializeAndSave = () ->
 
         # Persist locally if possible
         if (window.localStorage)
-            window.localStorage.setItem("data", data)
-            window.localStorage.setItem("id", montage_id)
-            window.localStorage.setItem("secret", montage_secret)
+            window.localStorage.setItem(montage_id, data)
+            window.localStorage.setItem("last_worked_on", montage_id)
 
         if montage_secret
             $.post(save_endpoint, {
@@ -307,12 +356,23 @@ serializeAndSave = () ->
                 'json'
             )
 
+    update_previous_montages(data)
+
 $ ->
+    update_previous_montages()
     montage_link_container = $("#montage-links-container")
-    if (window.localStorage && window.localStorage.getItem("data"))
-        montage_id = window.localStorage.getItem("id")
-        montage_secret = window.localStorage.getItem("secret")
-        unserialize(window.localStorage.getItem("data"))
+    if get_url_parameter("m")?
+        montage_id = get_url_parameter("m")
+        if montage_id == "new"
+            montage_id = null
+            window.localStorage.setItem("last_worked_on", "")
+
+    last_worked_on = window.localStorage.getItem("last_worked_on")
+    if not montage_id? and last_worked_on? and last_worked_on != ""
+        montage_id = last_worked_on
+
+    if montage_id?
+        unserialize(window.localStorage.getItem(montage_id))
     else
         append_new_video_container()
 
