@@ -1,5 +1,5 @@
 player = undefined
-
+iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 ready = false
 get_endpoint = "/get.php"
 testCardImageBasePath = "https://d12gd74eaa9d1v.cloudfront.net/"
@@ -57,22 +57,27 @@ $ ->
     overlay_i = 0
     video_index = 0
 
+    if iOS
+        bgvid.hide()
+        overlay.addClass("ios")
+        overlay.html("<span>SKIP</span>")
 
     clearOverlay = ->
-        overlay.css 'background-image', ''
-        overlay.css 'height', '80%'
-        bgvid.hide()
-        overlay_i = 0
-        playing = true
+        if not iOS
+            overlay.css 'background-image', ''
+            overlay.css 'height', '80%'
+            bgvid.hide()
+            overlay_i = 0
+            playing = true
 
     overlays = [
         [false, 'testCard', 150],
-        [true,          '', 900],
+        [true,  'testCard', 900],
         [false, 'testCard', 600],
     ]
 
     showStaticOverlay = ->
-        if !playing
+        if !playing and not iOS
             if overlay_i > overlays.length - 1
                 overlay_i = 0
             i = overlay_i
