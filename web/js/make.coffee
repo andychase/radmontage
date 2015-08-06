@@ -11,6 +11,7 @@ watch_link = "#{my_host_url}/watch.html?m="
 montage_id = null
 montage_secret = null
 
+allowed_in_time_field = /[^0-9:]/g
 
 $.fn.moveUp = ->
     $.each this, ->
@@ -64,34 +65,52 @@ set_video_title = (target, id) ->
 clear_video_title = (target) ->
     target.html("&nbsp;")
 
+text_to_time = (value) ->
+    value = value.replace(allowed_in_time_field, "")
+    output = 0
+    parts = value.split(":")
+    if parts.length > 0 and parseInt(parts[parts.length-1])
+        output += parseInt(parts.pop())
+    if parts.length > 0 and parseInt(parts[parts.length-1])
+        output += parseInt(parts.pop()) * 60
+    if parts.length > 0 and parseInt(parts[parts.length-1])
+        output += parseInt(parts.pop()) * 60 * 60
+    output
+
 make_link_container = """
     <div class="row-container">
-            <div class="row-box thumb">
+        <div class="row-box thumb">
 
-            </div>
-            <div class="row-box info-box-space">
-                <div class="montage-form-group">
-                    <h2 class="montageTitle">&nbsp;</h2>
+        </div>
+        <div class="row-box info-box-space">
+            <div class="montage-form-group">
+                <h2 class="montageTitle">&nbsp;</h2>
+
+                <div class="form-group">
                     <label for="montageUrl1"></label>
-                    <input type="text" id="montageUrl1" class="form-control montageUrl" placeholder="Paste the Youtube link here"/>
-                    <div class="form-inline montage-video-config-group">
-                        <input type="text" id="montageStart1" class="form-control montageStart" placeholder="0:00" maxlength="6"/>
-                        <input type="text" id="montageEnd1" class="form-control montageEnd" placeholder="0:00" maxlength="6"/>
-                        <div class="btn-group" role="group" aria-label="...">
-                            <a href="#" class="montage-delete btn btn-default"><i class="fa fa-times"></i></a>
-                            <a href="#" class="montage-up btn btn-default"><i class="fa fa-chevron-up"></i></a>
-                            <a href="#" class="montage-down btn btn-default"><i class="fa fa-chevron-down"></i></a>
-                        </div>
-                        <a href="#" class="montage-add-here"><i class="fa fa-plus"></i></a>
-                    </div>
+                    <input type="text" id="montageUrl1" class="form-control montageUrl"
+                           placeholder="Paste the Youtube link here"/>
                 </div>
+                <span class="form-inline">
+                    <input type="text" class="form-control montageStart" placeholder="0:00" maxlength="6"/>
+                </span>
+                <span class="form-inline">
+                    <input type="text" class="form-control montageEnd" placeholder="0:00" maxlength="6"/>
+                </span>
+                <span class="btn-group" role="group" aria-label="...">
+                    <a href="#" class="montage-delete btn btn-default"><i class="fa fa-times"></i></a>
+                    <a href="#" class="montage-up btn btn-default"><i class="fa fa-chevron-up"></i></a>
+                    <a href="#" class="montage-down btn btn-default"><i class="fa fa-chevron-down"></i></a>
+                </span>
+                <a href="#" class="montage-add-here"><i class="fa fa-plus"></i></a>
             </div>
         </div>
-        """
+    </div>
+    """
 
 montage_link_container = undefined
 get_link_from_montage_container = (container) ->
-    container.find(".info-box-space .montage-form-group .montageUrl")
+    container.find(".montageUrl")
 
 do_action_button_with_save = (container, selector, action) ->
     container.find(selector).click (e) ->
@@ -100,16 +119,22 @@ do_action_button_with_save = (container, selector, action) ->
         serializeAndSave()
 
 append_new_video_container = (target) ->
+    # Make and add container
     new_container = $(make_link_container)
+    new_container.hide()
     if target?
-        new_container.hide()
         target.before(new_container)
-        new_container.slideDown 100
     else
         montage_link_container.append(new_container)
+    new_container.slideDown 100
+
     url_target = get_link_from_montage_container(new_container)
     url_target.change(montage_link_entered)
     url_target.keyup(montage_link_entered)
+    new_container.find(".montageStart").change ->
+        serializeAndSave()
+    new_container.find(".montageEnd").change ->
+        serializeAndSave()
     new_container.find(".montage-add-here").click (e)->
         e.preventDefault()
         append_new_video_container(new_container)
@@ -137,9 +162,9 @@ append_new_video_container_if_none_left = ->
 montage_links = {}
 
 montage_link_entered = (e) ->
-    link_index = $(e.target.parentNode.parentNode.parentNode).index()
-    image_target = $(e.target.parentNode.parentNode.parentNode).children(".thumb").first()
-    title_target = $(e.target.parentNode).children(".montageTitle").first()
+    link_index = $(e.target.parentNode.parentNode.parentNode.parentNode).index()
+    image_target = $(e.target.parentNode.parentNode.parentNode.parentNode).children(".thumb").first()
+    title_target = $(e.target.parentNode.parentNode).children(".montageTitle").first()
     link_target = e.target.value
     if montage_links[link_index] == link_target
         return
@@ -150,10 +175,12 @@ montage_link_entered = (e) ->
         id = link_target.split("=")[1].split("&")[0]
         if id.length == 11
             serializeAndSave()
+            $(e.target.parentNode).addClass("has-success")
             set_video_image(image_target, link_to_img(id))
             set_video_title(title_target, id)
             append_new_video_container_if_none_left()
             return
+    $(e.target.parentNode).removeClass("has-success")
     serializeAndSave()
     clear_video_image(image_target)
     clear_video_title(title_target)
