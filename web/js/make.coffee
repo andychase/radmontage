@@ -77,6 +77,24 @@ text_to_time = (value) ->
         output += parseInt(parts.pop()) * 60 * 60
     output
 
+time_to_text = (value) ->
+    if not parseInt(value)
+        return 0
+    value = parseInt(value)
+    hours = value // (60*60)
+    minutes = (value - (hours*60*60)) // 60
+    seconds = value - (hours*60*60) - (minutes*60)
+    if hours and minutes < 10
+        minutes = "0" + minutes
+    if minutes and seconds < 10
+        seconds = "0" + seconds
+    if hours
+        [hours, minutes, seconds].join(":")
+    else if minutes
+        [minutes, seconds].join(":")
+    else
+        seconds
+
 make_link_container = """
     <div class="row-container">
         <div class="row-box thumb">
@@ -194,10 +212,10 @@ unserialize = (data) ->
         start = link.parent().parent().find(".montageStart")
         stop = link.parent().parent().find(".montageEnd")
         link.attr("value", youtube_video_link + data[video_index * 3])
-        if data[video_index * 3 + 1] != 0
-            start.attr("value", data[video_index * 3 + 1])
-        if data[video_index * 3 + 2] != 0
-            stop.attr("value", data[video_index * 3 + 2])
+        if data[video_index * 3 + 1] != "0"
+            start.attr("value", time_to_text(data[video_index * 3 + 1]))
+        if data[video_index * 3 + 2] != "0"
+            stop.attr("value", time_to_text(data[video_index * 3 + 2]))
 
     montage_link_container.children().each (i, container) ->
         get_link_from_montage_container($(container)).trigger('change')
@@ -231,6 +249,9 @@ serialize = () ->
                     else
                         end_time = 0
                         stop.parent().addClass("has-error")
+                else
+                    stop.parent().removeClass("has-error")
+                    stop.parent().removeClass("has-success")
                 data.push(end_time)
             else
                 stop.parent().removeClass("has-error")
