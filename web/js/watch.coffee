@@ -9,6 +9,7 @@ onYouTubeIframeAPIReady = ->
         playerVars:
             controls: 0
             showinfo: 0
+            iv_load_policy: 3
 
         events:
             onReady: () -> onPlayerReady()

@@ -13,7 +13,8 @@ onYouTubeIframeAPIReady = function() {
   return player = new YT.Player('player', {
     playerVars: {
       controls: 0,
-      showinfo: 0
+      showinfo: 0,
+      iv_load_policy: 3
     },
     events: {
       onReady: function() {
