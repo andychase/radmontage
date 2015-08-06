@@ -21,7 +21,6 @@ onPlayerReady = () ->
 
 onPlayerStateChange = () ->
 
-playing = false
 
 get_param_and_start = (func) ->
     param = window.location.search.split("?m=")
@@ -56,6 +55,7 @@ $ ->
     bgvid = $('#bgvid')
     overlay_i = 0
     video_index = 0
+    playing = true
 
     if iOS
         bgvid.hide()
@@ -94,14 +94,15 @@ $ ->
         montage_name = videos[0]
         videos = videos.slice(1)
         click_movie_function = ->
-            playing = false
-            showStaticOverlay()
-            player.loadVideoById
-                videoId: get_video_url(videos, video_index)
-                startSeconds: get_video_start(videos, video_index)
-                endSeconds: get_video_end(videos, video_index)
-                suggestedQuality: 'large'
-            video_index += 1
+            if playing
+                playing = false
+                showStaticOverlay()
+                player.loadVideoById
+                    videoId: get_video_url(videos, video_index)
+                    startSeconds: get_video_start(videos, video_index)
+                    endSeconds: get_video_end(videos, video_index)
+                    suggestedQuality: 'large'
+                video_index += 1
 
         onPlayerStateChange = (event) ->
             if event.data == YT.PlayerState.PLAYING
