@@ -117,7 +117,8 @@ append_new_video_container = (target) ->
         new_container.slideUp 100, ->
             new_container.remove()
     do_action_button_with_save new_container, ".montage-up", ->
-        new_container.moveUp()
+        if new_container.index() != 1
+            new_container.moveUp()
     do_action_button_with_save new_container, ".montage-down", ->
         new_container.moveDown()
 

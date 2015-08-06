@@ -125,7 +125,9 @@ append_new_video_container = function(target) {
     });
   });
   do_action_button_with_save(new_container, ".montage-up", function() {
-    return new_container.moveUp();
+    if (new_container.index() !== 1) {
+      return new_container.moveUp();
+    }
   });
   do_action_button_with_save(new_container, ".montage-down", function() {
     return new_container.moveDown();
