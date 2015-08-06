@@ -196,7 +196,7 @@ serialize = () ->
     data.join(":")
 
 finishedSerializing = () ->
-    $("#montage-link").html("<a href='#{watch_link}#{montage_id}'>#{watch_link}#{montage_id}</a>")
+    $("#montage-link").html("<a href='#{watch_link}#{montage_id}'>https://radmontage.herokuapp.com/#{watch_link}#{montage_id}</a>")
 
 serializeAndSave = () ->
     data = serialize()
