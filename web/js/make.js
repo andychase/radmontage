@@ -168,9 +168,11 @@ append_new_video_container = function(target) {
     e.preventDefault();
     return append_new_video_container(new_container);
   });
-  do_action_button_with_save(new_container, ".montage-delete", function() {
+  new_container.find(".montage-delete").click(function(e) {
+    e.preventDefault();
     return new_container.slideUp(100, function() {
-      return new_container.remove();
+      new_container.remove();
+      return serializeAndSave();
     });
   });
   do_action_button_with_save(new_container, ".montage-up", function() {

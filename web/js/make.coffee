@@ -156,9 +156,11 @@ append_new_video_container = (target) ->
     new_container.find(".montage-add-here").click (e)->
         e.preventDefault()
         append_new_video_container(new_container)
-    do_action_button_with_save new_container, ".montage-delete", ->
+    new_container.find(".montage-delete").click (e) ->
+        e.preventDefault()
         new_container.slideUp 100, ->
             new_container.remove()
+            serializeAndSave()
     do_action_button_with_save new_container, ".montage-up", ->
         if new_container.index() != 1
             new_container.moveUp()
