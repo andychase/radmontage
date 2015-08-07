@@ -115,10 +115,13 @@ body {
 .row-box {
   min-width: 320px;
   min-height: 180px;
-  //border-right: 1px solid $primary;
   &:last-child {
     border-right: none;
   }
+}
+
+.no-min-height .row-box {
+  min-height: 0;
 }
 
 .info-box-space {

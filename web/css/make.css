@@ -6113,6 +6113,9 @@ body {
   .row-box:last-child {
     border-right: none; }
 
+.no-min-height .row-box {
+  min-height: 0; }
+
 .info-box-space {
   position: relative;
   flex: 1 0;
