@@ -85,7 +85,7 @@ $name = $data[0];
 <div id="container">
     <div id="player"></div>
     <div id="instructions">
-        <div id="skip"><i class="fa fa-fast-forward"></i></div>
+        <div id="skip"><i class="fa fa-forward"></i></div>
         <div id="pause"><i class="fa fa-pause"></i></div>
         <div id="video-info"><i class="fa fa-file-video-o"></i><span>&rarr;</span></div>
     </div>

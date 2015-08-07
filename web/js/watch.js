@@ -167,7 +167,7 @@ $(function() {
         window.clearTimeout(mouseTimer);
       }
       if (!cursorVisible) {
-        overlay.css('cursor', 'e-resize');
+        overlay.css('cursor', "url('/img/forward_cursor.png') 0 0, e-resize");
         cursorVisible = true;
       }
       return mouseTimer = window.setTimeout(disappearCursor, 3000);
