@@ -373,11 +373,13 @@ finishedSerializing = () ->
     """
     $("#montage-link").html(link_to_montage_html)
 
+last_saved = ""
+
 serializeAndSave = () ->
     data = serialize()
 
     # Get new id and secret if we don't have one
-    if data.length
+    if data.length and data != last_saved
         $("#montage-link").html("Saving...")
         if not montage_secret?
             $.get(new_endpoint, {
@@ -402,7 +404,10 @@ serializeAndSave = () ->
                     secret: montage_secret
                     data: data
                 },
-                finishedSerializing,
+                ->
+                    last_saved = data
+                    finishedSerializing()
+                ,
                 'json'
             )
 
