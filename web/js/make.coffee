@@ -363,8 +363,15 @@ update_previous_montages = (link_data) ->
 
 
 finishedSerializing = () ->
-    $("#montage-link").html("""Link to montage: <a href='#{watch_link}#{montage_id}'>
-        https://radmontage.herokuapp.com#{watch_link}#{montage_id}</a>""")
+    rel_url = "#{watch_link}#{montage_id}"
+    full_url = "https://radmontage.herokuapp.com#{watch_link}#{montage_id}"
+    link_to_montage_html = """
+    <a href="#{rel_url}" class="btn btn-default btn-sm" id="montage-play-button"><i class="fa fa-play"></i> Play</a>
+    <span id="montage-manual-link">
+        Link to share: <a href='#{rel_url}'>#{full_url}</a>
+    </span>
+    """
+    $("#montage-link").html(link_to_montage_html)
 
 serializeAndSave = () ->
     data = serialize()

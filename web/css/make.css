@@ -6132,7 +6132,7 @@ body {
 #montage-link {
   color: #34495e;
   margin-top: 5px; }
-  #montage-link span {
+  #montage-link #montage-link-placeholder {
     font-size: 10pt;
     color: #a7a7a7;
     font-style: italic; }
@@ -6179,5 +6179,15 @@ body {
   margin-top: 10px; }
   #previous-montages ul {
     list-style: none; }
+
+#montage-play-button {
+  margin-right: 10px;
+  margin-top: 10px; }
+
+#montage-manual-link {
+  margin-top: 10px;
+  vertical-align: bottom; }
+  #montage-manual-link a {
+    vertical-align: bottom; }
 
 /*# sourceMappingURL=make.css.map */

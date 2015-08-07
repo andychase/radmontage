@@ -144,7 +144,7 @@ body {
 #montage-link {
   color: $primary;
   margin-top: 5px;
-  span {
+  #montage-link-placeholder {
     font-size: 10pt;
     color: #a7a7a7;
     font-style: italic;
@@ -210,5 +210,19 @@ body {
   margin-top: 10px;
   ul {
     list-style: none;
+  }
+}
+
+#montage-play-button {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+#montage-manual-link {
+  margin-top: 10px;
+  vertical-align: bottom;
+
+  a {
+    vertical-align: bottom;
   }
 }

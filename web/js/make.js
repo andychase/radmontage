@@ -423,7 +423,11 @@ update_previous_montages = function(link_data) {
 };
 
 finishedSerializing = function() {
-  return $("#montage-link").html("Link to montage: <a href='" + watch_link + montage_id + "'>\nhttps://radmontage.herokuapp.com" + watch_link + montage_id + "</a>");
+  var full_url, link_to_montage_html, rel_url;
+  rel_url = "" + watch_link + montage_id;
+  full_url = "https://radmontage.herokuapp.com" + watch_link + montage_id;
+  link_to_montage_html = "<a href=\"" + rel_url + "\" class=\"btn btn-default btn-sm\" id=\"montage-play-button\"><i class=\"fa fa-play\"></i> Play</a>\n<span id=\"montage-manual-link\">\n    Link to share: <a href='" + rel_url + "'>" + full_url + "</a>\n</span>";
+  return $("#montage-link").html(link_to_montage_html);
 };
 
 serializeAndSave = function() {
