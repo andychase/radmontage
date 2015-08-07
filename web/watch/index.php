@@ -1,4 +1,36 @@
-<!doctype html>
+<?php
+
+chdir('..');
+require_once('setup.php');
+
+function id_to_img($id) {
+    return "https://i.ytimg.com/vi/$id/mqdefault.jpg";
+}
+function not_found() {
+    http_response_code(404);
+    require("../404.html");
+    return 0;
+}
+
+$id = $_GET['m'];
+if ($id && is_numeric($id)) {
+    $data = $redis->get($id);
+    if ($data) {
+        $data = array_slice(explode(":", $data), 1);
+        if (count($data) < 3)
+            return not_found();
+
+        $encoded = json_encode($data);
+    } else {
+        return not_found();
+    }
+} else {
+    return not_found();
+}
+
+$name = $data[0];
+
+?><!doctype html>
 <html class="no-js" lang="">
 <head>
     <meta charset="utf-8">
@@ -31,20 +63,30 @@
     <meta name="msapplication-config" content="/favicons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/watch.css">
+    <!-- Open Graph -->
+    <meta property="og:title" content="<?php echo($name); ?>">
+    <meta property="og:site_name" content="RadMontage">
+    <meta property="og:image" content="<?php echo(id_to_img($data[1])); ?>" />
+    <meta property="og:url" content="https://radmontage.com">
+    <meta property="og:type" content="video.other">
+    
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/watch.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
     <script src="https://www.youtube.com/iframe_api"></script>
-    <script src="js/watch.js"></script>
+    <script type="text/javascript">
+        window.videos = <?php echo($encoded); ?>;
+    </script>
+    <script src="/js/watch.js"></script>
 </head>
 <body>
 <div id="container">
     <div id="player"></div>
     <div id="overlay"></div>
     <video autoplay loop id="bgvid" style="display: none;">
-        <source src="img/testCard.webm" type="video/webm">
-        <source src="img/testCard.mp4" type="video/mp4">
+        <source src="/img/testCard.webm" type="video/webm">
+        <source src="/img/testCard.mp4" type="video/mp4">
     </video>
 </div>
 </body>

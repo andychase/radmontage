@@ -1,7 +1,7 @@
+videos = window.videos
 player = undefined
 iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 ready = false
-get_endpoint = "/get.php"
 testCardImageBasePath = "https://d12gd74eaa9d1v.cloudfront.net/"
 
 onYouTubeIframeAPIReady = ->
@@ -20,18 +20,6 @@ onPlayerReady = () ->
     ready = true
 
 onPlayerStateChange = () ->
-
-
-get_param_and_start = (func) ->
-    param = window.location.search.split("?m=")
-    if param.length > 0 && param[1].length > 0
-        id = param[1]
-        $.get(get_endpoint, {
-                id: id
-            },
-            func,
-            'json'
-        )
 
 
 if_zero_return_null = (i) ->
@@ -90,32 +78,31 @@ $ ->
             overlay_i += 1
             setTimeout(showStaticOverlay, overlays[i][2])
 
-    get_param_and_start (videos) ->
-        montage_name = videos[0]
-        videos = videos.slice(1)
-        click_movie_function = ->
-            if playing
-                playing = false
-                showStaticOverlay()
-                player.loadVideoById
-                    videoId: get_video_url(videos, video_index)
-                    startSeconds: get_video_start(videos, video_index)
-                    endSeconds: get_video_end(videos, video_index)
-                    suggestedQuality: 'large'
-                video_index += 1
+    montage_name = videos[0]
+    videos = videos.slice(1)
+    click_movie_function = ->
+        if playing
+            playing = false
+            showStaticOverlay()
+            player.loadVideoById
+                videoId: get_video_url(videos, video_index)
+                startSeconds: get_video_start(videos, video_index)
+                endSeconds: get_video_end(videos, video_index)
+                suggestedQuality: 'large'
+            video_index += 1
 
-        onPlayerStateChange = (event) ->
-            if event.data == YT.PlayerState.PLAYING
-                clearOverlay()
-            else if event.data == YT.PlayerState.ENDED
-                click_movie_function()
-
-        overlay[0].addEventListener 'click', click_movie_function, true
-        if ready
+    onPlayerStateChange = (event) ->
+        if event.data == YT.PlayerState.PLAYING
+            clearOverlay()
+        else if event.data == YT.PlayerState.ENDED
             click_movie_function()
-        else
-            onPlayerReady = ->
-                click_movie_function()
+
+    overlay[0].addEventListener 'click', click_movie_function, true
+    if ready
+        click_movie_function()
+    else
+        onPlayerReady = ->
+            click_movie_function()
 
     # Hide the cursor after 3 seconds
     do ->

@@ -15,7 +15,7 @@ save_endpoint = my_host_url + "/save.php";
 
 new_endpoint = my_host_url + "/new.php";
 
-watch_link = my_host_url + "/watch.html?m=";
+watch_link = my_host_url + "/watch/?m=";
 
 montage_id = null;
 
