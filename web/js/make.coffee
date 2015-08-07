@@ -368,7 +368,7 @@ update_previous_montages = (link_data, remove_this_id) ->
 
 finishedSerializing = () ->
     rel_url = "#{watch_link}#{montage_id}"
-    full_url = "https://radmontage.herokuapp.com#{watch_link}#{montage_id}"
+    full_url = "https://radmontage.com#{watch_link}#{montage_id}"
     link_to_montage_html = """
     <a href="#{rel_url}" class="btn btn-default btn-sm" id="montage-play-button"><i class="fa fa-play"></i> Play</a>
     <span id="montage-manual-link">
