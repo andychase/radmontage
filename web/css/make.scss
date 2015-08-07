@@ -15,6 +15,7 @@ body {
 
 #rad-montage-main-header {
   font-family: "Adobe Gothic Std", "adobe-gothic-std", sans-serif;
+  text-shadow: 1px 0px 0 #FFF, -1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF;
   a {
     color: black;
     &:hover, &:active, &:focus {

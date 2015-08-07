@@ -2111,7 +2111,8 @@ body {
   margin-bottom: 100px; }
 
 #rad-montage-main-header {
-  font-family: "Adobe Gothic Std", "adobe-gothic-std", sans-serif; }
+  font-family: "Adobe Gothic Std", "adobe-gothic-std", sans-serif;
+  text-shadow: 1px 0px 0 #FFF, -1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF; }
   #rad-montage-main-header a {
     color: black; }
     #rad-montage-main-header a:hover, #rad-montage-main-header a:active, #rad-montage-main-header a:focus {
