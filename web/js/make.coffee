@@ -380,9 +380,10 @@ last_saved = ""
 
 serializeAndSave = () ->
     data = serialize()
+    anything_to_save = data? and data != "" and data.split(":").length > 2
 
     # Get new id and secret if we don't have one
-    if data.length and data != last_saved
+    if anything_to_save and data != last_saved
         $("#montage-link").html("Saving...")
         if not montage_secret?
             $.get(new_endpoint, {

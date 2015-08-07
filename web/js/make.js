@@ -437,9 +437,10 @@ finishedSerializing = function() {
 last_saved = "";
 
 serializeAndSave = function() {
-  var data;
+  var anything_to_save, data;
   data = serialize();
-  if (data.length && data !== last_saved) {
+  anything_to_save = (data != null) && data !== "" && data.split(":").length > 2;
+  if (anything_to_save && data !== last_saved) {
     $("#montage-link").html("Saving...");
     if (montage_secret == null) {
       $.get(new_endpoint, {}, function(result) {
