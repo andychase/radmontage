@@ -237,7 +237,7 @@ append_new_video_container = (target) ->
 
 append_new_video_container_if_none_left = ->
     if montage_link_container
-        if montage_link_container.children().length > 2
+        if montage_link_container.children().length > 3
             last = get_link_from_montage_container(montage_link_container.children().last())
             if last.val()? and last.val().trim().length
                 append_new_video_container()
