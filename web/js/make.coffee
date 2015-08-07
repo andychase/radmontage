@@ -11,6 +11,7 @@ watch_link = "#{my_host_url}/watch/"
 
 montage_id = null
 montage_secret = null
+disable_saving = false
 
 allowed_in_time_field = /[^0-9:]/g
 allowed_in_title_field = /[^A-Za-z0-9_ ]/
@@ -256,12 +257,12 @@ montage_link_entered = (e) ->
 
     youtube_id = yt_link_to_id(link_target)
     if youtube_id?
-            serializeAndSave()
-            $(e.target.parentNode).addClass("has-success")
-            set_video_image(image_target, link_to_img(youtube_id))
-            set_video_title(title_target, youtube_id)
-            append_new_video_container_if_none_left()
-            return
+        serializeAndSave()
+        $(e.target.parentNode).addClass("has-success")
+        set_video_image(image_target, link_to_img(youtube_id))
+        set_video_title(title_target, youtube_id)
+        append_new_video_container_if_none_left()
+        return
     $(e.target.parentNode).removeClass("has-success")
     serializeAndSave()
     clear_video_image(image_target)
@@ -333,7 +334,7 @@ serialize = () ->
                 data.push(0)
     data.join(":")
 
-update_previous_montages = (link_data) ->
+update_previous_montages = (link_data, remove_this_id) ->
     list_location = $("#previous-montages .dest")
     data = window.localStorage.getItem("data")
     if data? and data != ""
@@ -348,8 +349,10 @@ update_previous_montages = (link_data) ->
     if montage_id?
         date = new Date()
         previous_titles["" + montage_id] = "#{get_montage_title()} #{date.getMonth() + 1}/#{date.getDate()}/#{date.getFullYear()}"
-        if link_data.split(":").length == 2
+        if link_data? and link_data.split(":").length == 2
             delete previous_titles["" + montage_id]
+        if remove_this_id
+            delete previous_titles["" + remove_this_id]
         output = for id, title of previous_titles
             [id, title].join(":")
         window.localStorage.setItem("data", output.join("||"))
@@ -377,16 +380,20 @@ finishedSerializing = () ->
 last_saved = ""
 
 serializeAndSave = () ->
+    if disable_saving
+        return
     data = serialize()
     anything_to_save = data? and data != "" and data.split(":").length > 2
 
     # Get new id and secret if we don't have one
     if anything_to_save and data != last_saved
         $("#montage-link").html("Saving...")
-        if not montage_secret?
-            $.get(new_endpoint, {
+        if not montage_secret? or montage_secret == ""
+            disable_saving = true # We have to disable saving otherwise the call for a new id/secret gets spammed
+            return $.get(new_endpoint, {
                 },
                 (result) ->
+                    disable_saving = false
                     montage_id = result.id
                     montage_secret = result.secret
                     history.replaceState(null, "", "/edit/#{montage_id}");
@@ -400,7 +407,7 @@ serializeAndSave = () ->
             window.localStorage.setItem(montage_id, data)
             window.localStorage.setItem("last_worked_on", montage_id)
 
-        if montage_secret
+        if montage_secret? and montage_secret
             $.post(save_endpoint, {
                     id: montage_id
                     secret: montage_secret
@@ -409,9 +416,13 @@ serializeAndSave = () ->
                 ->
                     last_saved = data
                     finishedSerializing()
-                ,
+            ,
                 'json'
-            )
+            ).fail (xhr) ->
+                if xhr.status == 403
+                    montage_secret = null
+                    update_previous_montages(null, montage_id)
+                    serializeAndSave()
 
     update_previous_montages(data)
 
@@ -429,7 +440,21 @@ $ ->
         montage_id = last_worked_on
 
     if montage_id?
-        unserialize(window.localStorage.getItem(montage_id))
+        saved_data = window.localStorage.getItem(montage_id)
+        if saved_data? and saved_data != ""
+            unserialize(saved_data)
+            history.replaceState(null, "", "/edit/#{montage_id}");
+        else
+            $.get(get_endpoint, {
+                    id: montage_id
+                },
+                (result) ->
+                    unserialize(":" + result.join(":"))
+                    serializeAndSave()
+            ,
+                'json'
+            )
+
         append_new_video_container_if_none_left()
     else
         append_new_video_container()
