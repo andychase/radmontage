@@ -1,6 +1,6 @@
 <?php
 
-preg_match("#^/edit/([0-9]+)#" , $_SERVER['REQUEST_URI'], $matches);
+preg_match("#^/edit/(new|[0-9]+)#" , $_SERVER['REQUEST_URI'], $matches);
 if (count($matches) > 0 && strlen($matches[1]) < 30) {
     require("index.html");
     return true;

@@ -4,9 +4,10 @@ youtube_video_link = "https://www.youtube.com/watch?v="
 youtube_channel_link = "https://www.youtube.com/channel/"
 
 my_host_url = ""
+get_endpoint = "#{my_host_url}/get.php"
 save_endpoint = "#{my_host_url}/save.php"
 new_endpoint = "#{my_host_url}/new.php"
-watch_link = "#{my_host_url}/watch/?m="
+watch_link = "#{my_host_url}/watch/"
 
 montage_id = null
 montage_secret = null
@@ -25,15 +26,12 @@ $.fn.moveDown = ->
     $.each this, ->
         $(this).before $(this).next()
 
-get_url_parameter = (sParam) ->
-    sPageURL = window.location.search.substring(1)
-    sURLVariables = sPageURL.split('&')
-    i = 0
-    while i < sURLVariables.length
-        sParameterName = sURLVariables[i].split('=')
-        if sParameterName[0] == sParam
-            return sParameterName[1]
-        i++
+
+edit_id_matcher = new RegExp("/edit/(new|[0-9]+)")
+get_edit_id = ->
+    matches = window.location.pathname.match(edit_id_matcher)
+    if matches? and matches.length > 1 and matches[1].length > 0
+        return matches[1]
 
 #
 # Check if input string is a valid YouTube URL
@@ -86,7 +84,7 @@ link_to_img = (id) ->
     "https://i.ytimg.com/vi/#{id}/mqdefault.jpg"
 
 set_video_image = (target, url) ->
-    target.css("background-image", "url('img/testCard.gif')")
+    target.css("background-image", "url('/img/testCard.gif')")
     img = new Image
 
     img.onload = ->
@@ -360,7 +358,7 @@ update_previous_montages = (link_data) ->
     if previous_ids.length > 0
         list_location.empty()
     for id in previous_ids
-        list_location.append($("<li><a href='?m=#{id}'>#{previous_titles[id]}</a></li>"))
+        list_location.append($("<li><a href='/edit/#{id}'>#{previous_titles[id]}</a></li>"))
         if id + 1 < previous_ids.length
             list_location.append($("<span>,</span>"))
 
@@ -391,7 +389,7 @@ serializeAndSave = () ->
                 (result) ->
                     montage_id = result.id
                     montage_secret = result.secret
-                    history.replaceState(null, "", "?m=#{montage_id}");
+                    history.replaceState(null, "", "/edit/#{montage_id}");
                     serializeAndSave()
             ,
                 'json'
@@ -420,8 +418,8 @@ serializeAndSave = () ->
 $ ->
     update_previous_montages()
     montage_link_container = $("#montage-links-container")
-    if get_url_parameter("m")?
-        montage_id = get_url_parameter("m")
+    if get_edit_id()?
+        montage_id = get_edit_id()
         if montage_id == "new"
             montage_id = null
             window.localStorage.setItem("last_worked_on", "")
