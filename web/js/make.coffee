@@ -14,6 +14,9 @@ montage_secret = null
 allowed_in_time_field = /[^0-9:]/g
 allowed_in_title_field = /[^A-Za-z0-9_ ]/
 
+## External Functions and Helpers
+##
+
 $.fn.moveUp = ->
     $.each this, ->
         $(this).after $(this).prev()
@@ -31,6 +34,38 @@ get_url_parameter = (sParam) ->
         if sParameterName[0] == sParam
             return sParameterName[1]
         i++
+
+#
+# Check if input string is a valid YouTube URL
+# and try to extract the YouTube Video ID from it.
+# @author  Stephan Schmitz <eyecatchup@gmail.com>
+# @param   $url   string   The string that shall be checked.
+# @return  mixed           Returns YouTube Video ID, or (boolean) false.
+#
+yt_matcher = do ->
+    pattern = '(?:https?://)?'; # Optional URL scheme. Either http or https.
+    pattern += '(?:www\\.|m\\.)?'; #  Optional www or m subdomain.
+    pattern += '(?:'; #  Group host alternatives:
+    pattern += 'youtu\\.be/'; #    Either youtu.be,
+    pattern += '|youtube\\.com'; #    or youtube.com
+    pattern += '|youtube\\.com'; #    or youtube.com
+    pattern += '|i\\.ytimg\\.com'; #    or youtube.com
+    pattern += ')'; #    End path alternatives.
+    pattern += '(?:'; #    Group path alternatives:
+    pattern += '/embed/'; #      Either /embed/,
+    pattern += '|/v/'; #      or /v/,
+    pattern += '|/vi/'; #      or /v/,
+    pattern += '|/watch\\?v='; #      or /watch?v=,
+    pattern += '|/watch\\?.+&v='; #      or /watch?other_param&v=
+    pattern += ')'; #  End host alternatives. (https://i.ytimg.com/vi/5e_AjgKbceQ/mqdefault.jpg)
+    pattern += '([A-Za-z0-9_\\- ]{11,})'; # 11 characters (Length of Youtube video ids).
+    pattern += '(?:.+)?'; # Optional other ending URL parameters.
+    return new RegExp(pattern)
+yt_link_to_id = (url) ->
+    matches = url.match(yt_matcher)
+    if matches? and matches.length > 1 and matches[1].length > 0
+        return matches[1]
+##
 
 ajax_channel_and_title = (id, func) ->
     $.ajax(
@@ -218,13 +253,12 @@ montage_link_entered = (e) ->
     else
         montage_links[link_index] = link_target
 
-    if link_target.split("=").length > 1
-        id = link_target.split("=")[1].split("&")[0]
-        if id.length == 11
+    youtube_id = yt_link_to_id(link_target)
+    if youtube_id?
             serializeAndSave()
             $(e.target.parentNode).addClass("has-success")
-            set_video_image(image_target, link_to_img(id))
-            set_video_title(title_target, id)
+            set_video_image(image_target, link_to_img(youtube_id))
+            set_video_title(title_target, youtube_id)
             append_new_video_container_if_none_left()
             return
     $(e.target.parentNode).removeClass("has-success")
@@ -262,11 +296,13 @@ serialize = () ->
     data.push(montage_name)
     montage_link_container.children().each (i, container) ->
         link = get_link_from_montage_container($(container))
-        if link? and link.length and link.val().trim().split("=").length > 1
+        youtube_id = null
+        if link? and link.val()?
+            youtube_id = yt_link_to_id(link.val().trim())
+        if youtube_id?
             start = link.parent().parent().find(".montageStart")
             stop = link.parent().parent().find(".montageEnd")
-            link_data = link.val().trim().split("=")[1]
-            data.push(link_data)
+            data.push(youtube_id)
             start_time = 0
             if start.val() != ""
                 start_time = text_to_time(start.val())
@@ -305,15 +341,14 @@ update_previous_montages = (link_data) ->
         data = []
     previous_titles = {}
     for record_string in data
-        # Id => title
         record = record_string.split(":")
-        previous_titles[record[0]] = record[1]
+        previous_titles[record[0]] = record[1] # Id => title
 
     if montage_id?
         date = new Date()
-        previous_titles[""+montage_id] = "#{get_montage_title()} #{date.getMonth()+1}/#{date.getDate()}/#{date.getFullYear()}"
+        previous_titles["" + montage_id] = "#{get_montage_title()} #{date.getMonth() + 1}/#{date.getDate()}/#{date.getFullYear()}"
         if link_data.split(":").length == 2
-            delete previous_titles[""+montage_id]
+            delete previous_titles["" + montage_id]
         output = for id, title of previous_titles
             [id, title].join(":")
         window.localStorage.setItem("data", output.join("||"))
