@@ -56,7 +56,9 @@ get_video_end = function(videos, video_index) {
 };
 
 $(function() {
-  var bgvid, clearOverlay, click_movie_function, montage_name, overlay, overlay_i, overlays, playing, showStaticOverlay, video_index;
+  var bgvid, clearOverlay, click_movie_function, instructions, montage_name, need_to_show_instructions, overlay, overlay_i, overlays, playing, showStaticOverlay, video_index;
+  instructions = $("#instructions");
+  need_to_show_instructions = true;
   overlay = $('#overlay');
   bgvid = $('#bgvid');
   overlay_i = 0;
@@ -65,6 +67,7 @@ $(function() {
   if (iOS) {
     bgvid.hide();
     overlay.addClass("ios");
+    instructions.addClass("ios");
     overlay.html("<span>SKIP</span>");
   }
   clearOverlay = function() {
@@ -112,7 +115,12 @@ $(function() {
   };
   onPlayerStateChange = function(event) {
     if (event.data === YT.PlayerState.PLAYING) {
-      return clearOverlay();
+      clearOverlay();
+      if (need_to_show_instructions && !iOS) {
+        need_to_show_instructions = false;
+        instructions.show();
+        return instructions.fadeOut(5000);
+      }
     } else if (event.data === YT.PlayerState.ENDED) {
       return click_movie_function();
     }

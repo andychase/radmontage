@@ -69,8 +69,8 @@ $name = $data[0];
     <meta property="og:url" content="https://radmontage.com">
     <meta property="og:type" content="video.other">
     
-    <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/watch.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
     <script src="https://www.youtube.com/iframe_api"></script>
@@ -82,6 +82,11 @@ $name = $data[0];
 <body>
 <div id="container">
     <div id="player"></div>
+    <div id="instructions">
+        <div id="skip"><i class="fa fa-fast-forward"></i></div>
+        <div id="pause"><i class="fa fa-pause"></i></div>
+        <div id="video-info"><i class="fa fa-file-video-o"></i><span>&rarr;</span></div>
+    </div>
     <div id="overlay"></div>
     <video autoplay loop muted id="bgvid" style="display: none;">
         <source src="/img/testCard.webm" type="video/webm">

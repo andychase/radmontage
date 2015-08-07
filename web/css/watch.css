@@ -72,3 +72,35 @@ iframe {
     font-style: italic;
     width: 40pt;
 }
+
+#instructions {
+    position: fixed;
+    color: white;
+    font-family: sans-serif;
+    font-size: 44pt;
+    opacity: .9;
+    text-shadow: 1px 0px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    display: none;
+}
+
+#instructions #pause {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+}
+
+#instructions #skip {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+}
+
+#instructions #video-info {
+    position: fixed;
+    bottom: 10px;
+    right: 90px;
+}
+#instructions #video-info span {
+    position: relative;
+    top: 14px;
+}

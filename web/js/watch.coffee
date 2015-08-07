@@ -39,6 +39,8 @@ get_video_end = (videos, video_index) ->
     if_zero_return_null(videos[3 * video_index + 2])
 
 $ ->
+    instructions = $("#instructions")
+    need_to_show_instructions = true
     overlay = $('#overlay')
     bgvid = $('#bgvid')
     overlay_i = 0
@@ -48,6 +50,7 @@ $ ->
     if iOS
         bgvid.hide()
         overlay.addClass("ios")
+        instructions.addClass("ios")
         overlay.html("<span>SKIP</span>")
 
     clearOverlay = ->
@@ -94,6 +97,10 @@ $ ->
     onPlayerStateChange = (event) ->
         if event.data == YT.PlayerState.PLAYING
             clearOverlay()
+            if need_to_show_instructions and not iOS
+                need_to_show_instructions = false
+                instructions.show()
+                instructions.fadeOut 5000
         else if event.data == YT.PlayerState.ENDED
             click_movie_function()
 
