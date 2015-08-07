@@ -6,7 +6,6 @@ $primary: #34495e !default;
 
 body {
   background-image: url('../img/background.png');
-  border-top: 2px solid $primary;
   min-width: 860px;
 }
 
@@ -14,12 +13,20 @@ body {
   margin-bottom: 100px;
 }
 
+#rad-montage-main-header {
+  font-family: "Adobe Gothic Std", "adobe-gothic-std", sans-serif;
+}
+
+#rad-montage-sub-header {
+  font-weight: bold;
+}
+
 .logo {
   width: 40px;
   margin-right: auto;
   margin-left: auto;
   display: block;
-  margin-top: 40px;
+  margin-top: 25px;
 }
 
 .left-nav {
@@ -122,6 +129,8 @@ body {
 
 .no-min-height .row-box {
   min-height: 0;
+  padding-top: 0;
+
 }
 
 .info-box-space {
@@ -144,6 +153,7 @@ body {
 #montage-link {
   color: $primary;
   margin-top: 5px;
+  height: 45px;
   #montage-link-placeholder {
     font-size: 10pt;
     color: #a7a7a7;
@@ -224,5 +234,19 @@ body {
 
   a {
     vertical-align: bottom;
+  }
+}
+
+.weird-pattern {
+  background-image: url("../img/pattern_153.gif");
+}
+
+#social-buttons-area {
+  min-height: 66px;
+  max-height: 66px;
+  overflow: hidden;
+  margin-top: 10px;
+  div {
+    margin-top: 10px;
   }
 }

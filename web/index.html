@@ -39,14 +39,8 @@
     <meta property="og:type" content="video.other">
 
     <link rel="stylesheet" href="css/normalize.css">
-    <!-- Place favicon.ico in the root directory -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/make.css">
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
-    <script src="js/vendor/jquery-ajax-localstorage-cache.js"></script>
-    <script src="js/make.js"></script>
 </head>
 <body>
 <!--[if lt IE 8]>
@@ -54,15 +48,25 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-
 <form id="montage-links-container">
-    <div class="row-container no-min-height">
+    <div class="row-container no-min-height weird-pattern">
         <div class="row-box thumb skip-border">
             <img src="img/logo.svg" class="logo"/>
         </div>
         <div class="row-box info-box-space">
-            <h2>RadMontage</h2>
-            <span>Make a montage by pasting Youtube links. Then send it to the world!</span>
+            <h2 id="rad-montage-main-header">RadMontage</h2>
+            <span id="rad-montage-sub-header">Make a montage by pasting Youtube links. Then send it to the world!</span>
+            <div id="social-buttons-area">
+                <div class="fb-like" data-href="https://radmontage.com" data-width="350px" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                <div>
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-via="techstoreclub" data-count="none" data-dnt="true">Tweet</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-container no-min-height">
+        <div class="row-box thumb skip-border"></div>
+        <div class="row-box info-box-space">
             <div class="new-montage-button">
                 <a href="?m=new" class="btn btn-default btn-sm" id="save-and-start-new" type="submit">
                     Save & Start New
@@ -93,5 +97,19 @@
     </div>
 </form>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+<script src="js/vendor/jquery-ajax-localstorage-cache.js"></script>
+<script src="js/make.js"></script>
+<script src="//use.typekit.net/wrp3oee.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 </body>
 </html>

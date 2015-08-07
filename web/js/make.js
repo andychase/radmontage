@@ -227,7 +227,7 @@ append_new_video_container = function(target) {
     });
   });
   do_action_button_with_save(new_container, ".montage-up", function() {
-    if (new_container.index() !== 2) {
+    if (new_container.index() !== 3) {
       return new_container.moveUp();
     }
   });
