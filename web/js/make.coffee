@@ -132,7 +132,7 @@ make_link_container = """
                     <label>Stop:</label>
                     <input type="text" class="form-control montageEnd" placeholder="99:99" maxlength="6"/>
                 </span>
-                <span class="btn-group" role="group" aria-label="...">
+                <span class="btn-group montage-link-buttons" role="group" aria-label="...">
                     <a href="#" class="montage-delete btn btn-default"><i class="fa fa-times"></i></a>
                     <a href="#" class="montage-up btn btn-default"><i class="fa fa-chevron-up"></i></a>
                     <a href="#" class="montage-down btn btn-default"><i class="fa fa-chevron-down"></i></a>
