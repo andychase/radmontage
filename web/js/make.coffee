@@ -178,7 +178,7 @@ append_new_video_container = (target) ->
         new_container.slideUp 100, ->
             new_container.remove()
             serializeAndSave()
-#            append_new_video_container_if_none_left
+            append_new_video_container_if_none_left()
     do_action_button_with_save new_container, ".montage-up", ->
         if new_container.index() != 2
             new_container.moveUp()
@@ -199,7 +199,11 @@ append_new_video_container = (target) ->
 
 append_new_video_container_if_none_left = ->
     if montage_link_container
-        if get_link_from_montage_container(montage_link_container.children().last()).val().trim().length
+        if montage_link_container.children().length > 2
+            last = get_link_from_montage_container(montage_link_container.children().last())
+            if last.val().trim().length
+                append_new_video_container()
+        else
             append_new_video_container()
 
 montage_links = {}
@@ -229,20 +233,24 @@ montage_link_entered = (e) ->
     clear_video_title(title_target)
 
 unserialize = (data) ->
-    data = data.split(":")
-    montage_secret = data[0]
-    montage_link_container.find("#montageName").val(data[1])
-    data = data.slice(2)
-    number_of_videos = data.length / 3
-    for video_index in [0..number_of_videos - 1]
-        link = append_new_video_container()
-        start = link.parent().parent().find(".montageStart")
-        stop = link.parent().parent().find(".montageEnd")
-        link.attr("value", youtube_video_link + data[video_index * 3])
-        if data[video_index * 3 + 1] != "0"
-            start.attr("value", time_to_text(data[video_index * 3 + 1]))
-        if data[video_index * 3 + 2] != "0"
-            stop.attr("value", time_to_text(data[video_index * 3 + 2]))
+    if data? and data != ""
+        data = data.split(":")
+        montage_secret = data[0]
+        montage_link_container.find("#montageName").val(data[1])
+        data = data.slice(2)
+        number_of_videos = data.length / 3
+    else
+        data = []
+    if number_of_videos > 0
+        for video_index in [0..number_of_videos - 1]
+            link = append_new_video_container()
+            start = link.parent().parent().find(".montageStart")
+            stop = link.parent().parent().find(".montageEnd")
+            link.attr("value", youtube_video_link + data[video_index * 3])
+            if data[video_index * 3 + 1] != "0"
+                start.attr("value", time_to_text(data[video_index * 3 + 1]))
+            if data[video_index * 3 + 2] != "0"
+                stop.attr("value", time_to_text(data[video_index * 3 + 2]))
 
     montage_link_container.children().each (i, container) ->
         get_link_from_montage_container($(container)).trigger('change')
@@ -291,7 +299,7 @@ serialize = () ->
 update_previous_montages = (link_data) ->
     list_location = $("#previous-montages .dest")
     data = window.localStorage.getItem("data")
-    if data != ""
+    if data? and data != ""
         data = data.split("||")
     else
         data = []
@@ -304,8 +312,8 @@ update_previous_montages = (link_data) ->
     if montage_id?
         date = new Date()
         previous_titles[""+montage_id] = "#{get_montage_title()} #{date.getMonth()+1}/#{date.getDate()}/#{date.getFullYear()}"
-#        if link_data.length == 0
-#            delete previous_titles[""+montage_id]
+        if link_data.split(":").length == 2
+            delete previous_titles[""+montage_id]
         output = for id, title of previous_titles
             [id, title].join(":")
         window.localStorage.setItem("data", output.join("||"))
@@ -335,7 +343,7 @@ serializeAndSave = () ->
                 (result) ->
                     montage_id = result.id
                     montage_secret = result.secret
-                    history.replaceState(stateObj, "", "?m=#{montage_id}");
+                    history.replaceState(null, "", "?m=#{montage_id}");
                     serializeAndSave()
             ,
                 'json'
@@ -373,6 +381,7 @@ $ ->
 
     if montage_id?
         unserialize(window.localStorage.getItem(montage_id))
+        append_new_video_container_if_none_left()
     else
         append_new_video_container()
 

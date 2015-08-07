@@ -192,7 +192,8 @@ append_new_video_container = function(target) {
     e.preventDefault();
     return new_container.slideUp(100, function() {
       new_container.remove();
-      return serializeAndSave();
+      serializeAndSave();
+      return append_new_video_container_if_none_left();
     });
   });
   do_action_button_with_save(new_container, ".montage-up", function() {
@@ -217,8 +218,14 @@ append_new_video_container = function(target) {
 };
 
 append_new_video_container_if_none_left = function() {
+  var last;
   if (montage_link_container) {
-    if (get_link_from_montage_container(montage_link_container.children().last()).val().trim().length) {
+    if (montage_link_container.children().length > 2) {
+      last = get_link_from_montage_container(montage_link_container.children().last());
+      if (last.val().trim().length) {
+        return append_new_video_container();
+      }
+    } else {
       return append_new_video_container();
     }
   }
@@ -256,21 +263,27 @@ montage_link_entered = function(e) {
 
 unserialize = function(data) {
   var j, link, number_of_videos, ref, start, stop, video_index;
-  data = data.split(":");
-  montage_secret = data[0];
-  montage_link_container.find("#montageName").val(data[1]);
-  data = data.slice(2);
-  number_of_videos = data.length / 3;
-  for (video_index = j = 0, ref = number_of_videos - 1; 0 <= ref ? j <= ref : j >= ref; video_index = 0 <= ref ? ++j : --j) {
-    link = append_new_video_container();
-    start = link.parent().parent().find(".montageStart");
-    stop = link.parent().parent().find(".montageEnd");
-    link.attr("value", youtube_video_link + data[video_index * 3]);
-    if (data[video_index * 3 + 1] !== "0") {
-      start.attr("value", time_to_text(data[video_index * 3 + 1]));
-    }
-    if (data[video_index * 3 + 2] !== "0") {
-      stop.attr("value", time_to_text(data[video_index * 3 + 2]));
+  if ((data != null) && data !== "") {
+    data = data.split(":");
+    montage_secret = data[0];
+    montage_link_container.find("#montageName").val(data[1]);
+    data = data.slice(2);
+    number_of_videos = data.length / 3;
+  } else {
+    data = [];
+  }
+  if (number_of_videos > 0) {
+    for (video_index = j = 0, ref = number_of_videos - 1; 0 <= ref ? j <= ref : j >= ref; video_index = 0 <= ref ? ++j : --j) {
+      link = append_new_video_container();
+      start = link.parent().parent().find(".montageStart");
+      stop = link.parent().parent().find(".montageEnd");
+      link.attr("value", youtube_video_link + data[video_index * 3]);
+      if (data[video_index * 3 + 1] !== "0") {
+        start.attr("value", time_to_text(data[video_index * 3 + 1]));
+      }
+      if (data[video_index * 3 + 2] !== "0") {
+        stop.attr("value", time_to_text(data[video_index * 3 + 2]));
+      }
     }
   }
   return montage_link_container.children().each(function(i, container) {
@@ -333,7 +346,7 @@ update_previous_montages = function(link_data) {
   var data, date, id, j, k, len, len1, list_location, output, previous_ids, previous_titles, record, record_string, results, title;
   list_location = $("#previous-montages .dest");
   data = window.localStorage.getItem("data");
-  if (data !== "") {
+  if ((data != null) && data !== "") {
     data = data.split("||");
   } else {
     data = [];
@@ -347,6 +360,9 @@ update_previous_montages = function(link_data) {
   if (montage_id != null) {
     date = new Date();
     previous_titles["" + montage_id] = (get_montage_title()) + " " + (date.getMonth() + 1) + "/" + (date.getDate()) + "/" + (date.getFullYear());
+    if (link_data.split(":").length === 2) {
+      delete previous_titles["" + montage_id];
+    }
     output = (function() {
       var results;
       results = [];
@@ -388,7 +404,7 @@ serializeAndSave = function() {
       $.get(new_endpoint, {}, function(result) {
         montage_id = result.id;
         montage_secret = result.secret;
-        history.replaceState(stateObj, "", "?m=" + montage_id);
+        history.replaceState(null, "", "?m=" + montage_id);
         return serializeAndSave();
       }, 'json');
     }
@@ -424,6 +440,7 @@ $(function() {
   }
   if (montage_id != null) {
     unserialize(window.localStorage.getItem(montage_id));
+    append_new_video_container_if_none_left();
   } else {
     append_new_video_container();
   }
