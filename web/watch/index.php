@@ -8,7 +8,7 @@ function id_to_img($id) {
 }
 function not_found() {
     http_response_code(404);
-    require("../404.html");
+    require("404.html");
     return 0;
 }
 
@@ -84,7 +84,7 @@ $name = $data[0];
 <div id="container">
     <div id="player"></div>
     <div id="overlay"></div>
-    <video autoplay loop id="bgvid" style="display: none;">
+    <video autoplay loop muted id="bgvid" style="display: none;">
         <source src="/img/testCard.webm" type="video/webm">
         <source src="/img/testCard.mp4" type="video/mp4">
     </video>
