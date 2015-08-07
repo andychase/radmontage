@@ -20,10 +20,17 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
+  <rect
+     style="fill:#ffffff;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:1;stroke-dasharray:none"
+     id="rect3354"
+     width="5.8794899"
+     height="12.609027"
+     x="31.310055"
+     y="15.513351" />
   <g
      transform="translate(-79.421875,-150.82585)"
      id="layer1">
