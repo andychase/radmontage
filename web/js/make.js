@@ -412,7 +412,7 @@ update_previous_montages = function(link_data, remove_this_id) {
     })();
     window.localStorage.setItem("data", output.join("||"));
   }
-  previous_ids = Object.keys(previous_titles).sort();
+  previous_ids = Object.keys(previous_titles).sort().reverse();
   if (previous_ids.length > 0) {
     list_location.empty();
   }
