@@ -1,6 +1,5 @@
 <?php
 
-chdir('..');
 require_once('setup.php');
 
 function id_to_img($id) {
