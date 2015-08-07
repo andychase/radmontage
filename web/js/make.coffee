@@ -112,7 +112,10 @@ clear_video_title = (target) ->
     target.html("&nbsp;")
 
 get_montage_title = ->
-    $("#montageName").val().replace(allowed_in_title_field, "")
+    if $("#montageName").val()?
+        $("#montageName").val().replace(allowed_in_title_field, "")
+    else
+        ""
 
 text_to_time = (value) ->
     value = value.replace(allowed_in_time_field, "")
@@ -236,7 +239,7 @@ append_new_video_container_if_none_left = ->
     if montage_link_container
         if montage_link_container.children().length > 2
             last = get_link_from_montage_container(montage_link_container.children().last())
-            if last.val().trim().length
+            if last.val()? and last.val().trim().length
                 append_new_video_container()
         else
             append_new_video_container()
@@ -304,7 +307,7 @@ serialize = () ->
             stop = link.parent().parent().find(".montageEnd")
             data.push(youtube_id)
             start_time = 0
-            if start.val() != ""
+            if start.val()? and start.val() != ""
                 start_time = text_to_time(start.val())
                 if start_time > 0
                     start.parent().addClass("has-success")
@@ -312,7 +315,7 @@ serialize = () ->
             else
                 start.parent().removeClass("has-success")
                 data.push(0)
-            if stop.val() != ""
+            if stop.val()? and stop.val() != ""
                 end_time = text_to_time(stop.val())
                 if end_time > 0
                     if end_time > start_time
