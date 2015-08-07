@@ -9,13 +9,13 @@ function clean($string)
 
 $post_data = clean($_POST['data']);
 $id = $_POST['id'];
-$secret = $_POST['secret'];
 
-if ($post_data && $id && $secret && strlen($post_data) < 20010) {
+if ($post_data && $id && strlen($post_data) < 20010) {
     if ($id && is_numeric($id)) {
         $db_data = explode(":", $redis->get($id));
-        if (hash_equals($secret, $db_data[0])) {
-            $redis->set($id, $secret . ":" . $post_data);
+        $user_data = explode(":", $post_data);
+        if (count($user_data) > 0 && hash_equals($user_data[0], $db_data[0])) {
+            $redis->set($id, $post_data);
             http_response_code(200);
             header('Content-Type: application/json');
             echo(json_encode(["ok"]));
