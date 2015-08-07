@@ -4,7 +4,7 @@ require_once('setup.php');
 
 function clean($string)
 {
-    return preg_replace('/[^A-Za-z0-9_:]/', '', $string); // Removes special chars.
+    return preg_replace('/[^A-Za-z0-9_\- :]/', '', $string); // Removes special chars.
 }
 
 $post_data = clean($_POST['data']);
