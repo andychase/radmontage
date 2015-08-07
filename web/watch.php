@@ -2,10 +2,12 @@
 
 require_once('setup.php');
 
-function id_to_img($id) {
+function id_to_img($id)
+{
     return "https://i.ytimg.com/vi/$id/mqdefault.jpg";
 }
-function not_found() {
+function not_found()
+{
     http_response_code(404);
     require("404.html");
     return 0;
@@ -65,10 +67,10 @@ $name = $data[0];
     <!-- Open Graph -->
     <meta property="og:title" content="<?php echo($name); ?>">
     <meta property="og:site_name" content="RadMontage">
-    <meta property="og:image" content="<?php echo(id_to_img($data[1])); ?>" />
+    <meta property="og:image" content="<?php echo(id_to_img($data[1])); ?>"/>
     <meta property="og:url" content="https://radmontage.com">
     <meta property="og:type" content="video.other">
-    
+
     <link rel="stylesheet" href="/css/watch.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -93,5 +95,25 @@ $name = $data[0];
         <source src="/img/testCard.mp4" type="video/mp4">
     </video>
 </div>
+<div id="end-splash" style="display:none;">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:300px;height:600px"
+         data-ad-client="ca-pub-9628790143468004"
+         data-ad-slot="8940858558"></ins>
+
+    <div id="some-info" style="display:inline-block;width:300px;height:600px;vertical-align: top">
+        <a href="/"><img src="/img/logo_notfound.svg" class="logo"/></a>
+        <ul>
+            <li><a href=""><i class="fa fa-repeat"></i>Watch again</a></li>
+            <li><a href="/edit/<?php echo($id);?>"><i class="fa fa-film"></i>See the videos</a></li>
+            <li><a href="/"><i class="fa fa-star"></i>Make your own montage</a></li>
+        </ul>
+    </div>
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:300px;height:600px;vertical-align: top"
+         data-ad-client="ca-pub-9628790143468004"
+         data-ad-slot="1417591750"></ins>
+</div>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </body>
 </html>

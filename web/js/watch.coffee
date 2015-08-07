@@ -38,10 +38,19 @@ get_video_start = (videos, video_index) ->
 get_video_end = (videos, video_index) ->
     if_zero_return_null(videos[3 * video_index + 2])
 
+video_end = (container, end_splash) ->
+    $("body").addClass("video-done");
+    container.hide()
+    container.remove()
+    end_splash.show()
+    (window.adsbygoogle or []).push {}
+    (window.adsbygoogle or []).push {}
+
 $ ->
     instructions = $("#instructions")
     need_to_show_instructions = true
     overlay = $('#overlay')
+    end_splash = $('#end-splash')
     bgvid = $('#bgvid')
     overlay_i = 0
     video_index = 0
@@ -87,12 +96,21 @@ $ ->
         if playing
             playing = false
             showStaticOverlay()
-            player.loadVideoById
-                videoId: get_video_url(videos, video_index)
-                startSeconds: get_video_start(videos, video_index)
-                endSeconds: get_video_end(videos, video_index)
-                suggestedQuality: 'large'
-            video_index += 1
+            if video_index < (videos.length/3)
+                player.loadVideoById
+                    videoId: get_video_url(videos, video_index)
+                    startSeconds: get_video_start(videos, video_index)
+                    endSeconds: get_video_end(videos, video_index)
+                    suggestedQuality: 'large'
+                video_index += 1
+            else
+                player.stopVideo()
+                setTimeout(->
+                    document.onmousemove = null
+                    clearOverlay()
+                    video_end(overlay.parent(), end_splash)
+                , 400)
+
 
     onPlayerStateChange = (event) ->
         if event.data == YT.PlayerState.PLAYING
