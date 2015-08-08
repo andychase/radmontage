@@ -273,7 +273,7 @@ montage_link_entered = function(e) {
   image_target = $(e.target.parentNode.parentNode.parentNode.parentNode).children(".thumb").first();
   title_target = $(e.target.parentNode.parentNode).children(".montageTitle").first();
   link_target = e.target.value;
-  if (montage_links[link_index] === link_target) {
+  if (montage_links[link_index] === link_target && title_target.html() !== "&nbsp;") {
     return;
   } else {
     montage_links[link_index] = link_target;
