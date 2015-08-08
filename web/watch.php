@@ -30,9 +30,11 @@ if ($id) {
 }
 
 $name = $data[0];
+if ($name == "")
+    $name = "My Montage"
 
 ?><!doctype html>
-<html class="no-js" lang="">
+<html prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
