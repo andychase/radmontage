@@ -75,8 +75,8 @@ if ($name == "")
     <meta property="og:description"
           content="Watch this crazy montage that exists">
     <!-- Twitter -->
-    <meta name="twitter:card" value="summary" />
-    <meta name="twitter:site" value="@techstoreclub" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@techstoreclub" />
     <meta property="twitter:title" content="<?php echo($name); ?>" />
     <meta property="twitter:description" content="Watch this crazy montage that exists" />
     <meta property="twitter:image" content="<?php echo(id_to_img($data[1])); ?>"/>
@@ -112,7 +112,7 @@ if ($name == "")
          data-ad-slot="8940858558"></ins>
 
     <div id="some-info" style="display:inline-block;width:300px;height:600px;vertical-align: top">
-        <a href="/"><img src="/img/logo_notfound.svg" class="logo"/></a>
+        <a href="/"><img src="/img/logo_notfound.svg" class="logo" alt="Logo/PageNotFound"/></a>
         <ul>
             <li><a href=""><i class="fa fa-repeat"></i>Watch again</a></li>
             <li><a href="/edit/<?php echo($id);?>"><i class="fa fa-film"></i>See the videos</a></li>
