@@ -1,12 +1,12 @@
 <?php
 
-preg_match("#^/edit/(new|[0-9]+)#" , $_SERVER['REQUEST_URI'], $matches);
+preg_match("#^/edit/(new|[0-9a-z]+)#", $_SERVER['REQUEST_URI'], $matches);
 if (count($matches) > 0 && strlen($matches[1]) < 30) {
     require("index.html");
     return true;
 }
 
-preg_match("#^/watch/([0-9]+)#" , $_SERVER['REQUEST_URI'], $matches);
+preg_match("#^/watch/([0-9a-z]+)#", $_SERVER['REQUEST_URI'], $matches);
 if (count($matches) > 0 && strlen($matches[1]) < 30) {
     $_GET['m'] = $matches[1];
     require("watch.php");

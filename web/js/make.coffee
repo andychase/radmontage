@@ -28,7 +28,7 @@ $.fn.moveDown = ->
         $(this).before $(this).next()
 
 
-edit_id_matcher = new RegExp("/edit/(new|[0-9]+)")
+edit_id_matcher = new RegExp("/edit/(new|[0-9a-z]+)")
 get_edit_id = ->
     matches = window.location.pathname.match(edit_id_matcher)
     if matches? and matches.length > 1 and matches[1].length > 0

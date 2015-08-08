@@ -14,3 +14,32 @@ $redis = new Predis\Client([
     'port' => parse_url($redis_url, PHP_URL_PORT),
     'password' => parse_url($redis_url, PHP_URL_PASS),
 ]);
+
+class DB
+{
+    public $id_index = 'id_index';
+
+    static function get_next_id()
+    {
+        global $redis;
+        return intval($redis->incr('id_index'));
+    }
+
+    static function db_initialize_id($id, $secret)
+    {
+        global $redis;
+        return $redis->set($id, $secret);
+    }
+
+    static function get_montage($id)
+    {
+        global $redis;
+        return explode(":", $redis->get($id));
+    }
+
+    static function set_montage($id, $data)
+    {
+        global $redis;
+        return $redis->set($id, $data);
+    }
+}

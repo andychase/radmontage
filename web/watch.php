@@ -14,10 +14,10 @@ function not_found()
 }
 
 $id = $_GET['m'];
-if ($id && is_numeric($id)) {
-    $data = $redis->get($id);
+if ($id) {
+    $data = DB::get_montage($id);
     if ($data) {
-        $data = array_slice(explode(":", $data), 1);
+        $data = array_slice($data, 1);
         if (count($data) < 3)
             return not_found();
 

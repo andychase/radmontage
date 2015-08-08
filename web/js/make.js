@@ -41,7 +41,7 @@ $.fn.moveDown = function() {
   });
 };
 
-edit_id_matcher = new RegExp("/edit/(new|[0-9]+)");
+edit_id_matcher = new RegExp("/edit/(new|[0-9a-z]+)");
 
 get_edit_id = function() {
   var matches;
