@@ -68,10 +68,16 @@ $name = $data[0];
     <meta property="og:title" content="<?php echo($name); ?>">
     <meta property="og:site_name" content="RadMontage">
     <meta property="og:image" content="<?php echo(id_to_img($data[1])); ?>"/>
-    <meta property="og:url" content="https://radmontage.com">
-    <meta property="og:type" content="video.other">
+    <meta property="og:url" content="https://radmontage.com/watch/<?php echo($id); ?>">
+    <meta property="og:type" content="website">
     <meta property="og:description"
           content="Watch this crazy montage that exists">
+    <!-- Twitter -->
+    <meta name="twitter:card" value="summary" />
+    <meta name="twitter:site" value="@techstoreclub" />
+    <meta property="twitter:title" content="<?php echo($name); ?>" />
+    <meta property="twitter:description" content="Watch this crazy montage that exists" />
+    <meta property="twitter:image" content="<?php echo(id_to_img($data[1])); ?>"/>
 
     <link rel="stylesheet" href="/css/watch.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
