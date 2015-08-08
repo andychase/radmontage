@@ -9,7 +9,7 @@ function id_to_img($id)
 function not_found()
 {
     http_response_code(404);
-    require("404.html");
+    require("404_montage.html");
     return 0;
 }
 
