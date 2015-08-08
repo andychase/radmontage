@@ -32,20 +32,21 @@
     <meta name="theme-color" content="#ffffff">
 
     <!-- Open Graph -->
-    <meta property="og:url" content="https://radmontage.com" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="It's like an easy bake oven but for montages" />
-    <meta property="og:site_name" content="RadMontage" />
+    <meta property="og:url" content="https://radmontage.com"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="It's like an easy bake oven but for montages"/>
+    <meta property="og:site_name" content="RadMontage"/>
     <meta property="og:description"
           content="Okay so the site it won't make you cookies, but it will let you make montages quickly by just pasting Youtube links. Afterwards you can see them share them or whatever. It's free so">
-    <meta property="og:image" content="https://radmontage.com/img/logo_card.png" />
-    <meta property="fb:app_id" content="902780833133901" />
+    <meta property="og:image" content="https://radmontage.com/img/logo_card.png"/>
+    <meta property="fb:app_id" content="902780833133901"/>
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@techstoreclub" />
-    <meta property="twitter:url" content="https://radmontage.com" />
-    <meta property="twitter:title" content="It's like an easy bake oven but for montages" />
-    <meta property="twitter:description" content="Okay so the site it won't make you cookies, but it will let you make montages quickly by just pasting Youtube links. Afterwards you can see them share them or whatever. It's free so" />
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@techstoreclub"/>
+    <meta property="twitter:url" content="https://radmontage.com"/>
+    <meta property="twitter:title" content="It's like an easy bake oven but for montages"/>
+    <meta property="twitter:description"
+          content="Okay so the site it won't make you cookies, but it will let you make montages quickly by just pasting Youtube links. Afterwards you can see them share them or whatever. It's free so"/>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/make.css">
@@ -55,85 +56,118 @@
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
-
-<form id="montage-links-container">
-    <div class="row-container no-min-height weird-pattern">
-        <div class="row-box thumb skip-border">
-            <a href="/"><img src="/img/logo.svg" class="logo" alt="RadMontage"/></a>
+<div class="container">
+    <div class="row">
+        <div class="top-header col-xs-12">
+            <a href="/" class="text-center"><img src="/img/logo.svg" class="logo" alt="RadMontage"/></a>
         </div>
-        <div class="row-box info-box-space">
-            <h2 id="rad-montage-main-header"><a href="/">RadMontage</a></h2>
-            <span id="rad-montage-sub-header">Make montages by pasting Youtube links</span>
+    </div>
+    <div class="row">
+        <div class="sidebar col-xs-12 col-md-3">
+            <div class="weird-pattern">
+
+                <h2 id="rad-montage-main-header"><a href="/">RadMontage</a></h2>
+                <span id="rad-montage-sub-header">Make montages by pasting Youtube links</span>
+            </div>
+            <hr>
+            <h6>Your Montages</h6>
+
+            <div class="row-container no-min-height">
+                <div class="row-box info-box-space">
+                    <div class="form-group">
+                        <a href="/edit/new" class="btn btn-default btn-sm" id="save-and-start-new">
+                            Save & Start New
+                        </a>
+                    </div>
+                    <div id="previous-montages">
+                        <span class="intro">Previously made montages:</span>
+                        <ul class="dest list-unstyled">
+                            <li><i>Saved Montages will appear here.</i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <h6>Share</h6>
             <div id="social-buttons-area">
-                <div class="fb-like" data-href="https://radmontage.com" data-width="350px" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
                 <div class="social-button-twitter">
-                    <a href="https://twitter.com/share" class="twitter-share-button" data-via="techstoreclub" data-count="none" data-dnt="true">Tweet</a>
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-via="techstoreclub"
+                       data-count="none" data-dnt="true">Tweet</a>
                 </div>
+                <div class="fb-like" data-href="https://radmontage.com" data-width="350px"
+                     data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
             </div>
         </div>
-    </div>
-    <div class="row-container no-min-height">
-        <div class="row-box thumb skip-border"></div>
-        <div class="row-box info-box-space">
-            <div class="new-montage-button">
-                <a href="/edit/new" class="btn btn-default btn-sm" id="save-and-start-new">
-                    Save & Start New
-                </a>
-            </div>
-            <div id="previous-montages">
-                <span class="intro">Previously made montages:</span>
-                <ul class="dest"><li><i>Saved Montages will appear here.</i></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="row-container no-min-height">
-        <div class="row-box thumb skip-border">
+        <div class="mainbar col-xs-12 col-md-9">
+            <form id="montage-links-container">
+                <div class="row-container no-min-height">
+                    <div class="form-group">
+                        <label for="montageName">Montage Title:</label>
+                        <input type="text" id="montageName" class="form-control" placeholder="Name Your Montage">
+                    </div>
 
-        </div>
-        <div class="row-box info-box-space">
-            <div class="montage-form-group form-group">
-                <label for="montageName"></label>
-                <input type="text" id="montageName" class="form-control" placeholder="Name Your Montage">
-
-                <div id="montage-link">
-                    <span id="montage-link-placeholder">A watch button and link will appear here once you've added a video</span>
-                    <a class="" href="#"></a>
+                    <div class="form-group">
+                        <div id="montage-link">
+                            <span id="montage-link-placeholder">A watch button and link will appear here once you've added a video</span>
+                            <a class="" href="#"></a>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
-</form>
 
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
 <script src="/js/vendor/jquery-ajax-localstorage-cache.js"></script>
 <script src="/js/make.js"></script>
 <script src="//use.typekit.net/wrp3oee.js"></script>
-<script>try{Typekit.load({ async: true });}catch(e){}</script>
+<script>try {
+    Typekit.load({async: true});
+} catch (e) {
+}</script>
 <script>
-    window.fbAsyncInit = function() {
+    window.fbAsyncInit = function () {
         FB.init({
-            appId      : '902780833133901',
-            xfbml      : true,
-            version    : 'v2.4'
+            appId: '902780833133901',
+            xfbml: true,
+            version: 'v2.4'
         });
     };
 
-    (function(d, s, id){
+    (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<script>!function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+    if (!d.getElementById(id)) {
+        js = d.createElement(s);
+        js.id = id;
+        js.src = p + '://platform.twitter.com/widgets.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }
+}(document, 'script', 'twitter-wjs');</script>
 <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-58719971-2', 'auto');
     ga('send', 'pageview');

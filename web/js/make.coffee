@@ -89,7 +89,8 @@ set_video_image = (target, url) ->
     img = new Image
 
     img.onload = ->
-        target.css("background-image", "url('#{url}')")
+        target.css("background-image", "")
+        target.attr("src", url)
 
     img.src = url
 
@@ -147,37 +148,39 @@ time_to_text = (value) ->
         seconds
 
 make_link_container = """
-    <div class="row-container">
-        <div class="row-box thumb">
+<div class="row-container row montage-row">
+    <img class="thumb img-responsive col-xs-4 col-lg-5" />
 
-        </div>
-        <div class="row-box info-box-space">
-            <div class="montage-form-group">
-                <h2 class="montageTitle">&nbsp;</h2>
+    <div class="row-box info-box-space col-xs-8 col-lg-7">
+        <div class="montage-form-group">
+            <h4 class="montageTitle">&nbsp;</h4>
 
+            <div class="form-group">
+                <label for="montageUrl1"></label>
+                <input type="text" id="montageUrl1" class="form-control montageUrl"
+                       placeholder="Paste the Youtube link here"/>
+            </div>
+            <div class="form-inline">
                 <div class="form-group">
-                    <label for="montageUrl1"></label>
-                    <input type="text" id="montageUrl1" class="form-control montageUrl"
-                           placeholder="Paste the Youtube link here"/>
-                </div>
-                <span class="form-inline">
                     <label>Start:</label>
                     <input type="text" class="form-control montageStart" placeholder="0:00" maxlength="6"/>
-
-                </span>
-                <span class="form-inline">
+                </div>
+                <div class="form-group">
                     <label>Stop:</label>
                     <input type="text" class="form-control montageEnd" placeholder="99:99" maxlength="6"/>
-                </span>
-                <span class="btn-group montage-link-buttons" role="group" aria-label="...">
-                    <a href="#" class="montage-delete btn btn-default"><i class="fa fa-times"></i></a>
-                    <a href="#" class="montage-up btn btn-default"><i class="fa fa-chevron-up"></i></a>
-                    <a href="#" class="montage-down btn btn-default"><i class="fa fa-chevron-down"></i></a>
-                </span>
-                <a href="#" class="montage-add-here"><i class="fa fa-plus"></i></a>
+                </div>
+                <div class="form-group">
+                    <div class="btn-group montage-link-buttons" role="group">
+                        <a href="#" class="montage-delete btn btn-default"><i class="fa fa-times"></i></a>
+                        <a href="#" class="montage-up btn btn-default"><i class="fa fa-chevron-up"></i></a>
+                        <a href="#" class="montage-down btn btn-default"><i class="fa fa-chevron-down"></i></a>
+                        <a href="#" class="montage-add-here btn btn-default"><i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>
     """
 
 montage_link_container = undefined
@@ -217,7 +220,7 @@ append_new_video_container = (target) ->
             serializeAndSave()
             append_new_video_container_if_none_left()
     do_action_button_with_save new_container, ".montage-up", ->
-        if new_container.index() != 3
+        if new_container.index() != 1
             new_container.moveUp()
     do_action_button_with_save new_container, ".montage-down", ->
         new_container.moveDown()
@@ -236,7 +239,7 @@ append_new_video_container = (target) ->
 
 append_new_video_container_if_none_left = ->
     if montage_link_container
-        if montage_link_container.children().length > 3
+        if montage_link_container.children().length > 1
             last = get_link_from_montage_container(montage_link_container.children().last())
             if last.val()? and last.val().trim().length
                 append_new_video_container()
@@ -310,6 +313,8 @@ serialize = () ->
                 start_time = text_to_time(start.val())
                 if start_time > 0
                     start.parent().addClass("has-success")
+                else
+                    start.parent().removeClass("has-success")
                 data.push(start_time)
             else
                 start.parent().removeClass("has-success")

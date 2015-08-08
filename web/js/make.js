@@ -107,7 +107,8 @@ set_video_image = function(target, url) {
   target.css("background-image", "url('/img/testCard.gif')");
   img = new Image;
   img.onload = function() {
-    return target.css("background-image", "url('" + url + "')");
+    target.css("background-image", "");
+    return target.attr("src", url);
   };
   return img.src = url;
 };
@@ -183,7 +184,7 @@ time_to_text = function(value) {
   }
 };
 
-make_link_container = "<div class=\"row-container\">\n    <div class=\"row-box thumb\">\n\n    </div>\n    <div class=\"row-box info-box-space\">\n        <div class=\"montage-form-group\">\n            <h2 class=\"montageTitle\">&nbsp;</h2>\n\n            <div class=\"form-group\">\n                <label for=\"montageUrl1\"></label>\n                <input type=\"text\" id=\"montageUrl1\" class=\"form-control montageUrl\"\n                       placeholder=\"Paste the Youtube link here\"/>\n            </div>\n            <span class=\"form-inline\">\n                <label>Start:</label>\n                <input type=\"text\" class=\"form-control montageStart\" placeholder=\"0:00\" maxlength=\"6\"/>\n\n            </span>\n            <span class=\"form-inline\">\n                <label>Stop:</label>\n                <input type=\"text\" class=\"form-control montageEnd\" placeholder=\"99:99\" maxlength=\"6\"/>\n            </span>\n            <span class=\"btn-group montage-link-buttons\" role=\"group\" aria-label=\"...\">\n                <a href=\"#\" class=\"montage-delete btn btn-default\"><i class=\"fa fa-times\"></i></a>\n                <a href=\"#\" class=\"montage-up btn btn-default\"><i class=\"fa fa-chevron-up\"></i></a>\n                <a href=\"#\" class=\"montage-down btn btn-default\"><i class=\"fa fa-chevron-down\"></i></a>\n            </span>\n            <a href=\"#\" class=\"montage-add-here\"><i class=\"fa fa-plus\"></i></a>\n        </div>\n    </div>\n</div>";
+make_link_container = "<div class=\"row-container row montage-row\">\n    <img class=\"thumb img-responsive col-xs-4 col-lg-5\" />\n\n    <div class=\"row-box info-box-space col-xs-8 col-lg-7\">\n        <div class=\"montage-form-group\">\n            <h4 class=\"montageTitle\">&nbsp;</h4>\n\n            <div class=\"form-group\">\n                <label for=\"montageUrl1\"></label>\n                <input type=\"text\" id=\"montageUrl1\" class=\"form-control montageUrl\"\n                       placeholder=\"Paste the Youtube link here\"/>\n            </div>\n            <div class=\"form-inline\">\n                <div class=\"form-group\">\n                    <label>Start:</label>\n                    <input type=\"text\" class=\"form-control montageStart\" placeholder=\"0:00\" maxlength=\"6\"/>\n                </div>\n                <div class=\"form-group\">\n                    <label>Stop:</label>\n                    <input type=\"text\" class=\"form-control montageEnd\" placeholder=\"99:99\" maxlength=\"6\"/>\n                </div>\n                <div class=\"form-group\">\n                    <div class=\"btn-group montage-link-buttons\" role=\"group\">\n                        <a href=\"#\" class=\"montage-delete btn btn-default\"><i class=\"fa fa-times\"></i></a>\n                        <a href=\"#\" class=\"montage-up btn btn-default\"><i class=\"fa fa-chevron-up\"></i></a>\n                        <a href=\"#\" class=\"montage-down btn btn-default\"><i class=\"fa fa-chevron-down\"></i></a>\n                        <a href=\"#\" class=\"montage-add-here btn btn-default\"><i class=\"fa fa-plus\"></i></a>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>";
 
 montage_link_container = void 0;
 
@@ -231,7 +232,7 @@ append_new_video_container = function(target) {
     });
   });
   do_action_button_with_save(new_container, ".montage-up", function() {
-    if (new_container.index() !== 3) {
+    if (new_container.index() !== 1) {
       return new_container.moveUp();
     }
   });
@@ -254,7 +255,7 @@ append_new_video_container = function(target) {
 append_new_video_container_if_none_left = function() {
   var last;
   if (montage_link_container) {
-    if (montage_link_container.children().length > 3) {
+    if (montage_link_container.children().length > 1) {
       last = get_link_from_montage_container(montage_link_container.children().last());
       if ((last.val() != null) && last.val().trim().length) {
         return append_new_video_container();
@@ -345,6 +346,8 @@ serialize = function() {
         start_time = text_to_time(start.val());
         if (start_time > 0) {
           start.parent().addClass("has-success");
+        } else {
+          start.parent().removeClass("has-success");
         }
         data.push(start_time);
       } else {
