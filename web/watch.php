@@ -36,7 +36,7 @@ $name = $data[0];
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title></title>
+    <title>RadMontage: <?php echo($name); ?></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -70,6 +70,8 @@ $name = $data[0];
     <meta property="og:image" content="<?php echo(id_to_img($data[1])); ?>"/>
     <meta property="og:url" content="https://radmontage.com">
     <meta property="og:type" content="video.other">
+    <meta property="og:description"
+          content="Watch this crazy montage that exists">
 
     <link rel="stylesheet" href="/css/watch.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">

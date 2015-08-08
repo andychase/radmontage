@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>RadMontage</title>
+    <title>RadMontage: Make A Youtube Montage Today</title>
     <meta name="description" content="Make montages by pasting Youtube links">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -32,12 +32,14 @@
     <meta name="theme-color" content="#ffffff">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Montage">
+    <meta property="og:title" content="It's like an easy bake oven but for montages">
     <meta property="og:site_name" content="RadMontage">
     <meta property="og:url" content="https://radmontage.com">
-    <meta property="og:description" content="Make montages by pasting Youtube links">
-    <meta property="og:image" content="/img/og_logo.png"/>
+    <meta property="og:description"
+          content="Okay so the site it won't make you cookies, but it will let you make montages quickly by just pasting Youtube links. Afterwards you can see them share them or whatever. It's free so">
+    <meta property="og:image" content="https://radmontage.com/img/og_logo.png"/>
     <meta property="og:type" content="video.other">
+    <meta property="fb:app_id" content="902780833133901">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/make.css">
@@ -103,13 +105,23 @@
 <script src="/js/make.js"></script>
 <script src="//use.typekit.net/wrp3oee.js"></script>
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
-<script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '902780833133901',
+            xfbml      : true,
+            version    : 'v2.4'
+        });
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 </body>
 </html>
