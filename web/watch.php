@@ -112,7 +112,7 @@ if ($name == "")
          data-ad-slot="8940858558"></ins>
 
     <div id="some-info" style="display:inline-block;width:300px;height:600px;vertical-align: top">
-        <a href="/"><img src="/img/logo_notfound.svg" class="logo" alt="Logo/PageNotFound"/></a>
+        <a href="/"><img src="/img/logo_end.svg" class="logo" alt="Logo/PageNotFound"/></a>
         <ul>
             <li><a href=""><i class="fa fa-repeat"></i>Watch again</a></li>
             <li><a href="/edit/<?php echo($id);?>"><i class="fa fa-film"></i>See the videos</a></li>
