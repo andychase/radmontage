@@ -64,118 +64,24 @@
         </div>
     </div>
     <div class="row">
-        <div class="sidebar col-xs-12 col-md-3">
-            <div class="weird-pattern">
-
-                <h2 id="rad-montage-main-header"><a href="/">RadMontage</a></h2>
-                <a href="/beta.html"><h5 style="background-color: rgba(255, 90, 0, 0.57); font-weight: bold; color: white; padding: 10px;">Beta</h5></a>
-                <span id="rad-montage-sub-header">Make montages by pasting Youtube links</span>
-            </div>
-            <hr>
-            <h6>Your Montages</h6>
-
-            <div class="row-container no-min-height">
-                <div class="row-box info-box-space">
-                    <div class="form-group">
-                        <a href="/edit/new" class="btn btn-default btn-sm" id="save-and-start-new">
-                            Save & Start New
-                        </a>
-                    </div>
-                    <div id="previous-montages">
-                        <span class="intro">Previously made montages:</span>
-                        <ul class="dest list-unstyled">
-                            <li><i>Saved Montages will appear here.</i></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <h6>Share</h6>
-            <div id="social-buttons-area">
-                <div class="social-button-twitter">
-                    <a href="https://twitter.com/share" class="twitter-share-button" data-via="techstoreclub"
-                       data-count="none" data-dnt="true">Tweet</a>
-                </div>
-                <div class="fb-like" data-href="https://radmontage.com" data-width="212"
-                     data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-            </div>
-        </div>
+        <div class="sidebar col-xs-12 col-md-3"></div>
         <div class="mainbar col-xs-12 col-md-9">
             <hr class="visible-xs-block">
             <hr class="visible-sm-block">
-            <form id="montage-links-container">
-                <div class="row-container no-min-height">
-                    <div class="form-group">
-                        <label for="montageName">Montage Title:</label>
-                        <input type="text" id="montageName" class="form-control" placeholder="Name Your Montage">
-                    </div>
+            <h2 id="rad-montage-main-header"><a href="/">RadMontage</a></h2>
+            <h5 style="background-color: rgba(255, 90, 0, 0.57); font-weight: bold; color: white; padding: 10px;">Beta</h5>
+            <p>Hey beta testers!</p>
+            <p>This website is a site where you can make montages by pasting Youtube links. You paste links in and click "Play" to watch your montage/compilation.</p>
+            <p>To enter the site <a href="/">click here</a> or click on the header at the top or logo.</p>
+            <p>To leave feedback, please enter text into the form below. Any type of response is appreciated. Thanks a lot!</p>
+            <iframe src="https://docs.google.com/forms/d/1h2bVRSVMOMIEKwii8Ma-TRhYA0vRvizZlIvAOEokza4/viewform?embedded=true" width="760" height="800" frameborder="0" marginheight="0" marginwidth="0" style="display: block; min-width: 760px; min-height: 500px;">Loading...</iframe>
 
-                    <div class="form-group">
-                        <div id="montage-link">
-                            <span id="montage-link-placeholder">A watch button and link will appear here once you've added a video</span>
-                            <a class="" href="#"></a>
-                        </div>
-                    </div>
-                </div>
-            </form>
         </div>
     </div>
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
-<script src="/js/vendor/jquery-ajax-localstorage-cache.js"></script>
-<script src="/js/make.js"></script>
 <script src="//use.typekit.net/wrp3oee.js"></script>
-<script>try {
-    Typekit.load({async: true});
-} catch (e) {
-}</script>
-<script>
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '902780833133901',
-            xfbml: true,
-            version: 'v2.4'
-        });
-    };
-
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-<script>!function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-    if (!d.getElementById(id)) {
-        js = d.createElement(s);
-        js.id = id;
-        js.src = p + '://platform.twitter.com/widgets.js';
-        fjs.parentNode.insertBefore(js, fjs);
-    }
-}(document, 'script', 'twitter-wjs');</script>
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-58719971-2', 'auto');
-    ga('send', 'pageview');
-
-</script>
 </body>
 </html>
