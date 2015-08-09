@@ -93,7 +93,7 @@ $ ->
     montage_name = videos[0]
     videos = videos.slice(1)
     click_movie_function = ->
-        if playing
+        if playing or iOS
             playing = false
             showStaticOverlay()
             if video_index < (videos.length/3)
