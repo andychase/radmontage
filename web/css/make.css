@@ -2836,4 +2836,7 @@ body {
     color: #a7a7a7;
     font-style: italic; }
 
+#social-buttons-area {
+  overflow: hidden; }
+
 /*# sourceMappingURL=make.css.map */
