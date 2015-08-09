@@ -6,6 +6,14 @@ html, body, iframe, #container, #overlay {
     overflow: hidden;
 }
 
+body.video-done {
+    overflow: auto;
+}
+
+html.video-done {
+    overflow: auto;
+}
+
 #container {
     position: relative;
     float: left;

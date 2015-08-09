@@ -40,11 +40,16 @@ get_video_end = (videos, video_index) ->
 
 video_end = (container, end_splash) ->
     $("body").addClass("video-done");
+    $("html").addClass("video-done");
     container.hide()
     container.remove()
     end_splash.show()
-    (window.adsbygoogle or []).push {}
-    (window.adsbygoogle or []).push {}
+    if iOS
+        $('.adsbygoogle').hide()
+        $('ios_code').appendTo($("head"))
+    else
+        (window.adsbygoogle or []).push {}
+        (window.adsbygoogle or []).push {}
 
 $ ->
     instructions = $("#instructions")

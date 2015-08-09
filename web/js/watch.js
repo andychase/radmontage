@@ -57,11 +57,17 @@ get_video_end = function(videos, video_index) {
 
 video_end = function(container, end_splash) {
   $("body").addClass("video-done");
+  $("html").addClass("video-done");
   container.hide();
   container.remove();
   end_splash.show();
-  (window.adsbygoogle || []).push({});
-  return (window.adsbygoogle || []).push({});
+  if (iOS) {
+    $('.adsbygoogle').hide();
+    return $('ios_code').appendTo($("head"));
+  } else {
+    (window.adsbygoogle || []).push({});
+    return (window.adsbygoogle || []).push({});
+  }
 };
 
 $(function() {
