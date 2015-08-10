@@ -158,7 +158,7 @@ make_link_container = """
             <div class="form-group">
                 <label for="montageUrl1"></label>
                 <input type="text" id="montageUrl1" class="form-control montageUrl"
-                       placeholder="Paste the Youtube link here"/>
+                       placeholder="Paste a Youtube link here"/>
             </div>
             <div class="form-inline">
                 <div class="form-group">
