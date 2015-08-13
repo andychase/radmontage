@@ -106,11 +106,9 @@ $ ->
                     startSeconds: get_video_start(videos, video_index)
                     endSeconds: get_video_end(videos, video_index)
                     suggestedQuality: 'large'
-            console.log("player#{player_index+1} is now 2")
             player_html[player_index].css('z-index', 2)
             players[player_index].playVideo()
             toggle_player_index()
-            console.log("player#{player_index+1} is now 1")
             player_html[player_index].css('z-index', 1)
             video_index += 1
             if not_end_of_videos()
