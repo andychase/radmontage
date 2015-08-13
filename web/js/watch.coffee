@@ -1,26 +1,54 @@
 videos = window.videos
-player = undefined
+players = []
+player_index = 0
 iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-ready = false
+ready = [false, false]
 testCardImageBasePath = "https://d12gd74eaa9d1v.cloudfront.net/"
 
 onYouTubeIframeAPIReady = ->
-    player = new (YT.Player)('player',
-        playerVars:
-            controls: 0
-            showinfo: 0
-            iv_load_policy: 3
+    $ ->
+        players.push new YT.Player('player',
+            playerVars:
+                controls: 0
+                showinfo: 0
+                iv_load_policy: 3
 
-        events:
-            onReady: () -> onPlayerReady()
-            onStateChange: (e) -> onPlayerStateChange(e)
-    )
+            events:
+                onReady: () -> onPlayerReady()
+                onStateChange: (e) -> onPlayerStateChange(e)
+        )
+
+        players.push new YT.Player('player2',
+            playerVars:
+                controls: 0
+                showinfo: 0
+                iv_load_policy: 3
+
+            events:
+                onReady: () -> onPlayerReady2()
+                onStateChange: (e) -> onPlayerStateChange2(e)
+                onError: (e) ->
+                    console.log(e)
+        )
+
 
 onPlayerReady = () ->
-    ready = true
+    ready[0] = true
 
 onPlayerStateChange = () ->
 
+
+onPlayerReady2 = () ->
+    ready[1] = true
+
+onPlayerStateChange2 = () ->
+
+
+toggle_player_index = () ->
+    if player_index == 0
+        player_index = 1
+    else
+        player_index = 0
 
 if_zero_return_null = (i) ->
     if i == 0
@@ -56,10 +84,8 @@ $ ->
     need_to_show_instructions = true
     overlay = $('#overlay')
     end_splash = $('#end-splash')
-    bgvid = $('#bgvid')
-    overlay_i = 0
+    player_html = undefined # Must be calculated after players are ready
     video_index = 0
-    playing = true
 
     if iOS
         bgvid.hide()
@@ -67,73 +93,68 @@ $ ->
         instructions.addClass("ios")
         overlay.html("<span>SKIP</span>")
 
-    clearOverlay = ->
-        if not iOS
-#            overlay.css 'background-image', ''
-#            overlay.css 'height', '80%'
-#            bgvid.hide()
-#            overlay_i = 0
-            playing = true
-
-    overlays = [
-        [false, 'testCard', 150],
-        [true, 'testCard', 900],
-        [false, 'testCard', 600],
-    ]
-
-    showStaticOverlay = ->
-        if false # !playing and not iOS
-            # Disabling for now
-            if overlay_i > overlays.length - 1
-                overlay_i = 0
-            i = overlay_i
-            overlay.css 'height', '100%'
-            overlay.css 'background-image', "url('#{testCardImageBasePath}#{overlays[i][1]}.gif')"
-            if overlays[i][0] == true
-                bgvid.show()
-            else
-                bgvid.hide()
-            overlay_i += 1
-            setTimeout(showStaticOverlay, overlays[i][2])
-
-    montage_name = videos[0]
+    # montage_name = videos[0]
     videos = videos.slice(1)
     click_movie_function = ->
-        if playing or iOS
-            playing = false
-            showStaticOverlay()
-            if video_index < (videos.length/3)
-                player.loadVideoById
+        if video_index < (videos.length / 3)
+            if video_index == 0
+                players[player_index].loadVideoById
                     videoId: get_video_url(videos, video_index)
                     startSeconds: get_video_start(videos, video_index)
                     endSeconds: get_video_end(videos, video_index)
-                    suggestedQuality: 'default'
-                video_index += 1
-            else
-                player.stopVideo()
-                setTimeout(->
-                    document.onmousemove = null
-                    clearOverlay()
-                    video_end(overlay.parent(), end_splash)
-                , 400)
+                    suggestedQuality: 'large'
+            console.log("player#{player_index+1} is now 2")
+            player_html[player_index].css('z-index', 2)
+            players[player_index].playVideo()
+            toggle_player_index()
+            console.log("player#{player_index+1} is now 1")
+            player_html[player_index].css('z-index', 1)
+            video_index += 1
+            if video_index < (videos.length / 3)
+                players[player_index].loadVideoById
+                    videoId: get_video_url(videos, video_index)
+                    startSeconds: get_video_start(videos, video_index)
+                    endSeconds: get_video_end(videos, video_index)
+                    suggestedQuality: 'large'
+#                players[player_index].seekTo(get_video_start(videos, video_index), true)
+                players[player_index].pauseVideo()
+
+        else
+            players[0].stopVideo()
+            players[1].stopVideo()
+            document.onmousemove = null
+            video_end(overlay.parent(), end_splash)
 
 
     onPlayerStateChange = (event) ->
         if event.data == YT.PlayerState.PLAYING
-            clearOverlay()
             if need_to_show_instructions and not iOS
                 need_to_show_instructions = false
                 instructions.show()
                 instructions.fadeOut 5000
         else if event.data == YT.PlayerState.ENDED
-            click_movie_function()
+            if player_index == 1
+                click_movie_function()
+
+    onPlayerStateChange2 = (event) ->
+        if event.data == YT.PlayerState.ENDED
+            if player_index == 0
+                click_movie_function()
 
     overlay[0].addEventListener 'click', click_movie_function, true
-    if ready
+    if ready[0] and ready[1]
         click_movie_function()
     else
         onPlayerReady = ->
-            click_movie_function()
+            ready[0] = true
+            if ready[0] and ready[1]
+                player_html = [$("#player"), $("#player2")]
+                click_movie_function()
+        onPlayerReady2 = ->
+            ready[1] = true
+            if ready[0] and ready[1]
+                player_html = [$("#player"), $("#player2")]
+                click_movie_function()
 
     # Hide the cursor after 3 seconds
     do ->

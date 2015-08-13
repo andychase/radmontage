@@ -41,28 +41,17 @@ html.video-done {
     -ms-user-select: none;
     user-select: none;
     cursor: url('/img/forward_cursor.png') 0 0, e-resize;
+    z-index: 100;
 }
 
-#bgvid {
-    object-fit: cover;
-    position: fixed;
-    right: 0;
-    bottom: 0;
-
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    overflow: hidden;
-
-    background-color: black;
-    background-size: cover;
-    cursor: url('/img/forward_cursor.png') 0 0, e-resize;
+#player, #player2 {
+    top: 0;
+    left: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
 }
 
-iframe {
-
-}
 
 #overlay.ios {
     height: 60px;
@@ -80,6 +69,8 @@ iframe {
     font-style: italic;
     width: 40pt;
 }
+
+/* Instructions */
 
 #instructions {
     position: fixed;
@@ -112,6 +103,8 @@ iframe {
     position: relative;
     top: 14px;
 }
+
+/* End Video Page */
 
 body.video-done {
     background-image: url("/img/dark_static_background.gif");

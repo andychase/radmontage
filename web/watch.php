@@ -94,16 +94,13 @@ if ($name == "")
 <body>
 <div id="container">
     <div id="player"></div>
+    <div id="player2"></div>
     <div id="instructions">
         <div id="skip"><i class="fa fa-forward"></i></div>
         <div id="pause"><i class="fa fa-pause"></i></div>
         <div id="video-info"><i class="fa fa-file-video-o"></i><span>&rarr;</span></div>
     </div>
     <div id="overlay"></div>
-    <video autoplay loop muted id="bgvid" style="display: none;">
-        <source src="/img/testCard.webm" type="video/webm">
-        <source src="/img/testCard.mp4" type="video/mp4">
-    </video>
 </div>
 <div id="end-splash" style="display:none;">
     <ins class="adsbygoogle"
