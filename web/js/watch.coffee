@@ -95,8 +95,11 @@ $ ->
 
     # montage_name = videos[0]
     videos = videos.slice(1)
+    not_end_of_videos = ->
+        video_index < (videos.length / 3)
+
     click_movie_function = ->
-        if video_index < (videos.length / 3)
+        if not_end_of_videos()
             if video_index == 0
                 players[player_index].loadVideoById
                     videoId: get_video_url(videos, video_index)
@@ -110,15 +113,15 @@ $ ->
             console.log("player#{player_index+1} is now 1")
             player_html[player_index].css('z-index', 1)
             video_index += 1
-            if video_index < (videos.length / 3)
+            if not_end_of_videos()
                 players[player_index].loadVideoById
                     videoId: get_video_url(videos, video_index)
                     startSeconds: get_video_start(videos, video_index)
                     endSeconds: get_video_end(videos, video_index)
                     suggestedQuality: 'large'
-#                players[player_index].seekTo(get_video_start(videos, video_index), true)
                 players[player_index].pauseVideo()
-
+            else
+                players[player_index].stopVideo()
         else
             players[0].stopVideo()
             players[1].stopVideo()

@@ -107,7 +107,7 @@ video_end = function(container, end_splash) {
 };
 
 $(function() {
-  var click_movie_function, end_splash, instructions, need_to_show_instructions, overlay, player_html, video_index;
+  var click_movie_function, end_splash, instructions, need_to_show_instructions, not_end_of_videos, overlay, player_html, video_index;
   instructions = $("#instructions");
   need_to_show_instructions = true;
   overlay = $('#overlay');
@@ -121,8 +121,11 @@ $(function() {
     overlay.html("<span>SKIP</span>");
   }
   videos = videos.slice(1);
+  not_end_of_videos = function() {
+    return video_index < (videos.length / 3);
+  };
   click_movie_function = function() {
-    if (video_index < (videos.length / 3)) {
+    if (not_end_of_videos()) {
       if (video_index === 0) {
         players[player_index].loadVideoById({
           videoId: get_video_url(videos, video_index),
@@ -138,7 +141,7 @@ $(function() {
       console.log("player" + (player_index + 1) + " is now 1");
       player_html[player_index].css('z-index', 1);
       video_index += 1;
-      if (video_index < (videos.length / 3)) {
+      if (not_end_of_videos()) {
         players[player_index].loadVideoById({
           videoId: get_video_url(videos, video_index),
           startSeconds: get_video_start(videos, video_index),
@@ -146,6 +149,8 @@ $(function() {
           suggestedQuality: 'large'
         });
         return players[player_index].pauseVideo();
+      } else {
+        return players[player_index].stopVideo();
       }
     } else {
       players[0].stopVideo();
