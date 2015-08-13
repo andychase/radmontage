@@ -115,7 +115,6 @@ $(function() {
   player_html = void 0;
   video_index = 0;
   if (iOS) {
-    bgvid.hide();
     overlay.addClass("ios");
     instructions.addClass("ios");
     overlay.html("<span>SKIP</span>");
