@@ -107,7 +107,7 @@ $ ->
                     videoId: get_video_url(videos, video_index)
                     startSeconds: get_video_start(videos, video_index)
                     endSeconds: get_video_end(videos, video_index)
-                    suggestedQuality: 'large'
+                    suggestedQuality: 'default'
                 video_index += 1
             else
                 player.stopVideo()
