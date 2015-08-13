@@ -80,6 +80,7 @@ html.video-done {
     opacity: .9;
     text-shadow: 1px 0px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     display: none;
+    z-index: 100;
 }
 
 #instructions #pause {
