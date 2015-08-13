@@ -69,10 +69,10 @@ $ ->
 
     clearOverlay = ->
         if not iOS
-            overlay.css 'background-image', ''
-            overlay.css 'height', '80%'
-            bgvid.hide()
-            overlay_i = 0
+#            overlay.css 'background-image', ''
+#            overlay.css 'height', '80%'
+#            bgvid.hide()
+#            overlay_i = 0
             playing = true
 
     overlays = [
@@ -82,7 +82,8 @@ $ ->
     ]
 
     showStaticOverlay = ->
-        if !playing and not iOS
+        if false # !playing and not iOS
+            # Disabling for now
             if overlay_i > overlays.length - 1
                 overlay_i = 0
             i = overlay_i

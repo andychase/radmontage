@@ -88,17 +88,13 @@ $(function() {
   }
   clearOverlay = function() {
     if (!iOS) {
-      overlay.css('background-image', '');
-      overlay.css('height', '80%');
-      bgvid.hide();
-      overlay_i = 0;
       return playing = true;
     }
   };
   overlays = [[false, 'testCard', 150], [true, 'testCard', 900], [false, 'testCard', 600]];
   showStaticOverlay = function() {
     var i;
-    if (!playing && !iOS) {
+    if (false) {
       if (overlay_i > overlays.length - 1) {
         overlay_i = 0;
       }
