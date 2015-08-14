@@ -45,17 +45,29 @@ class DB
         return explode(":", $redis->get($id));
     }
 
-    static function get_montage_name_and_videos($id)
+    static function get_montages($ids)
     {
-        $montage_data = DB::get_montage($id);
+        global $redis;
+        $responses = $redis->pipeline(function (Predis\Pipeline\Pipeline $pipe) use ($ids) {
+            foreach ($ids as $id) {
+                $pipe->get($id);
+            }
+        });
+        return array_map(function ($item) {
+            return explode(":", $item);
+        }, $responses);
+    }
+
+    static function get_montage_name_and_videos($montage_data)
+    {
         $montage_video_count = (count($montage_data) - 2) / 3;
         $output = [];
         $name = "";
 
-        foreach($montage_data as $i => $video)
-            if($i == 1)
+        foreach ($montage_data as $i => $video)
+            if ($i == 1)
                 $name = $video;
-            else if($i > 1 && $i < DB::truncate_videos_at*3 && ($i-2) % 3 == 0)
+            else if ($i > 1 && $i < DB::truncate_videos_at * 3 && ($i - 2) % 3 == 0)
                 $output[] = $video;
         return [$name, $montage_video_count, $output];
     }
@@ -70,19 +82,18 @@ class DB
     {
         global $redis;
         $featured_montages = $redis->get("featured:$page");
+        $names = [];
+        $counts = [];
+        $videos = [];
         if ($featured_montages) {
-            $names = [];
-            $counts = [];
-            $videos = [];
-            foreach(json_decode($featured_montages) as $m) {
+            $ids = json_decode($featured_montages);
+            foreach (DB::get_montages($ids) as $i => $m) {
                 $montage_name_and_videos = DB::get_montage_name_and_videos($m);
-                $names[$m] = $montage_name_and_videos[0];
-                $counts[$m] = $montage_name_and_videos[1];
-                $videos[$m] = $montage_name_and_videos[2];
+                $names[$ids[$i]] = $montage_name_and_videos[0];
+                $counts[$ids[$i]] = $montage_name_and_videos[1];
+                $videos[$ids[$i]] = $montage_name_and_videos[2];
             }
-            return [$names, $counts, $videos];
         }
-        else
-            return [[], [], []];
+        return [$names, $counts, $videos];
     }
 }
