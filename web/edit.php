@@ -1,4 +1,5 @@
 <?php require('partials/header.html'); ?>
+<div class="container main-container">
     <div class="row">
         <div class="sidebar col-xs-12 col-md-3">
             <div class="row-container no-min-height">
@@ -48,5 +49,14 @@
             </form>
         </div>
     </div>
+</div>
+<div class="footer">
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+<script src="/js/vendor/jquery-ajax-localstorage-cache.js"></script>
+<script src="/js/make.js"></script>
 <?php require('partials/footer.html'); ?>
 
