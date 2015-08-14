@@ -47,14 +47,17 @@ class DB
 
     static function get_montage_name_and_videos($id)
     {
+        $montage_data = DB::get_montage($id);
+        $montage_video_count = (count($montage_data) - 2) / 3;
         $output = [];
         $name = "";
-        foreach(DB::get_montage($id) as $i => $video)
+
+        foreach($montage_data as $i => $video)
             if($i == 1)
                 $name = $video;
             else if($i > 1 && $i < DB::truncate_videos_at*3 && ($i-2) % 3 == 0)
                 $output[] = $video;
-        return [$name, $output];
+        return [$name, $montage_video_count, $output];
     }
 
     static function set_montage($id, $data)
@@ -69,15 +72,17 @@ class DB
         $featured_montages = $redis->get("featured:$page");
         if ($featured_montages) {
             $names = [];
+            $counts = [];
             $videos = [];
             foreach(json_decode($featured_montages) as $m) {
                 $montage_name_and_videos = DB::get_montage_name_and_videos($m);
                 $names[$m] = $montage_name_and_videos[0];
-                $videos[$m] = $montage_name_and_videos[1];
+                $counts[$m] = $montage_name_and_videos[1];
+                $videos[$m] = $montage_name_and_videos[2];
             }
-            return [$names, $videos];
+            return [$names, $counts, $videos];
         }
         else
-            return [[], []];
+            return [[], [], []];
     }
 }

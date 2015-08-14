@@ -30,7 +30,7 @@
                     </a>
                     <a href="/watch/{$video_id}">
                         <span class="explore-video-title">{$featured_names[$video_id]}</span></a>
-                    <span class="explore-video-video-count">{count($videos)} Videos</span>
+                    <span class="explore-video-video-count">{$featured_counts[$video_id]} Videos</span>
                 </div>
                 {/foreach}
             <span class="explore-featured-howto">
