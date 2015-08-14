@@ -15,6 +15,13 @@ $redis = new Predis\Client([
     'password' => parse_url($redis_url, PHP_URL_PASS),
 ]);
 
+date_default_timezone_set('UTC');
+$smarty = new Smarty();
+
+$smarty->setTemplateDir('views');
+$smarty->setCompileDir('views/compile');
+$smarty->setCacheDir('views/cache');
+
 class DB
 {
     const id_index = 'id_index';

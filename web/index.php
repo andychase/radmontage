@@ -31,6 +31,12 @@ if ($_SERVER['REQUEST_URI'] == "/" || $_SERVER['REQUEST_URI'] == ""  ||
     return true;
 }
 
+if ($_SERVER['REQUEST_URI'] == "/feedback/" || $_SERVER['REQUEST_URI'] == "/feedback"
+    || $_SERVER['REQUEST_URI'] == "/beta.html") {
+    require('feedback.php');
+    return true;
+}
+
 $development = strstr($_SERVER['SERVER_SOFTWARE'], " Development Server") != false;
 
 if ($development)
