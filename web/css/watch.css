@@ -107,25 +107,14 @@ html.video-done {
 
 /* End Video Page */
 
-body.video-done {
-    background-image: url("/img/dark_static_background.gif");
+#some-info {
+    vertical-align: top;
+    display: block;
+    margin: 20px auto;
+    width: 240px;
 }
-
-#end-splash {
-    width: 925px;
-    margin: 0 auto;
-    padding-top: 50px;
-    font-family: sans-serif;
-}
-
-#end-splash #some-info {
-    border-radius: 4px;
-    background-color: white;
-}
-
 #end-splash #some-info ul {
     list-style: none;
-    margin-top: 80px;
 }
 
 #end-splash #some-info li {
@@ -137,12 +126,8 @@ body.video-done {
     margin-right: 5px;
 }
 
-#end-splash #some-info h1 {
-    text-align: center;
-}
-
 #end-splash #some-info .logo {
     width: 46px;
-    margin: 30px auto;
+    margin: 10px auto;
     display: block;
 }

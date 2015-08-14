@@ -129,7 +129,6 @@ video_end = function(container, end_splash) {
     $('.adsbygoogle').hide();
     return $('ios_code').appendTo($("head"));
   } else {
-    (window.adsbygoogle || []).push({});
     return (window.adsbygoogle || []).push({});
   }
 };

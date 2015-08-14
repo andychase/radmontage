@@ -101,7 +101,6 @@ video_end = (container, end_splash) ->
         $('ios_code').appendTo($("head"))
     else
         (window.adsbygoogle or []).push {}
-        (window.adsbygoogle or []).push {}
 
 $ ->
     instructions = $("#instructions")

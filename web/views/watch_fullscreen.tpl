@@ -68,12 +68,7 @@
     <div id="overlay"></div>
 </div>
 <div id="end-splash" style="display:none;">
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:300px;height:600px"
-         data-ad-client="ca-pub-9628790143468004"
-         data-ad-slot="8940858558"></ins>
-
-    <div id="some-info" style="display:inline-block;width:300px;height:600px;vertical-align: top">
+    <div id="some-info">
         <a target="_parent" href="/"><img src="/img/logo_end.svg" class="logo" alt="Logo/PageNotFound"/></a>
         <ul>
             <li><a target="_parent" href="/watch{if !$in_iframe}_fullscreen{/if}/{$montage_id}"><i class="fa fa-repeat"></i>Watch again</a></li>
@@ -82,9 +77,10 @@
         </ul>
     </div>
     <ins class="adsbygoogle"
-         style="display:inline-block;width:300px;height:600px;vertical-align: top"
+         style="display:block"
          data-ad-client="ca-pub-9628790143468004"
-         data-ad-slot="1417591750"></ins>
+         data-ad-slot="5408322552"
+         data-ad-format="auto"></ins>
 </div>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
