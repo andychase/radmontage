@@ -3286,6 +3286,12 @@ a.list-group-item-danger.active:hover, a.list-group-item-danger.active:focus {
 .popover {
   color: black; }
 
+html, body {
+  height: 100%; }
+
+.container.main-container {
+  min-height: 100%; }
+
 #rad-montage-main-header {
   display: inline-block;
   font-family: "Adobe Gothic Std", "adobe-gothic-std", sans-serif;
