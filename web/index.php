@@ -2,7 +2,7 @@
 
 preg_match("#^/edit/(new|[0-9a-z]+)#", $_SERVER['REQUEST_URI'], $matches);
 if (count($matches) > 0 && strlen($matches[1]) < 30) {
-    require("index.html");
+    require("edit.php");
     return true;
 }
 
@@ -14,7 +14,7 @@ if (count($matches) > 0 && strlen($matches[1]) < 30) {
 }
 
 if ($_SERVER['REQUEST_URI'] == "/" || $_SERVER['REQUEST_URI'] == "") {
-    require("index.html");
+    require("edit.php");
     return true;
 }
 
