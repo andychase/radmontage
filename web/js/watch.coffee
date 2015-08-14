@@ -78,7 +78,7 @@ if_zero_return_null = (i) ->
     if i == 0
         null
     else
-        i
+        parseInt(i)
 
 get_video_url = (videos, video_index) ->
     videos[3 * video_index]

@@ -103,7 +103,7 @@ if_zero_return_null = function(i) {
   if (i === 0) {
     return null;
   } else {
-    return i;
+    return parseInt(i);
   }
 };
 
