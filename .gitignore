@@ -1,0 +1,9 @@
+.idea/
+dump.rdb
+vendor/
+web/css/.sass-cache/
+web/css/bootstrap/
+.DS_Store
+web/css/bootstrap/
+web/views/cache
+web/views/compile
