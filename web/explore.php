@@ -1,4 +1,11 @@
-<?php require('partials/header.html'); ?>
+<?php
+require("setup.php");
+
+$featured = DB::get_featured_videos($_GET['p']);
+$featured_names = $featured[0];
+$featured_videos = $featured[1];
+
+require('partials/header.html'); ?>
 <div class="container main-container">
     <div class="row">
         <div class="sidebar col-xs-12 col-md-3">
@@ -22,13 +29,16 @@
             <hr class="visible-xs-block">
             <hr class="visible-sm-block">
             <div class="explore-intro-text">Explore and Create Captivating Youtube Montages</div>
-            <div class="explore-video-block">
-                <a href="/watch/000jc473050">
-                <div class="explore-video-thumb" id="000jc473050"></div>
-                </a>
-                <a href="/watch/000jc473050"><span class="explore-video-title">Deep Into Youtube: Introduction</span></a>
-                <span class="explore-video-video-count">7 Videos</span>
-            </div>
+            <?php foreach ($featured_videos as $video_id => $videos) { ?>
+                <div class="explore-video-block">
+                    <a href="/watch/<?php echo($video_id); ?>">
+                        <div class="explore-video-thumb" id="<?php echo($video_id); ?>"></div>
+                    </a>
+                    <a href="/watch/<?php echo($video_id); ?>">
+                        <span class="explore-video-title"><?php echo($featured_names[$video_id]); ?></span></a>
+                    <span class="explore-video-video-count"><?php echo(count($videos)); ?> Videos</span>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </div>
@@ -40,18 +50,7 @@
 <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
 <script src="/js/vendor/jquery-ajax-localstorage-cache.js"></script>
 <script>
-window.montage_images = {
-    "000jc473050": [
-            "n7IseFHySIg",
-            "smycGG2Dsa8",
-            "e79PU5bEl_8",
-            "p9zcfow3AcU",
-            "iZ8nN6hTnmM",
-            "71-nhNpXi_I",
-            "q6EoRBvdVPQ",
-            "qSqJOj-g5yY"
-    ]
-}
+    window.montage_images = <?php echo json_encode($featured_videos); ?>;
 </script>
 <script src="/js/explore.js"></script>
 <?php require('partials/footer.html'); ?>
