@@ -33,6 +33,12 @@ $name = $data[0];
 if ($name == "")
     $name = "My Montage";
 
+if(isset($_GET['iframe'])) {
+    $smarty->assign("in_iframe", $_GET['iframe'] == "true");
+} else {
+    $smarty->assign("in_iframe", false);
+}
+
 $smarty->assign("montage_name", $name);
 $smarty->assign("montage_encoded", $encoded);
 $smarty->assign("montage_id", $id);

@@ -6,6 +6,7 @@
     <title>RadMontage: {$montage_name}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base target="_parent" />
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
@@ -73,11 +74,11 @@
          data-ad-slot="8940858558"></ins>
 
     <div id="some-info" style="display:inline-block;width:300px;height:600px;vertical-align: top">
-        <a href="/"><img src="/img/logo_end.svg" class="logo" alt="Logo/PageNotFound"/></a>
+        <a target="_parent" href="/"><img src="/img/logo_end.svg" class="logo" alt="Logo/PageNotFound"/></a>
         <ul>
-            <li><a href=""><i class="fa fa-repeat"></i>Watch again</a></li>
-            <li><a href="/edit/{$montage_id}"><i class="fa fa-film"></i>See the videos</a></li>
-            <li><a href="/"><i class="fa fa-star"></i>Make your own montage</a></li>
+            <li><a target="_parent" href="/watch{if !$in_iframe}_fullscreen{/if}/{$montage_id}"><i class="fa fa-repeat"></i>Watch again</a></li>
+            <li><a target="_parent" href="/edit/{$montage_id}"><i class="fa fa-film"></i>See the videos</a></li>
+            <li><a target="_parent" href="/edit/new"><i class="fa fa-star"></i>Make your own montage</a></li>
         </ul>
     </div>
     <ins class="adsbygoogle"

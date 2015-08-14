@@ -23,7 +23,7 @@
                 <hr class="visible-xs-block">
                 <hr class="visible-sm-block">
                 <iframe allowfullscreen webkitallowfullscreen mozallowfullscreen
-                        src="/watch_fullscreen/{$montage_id}" id="watch-video-iframe"></iframe>
+                        src="/watch_fullscreen/{$montage_id}?iframe=true" id="watch-video-iframe"></iframe>
                 <div class="btn-group watch–controls" role="group">
                     <button type="button" class="btn btn-default" id="watch-control-skip">Skip</button>
                     <button type="button" class="btn btn-default" id="watch-control-play-pause">Pause/Play</button>
