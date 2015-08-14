@@ -3364,4 +3364,26 @@ ul.nav.navbar-nav a:hover {
 #social-buttons-area {
   overflow: hidden; }
 
+.explore-intro-text {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 5px; }
+
+.explore-video-block {
+  display: inline-block;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  box-shadow: 0 1px 3px -2px black;
+  margin: 10px; }
+  .explore-video-block .explore-video-thumb {
+    display: block;
+    width: 300px;
+    background-color: grey; }
+  .explore-video-block .explore-video-title {
+    display: block;
+    font-size: 13pt; }
+  .explore-video-block .explore-video-video-count {
+    color: grey;
+    font-size: 10pt; }
+
 /*# sourceMappingURL=make.css.map */
