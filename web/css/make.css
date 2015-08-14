@@ -3386,4 +3386,11 @@ ul.nav.navbar-nav a:hover {
     color: grey;
     font-size: 10pt; }
 
+.explore-featured-howto {
+  font-style: italic;
+  display: block;
+  text-align: center;
+  margin-top: 50px;
+  color: #686868; }
+
 /*# sourceMappingURL=make.css.map */

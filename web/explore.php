@@ -39,6 +39,9 @@ require('partials/header.html'); ?>
                     <span class="explore-video-video-count"><?php echo(count($videos)); ?> Videos</span>
                 </div>
             <?php } ?>
+            <span class="explore-featured-howto">
+                Made a cool montage and want it featured? Send it to us on <a href="/beta.html">our feedback page</a>!
+            </span>
         </div>
     </div>
 </div>
