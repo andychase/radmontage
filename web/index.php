@@ -13,8 +13,13 @@ if (count($matches) > 0 && strlen($matches[1]) < 30) {
     return true;
 }
 
-preg_match("#^(/|/explore(/[0-9a-zA-Z\\- ]+)?)$#", $_SERVER['REQUEST_URI'], $matches);
-if ($_SERVER['REQUEST_URI'] == "/" || $_SERVER['REQUEST_URI'] == "" || count($matches) > 0) {
+preg_match("#^/explore/([0-9a-zA-Z\\- ]+)?$#", $_SERVER['REQUEST_URI'], $matches);
+if ($_SERVER['REQUEST_URI'] == "/" || $_SERVER['REQUEST_URI'] == ""  ||
+    $_SERVER['REQUEST_URI'] == "/explore" || count($matches) > 0) {
+    if (count($matches) > 1 && $matches[1] != "featured")
+        $_GET['p'] = $matches[1];
+    else
+        $_GET['p'] = "";
     require("explore.php");
     return true;
 }
