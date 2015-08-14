@@ -5,6 +5,27 @@ iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 ready = [false, false]
 testCardImageBasePath = "https://d12gd74eaa9d1v.cloudfront.net/"
 
+toggleFullScreen = ->
+    if !document.fullscreenElement and !document.mozFullScreenElement and !document.webkitFullscreenElement and !document.msFullscreenElement
+
+        if document.documentElement.requestFullscreen
+            document.documentElement.requestFullscreen()
+        else if document.documentElement.msRequestFullscreen
+            document.documentElement.msRequestFullscreen()
+        else if document.documentElement.mozRequestFullScreen
+            document.documentElement.mozRequestFullScreen()
+        else if document.documentElement.webkitRequestFullscreen
+            document.documentElement.webkitRequestFullscreen Element.ALLOW_KEYBOARD_INPUT
+    else
+        if document.exitFullscreen
+            document.exitFullscreen()
+        else if document.msExitFullscreen
+            document.msExitFullscreen()
+        else if document.mozCancelFullScreen
+            document.mozCancelFullScreen()
+        else if document.webkitExitFullscreen
+            document.webkitExitFullscreen()
+
 onYouTubeIframeAPIReady = ->
     $ ->
         players.push new YT.Player('player',
@@ -44,11 +65,14 @@ onPlayerReady2 = () ->
 onPlayerStateChange2 = () ->
 
 
-toggle_player_index = () ->
+get_other_player_index = () ->
     if player_index == 0
-        player_index = 1
+        1
     else
-        player_index = 0
+        0
+
+toggle_player_index = () ->
+    player_index = get_other_player_index()
 
 if_zero_return_null = (i) ->
     if i == 0
@@ -125,6 +149,13 @@ $ ->
             document.onmousemove = null
             video_end(overlay.parent(), end_splash)
 
+    window.click_movie_function = click_movie_function
+    window.play_pause_movie_function = () ->
+        player = players[get_other_player_index()]
+        if player.getPlayerState() == YT.PlayerState.PLAYING
+            player.pauseVideo()
+        else if player.getPlayerState() == YT.PlayerState.PAUSED
+            player.playVideo()
 
     onPlayerStateChange = (event) ->
         if event.data == YT.PlayerState.PLAYING

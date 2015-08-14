@@ -155,3 +155,20 @@ ul.nav.navbar-nav {
   margin-top: 50px;
   color: #686868;
 }
+
+// Watch video page
+
+#watch-video-iframe {
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  box-shadow: 0 1px 3px -2px rgb(0, 0, 0);
+  height: 500px;
+  width: 100%;
+}
+
+.watch–controls {
+  display: block;
+  width: 275px;
+  margin: 20px auto;
+}

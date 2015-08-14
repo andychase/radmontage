@@ -13,6 +13,13 @@ if (count($matches) > 0 && strlen($matches[1]) < 30) {
     return true;
 }
 
+preg_match("#^/watch_fullscreen/([0-9a-z]+)#", $_SERVER['REQUEST_URI'], $matches);
+if (count($matches) > 0 && strlen($matches[1]) < 30) {
+    $_GET['m'] = $matches[1];
+    require("watch_fullscreen.php");
+    return true;
+}
+
 preg_match("#^/explore/([0-9a-zA-Z\\- ]+)?$#", $_SERVER['REQUEST_URI'], $matches);
 if ($_SERVER['REQUEST_URI'] == "/" || $_SERVER['REQUEST_URI'] == ""  ||
     $_SERVER['REQUEST_URI'] == "/explore" || count($matches) > 0) {

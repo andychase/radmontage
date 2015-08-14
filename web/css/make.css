@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -3392,5 +3393,18 @@ ul.nav.navbar-nav a:hover {
   text-align: center;
   margin-top: 50px;
   color: #686868; }
+
+#watch-video-iframe {
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  box-shadow: 0 1px 3px -2px black;
+  height: 500px;
+  width: 100%; }
+
+.watch–controls {
+  display: block;
+  width: 275px;
+  margin: 20px auto; }
 
 /*# sourceMappingURL=make.css.map */

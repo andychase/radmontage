@@ -43,9 +43,25 @@ do ->
             false
 
 $ ->
-    to_img = (id) -> "https://i.ytimg.com/vi/#{id}/mqdefault.jpg"
-    $('.explore-video-thumb').slideview ((element) ->
-        if window.montage_images? and window.montage_images[element.id]?
-            for id in window.montage_images[element.id]
-                to_img(id)
-    ), size: 320
+    if window.montage_images?
+        to_img = (id) -> "https://i.ytimg.com/vi/#{id}/mqdefault.jpg"
+        $('.explore-video-thumb').slideview ((element) ->
+            if window.montage_images[element.id]?
+                for id in window.montage_images[element.id]
+                    to_img(id)
+        ), size: 320
+
+    iframe = $("#watch-video-iframe")
+    if iframe?
+        fullscreen = () ->
+            iframe[0].contentWindow.toggleFullScreen();
+        play_pause = () ->
+            iframe[0].contentWindow.play_pause_movie_function()
+        skip = () ->
+            iframe[0].contentWindow.click_movie_function()
+        $("#watch-control-fullscreen").click ->
+            fullscreen()
+        $("#watch-control-play-pause").click ->
+            play_pause()
+        $("#watch-control-skip").click ->
+            skip()
