@@ -3,11 +3,11 @@
     <div class="container main-container">
         <div class="row">
             <div class="sidebar col-xs-12 col-md-3">
-                <h6>Categories</h6>
-                <ul class="nav nav-pills nav-stacked">
-                    <li><a href="/explore/featured">Featured</a></li>
-                    <li><a href="/explore/beyond-normal">Beyond Normal</a></li>
-                </ul>
+                {*<h6>Categories</h6>*}
+                {*<ul class="nav nav-pills nav-stacked">*}
+                    {*<li><a href="/explore/featured">Featured</a></li>*}
+                    {*<li><a href="/explore/beyond-normal">Beyond Normal</a></li>*}
+                {*</ul>*}
                 <h6>Share RadMontage</h6>
 
                 <div id="social-buttons-area">
