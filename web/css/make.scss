@@ -2,17 +2,35 @@
 @import 'bootstrap';
 @import 'bootswatch';
 
-$primary: #34495e !default;
+// Main Styling
+
+// Navigation Styling Text
+
+.navbar-header-text {
+
+}
 
 #rad-montage-main-header {
+  display: inline-block;
   font-family: "Adobe Gothic Std", "adobe-gothic-std", sans-serif;
   margin-top: 0;
-  a {
-    color: black;
-    &:hover, &:active, &:focus {
-      text-decoration: none;
-    }
+  font-size: 16pt;
+  margin-right: 30px;
+  color: white;
+  text-shadow: 0 1px 0 black;
+  &:hover, &:active, &:focus {
+    text-decoration: none;
   }
+}
+
+.logo {
+  width: 42px;
+}
+
+.navbar-main-logo {
+  height: 59px;
+  padding-bottom: 0;
+  padding-top: 11px;
 }
 
 .montageTitle {
@@ -23,32 +41,35 @@ $primary: #34495e !default;
   margin-left: 20px;
 }
 
-.logo {
-  display: block;
-  width: 42px;
-  margin-left: 10px;
+.nav-about-text {
+  color: white !important;
+  opacity: .9;
+  font-style: italic;
 }
 
-.top-header {
-  padding-top: 5px;
-  background-image: url('/img/pattern_153.gif');
-  border-bottom: 1px solid rgb(206, 206, 206);
-  padding-bottom: 5px;
-  margin-bottom: 20px;
+ul.nav.navbar-nav {
+  a {
+    &:hover {
+      background-color: mix($brand-primary, #fff, 95%);
+    }
+  }
 }
+
+.footer {
+  width: 100%;
+  height: 40px;
+  background-color: $brand-primary;
+}
+
+// Make styling
 
 .montageStart, .montageEnd {
   width: 80px !important;
 }
 
-body {
-  background-image: url('/img/background.png');
-}
 
-.container {
-  box-shadow: 0 1px 2px -1px black;
-  padding-bottom: 20px;
-  background-color: #fefefe;
+.container.main-container {
+  margin-bottom: 40px;
 }
 
 #montage-manual-link {
@@ -56,7 +77,6 @@ body {
 }
 
 .montage-row {
-  border-bottom: 1px solid #e3e3e3;
   padding-bottom: 10px;
   padding-top: 10px;
   &:last-child {
