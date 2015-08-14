@@ -30,10 +30,10 @@ html.video-done {
 }
 
 #overlay {
-    top: 0;
+    bottom: 130px;
     left: 0;
     position: absolute;
-    height: 80%;
+    height: 100%;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
