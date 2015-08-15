@@ -27,7 +27,7 @@
     $container.addClass('slideview-container');
     $container.appendTo($viewport);
     for (i in slides) {
-      el = $("<div><img src='" + slides[i] + "' alt=''/></div>");
+      el = $("<div><img src='" + slides[i] + "' alt='' style='width: 320px; height: 180px;'/></div>");
       el.css({
         margin: 0,
         padding: 0,

@@ -61,7 +61,8 @@
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand navbar-main-logo" href="/"><img src="/img/logo.svg" class="logo" alt="RadMontage"/></a>
+            <a class="navbar-brand navbar-main-logo" href="/"><img src="/img/logo.svg" class="logo" alt="RadMontage"
+                                                                   style="width: 42px; height: 47px;"/></a>
         </div>
         <div class="navbar-header">
             <a class="navbar-brand navbar-header-text" href="/"><span id="rad-montage-main-header">RadMontage</span></a>
@@ -76,55 +77,56 @@
 </nav>
 {block 'content'}{/block}
 <script src="//use.typekit.net/wrp3oee.js"></script>
-<script>try {
-        Typekit.load({ async: true});
-    } catch (e) {
-    }</script>
 <script>
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '902780833133901',
-            xfbml: true,
-            version: 'v2.4'
+    try {
+        Typekit.load({
+            async: true
         });
-    };
+    } catch (e) {
+    }
+    $(function () {
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '902780833133901',
+                xfbml: true,
+                version: 'v2.4'
+            });
+        };
 
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-<script>!function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-        if (!d.getElementById(id)) {
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
             js = d.createElement(s);
             js.id = id;
-            js.src = p + '://platform.twitter.com/widgets.js';
+            js.src = "//connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
-        }
-    }(document, 'script', 'twitter-wjs');</script>
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        }(document, 'script', 'facebook-jssdk'));
+        !function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+            if (!d.getElementById(id)) {
+                js = d.createElement(s);
+                js.id = id;
+                js.src = p + '://platform.twitter.com/widgets.js';
+                fjs.parentNode.insertBefore(js, fjs);
+            }
+        }(document, 'script', 'twitter-wjs');
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-58719971-2', 'auto');
-    ga('send', 'pageview');
-
+        ga('create', 'UA-58719971-2', 'auto');
+        ga('send', 'pageview');
+    });
 </script>
 </body>
 </html>
