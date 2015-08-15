@@ -134,7 +134,7 @@ video_end = function(container, end_splash) {
 };
 
 $(function() {
-  var click_movie_function, end_splash, instructions, need_to_show_instructions, not_end_of_videos, overlay, player_html, video_index;
+  var click_movie_function, end_splash, instructions, need_to_show_instructions, not_end_of_videos, overlay, player_html, startTick, stopTick, timer, video_index;
   instructions = $("#instructions");
   need_to_show_instructions = true;
   overlay = $('#overlay');
@@ -148,6 +148,40 @@ $(function() {
   videos = videos.slice(1);
   not_end_of_videos = function() {
     return video_index < (videos.length / 3);
+  };
+  timer = null;
+  startTick = function() {
+    var current_player, end_time, next_tick_skips, tick, timeout_time;
+    current_player = players[get_other_player_index()];
+    if ((get_video_end(videos, video_index - 1) != null) && get_video_end(videos, video_index - 1) !== 0) {
+      end_time = get_video_end(videos, video_index - 1);
+    } else {
+      end_time = current_player.getDuration();
+    }
+    timeout_time = 900;
+    next_tick_skips = false;
+    tick = function() {
+      return timer = setTimeout(function() {
+        var current_time;
+        current_time = current_player.getCurrentTime();
+        if (next_tick_skips) {
+          return click_movie_function();
+        } else if ((timeout_time === 900) && current_time + 1.5 > end_time) {
+          timeout_time = 50;
+          return tick();
+        } else if (current_time + .5 > end_time) {
+          timeout_time = Math.floor((end_time - current_time - .1) * 1000);
+          next_tick_skips = true;
+          return tick();
+        } else {
+          return tick();
+        }
+      }, timeout_time);
+    };
+    return tick();
+  };
+  stopTick = function() {
+    return clearTimeout(timer);
   };
   click_movie_function = function() {
     if (not_end_of_videos()) {
@@ -193,23 +227,28 @@ $(function() {
     }
   };
   onPlayerStateChange = function(event) {
-    if (event.data === YT.PlayerState.PLAYING) {
-      if (need_to_show_instructions && !iOS) {
-        need_to_show_instructions = false;
-        instructions.show();
-        return window.setTimeout(function() {
-          return instructions.fadeOut(500);
-        }, 2500);
-      }
-    } else if (event.data === YT.PlayerState.ENDED) {
-      if (player_index === 1) {
+    if (player_index === 1) {
+      stopTick();
+      if (event.data === YT.PlayerState.PLAYING) {
+        startTick();
+        if (need_to_show_instructions && !iOS) {
+          need_to_show_instructions = false;
+          instructions.show();
+          return window.setTimeout(function() {
+            return instructions.fadeOut(500);
+          }, 2500);
+        }
+      } else if (event.data === YT.PlayerState.ENDED) {
         return click_movie_function();
       }
     }
   };
   onPlayerStateChange2 = function(event) {
-    if (event.data === YT.PlayerState.ENDED) {
-      if (player_index === 0) {
+    if (player_index === 0) {
+      stopTick();
+      if (event.data === YT.PlayerState.PLAYING) {
+        return startTick();
+      } else if (event.data === YT.PlayerState.ENDED) {
         return click_movie_function();
       }
     }
