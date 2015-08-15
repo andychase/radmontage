@@ -19,15 +19,17 @@
                     </div>
                 </div>
                 <div style="height: 10px">&nbsp;</div>
-                <h6>Share RadMontage</h6>
+                <div class="visible-lg-block visible-md-block">
+                    <h6>Share RadMontage</h6>
 
-                <div id="social-buttons-area">
-                    <div class="social-button-twitter">
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-via="techstoreclub"
-                           data-count="none" data-dnt="true">Tweet</a>
+                    <div id="social-buttons-area">
+                        <div class="social-button-twitter">
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-via="techstoreclub"
+                               data-count="none" data-dnt="true">Tweet</a>
+                        </div>
+                        <div class="fb-like" data-href="https://radmontage.com" data-width="212"
+                             data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
                     </div>
-                    <div class="fb-like" data-href="https://radmontage.com" data-width="212"
-                         data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
                 </div>
             </div>
             <div class="mainbar col-xs-12 col-md-9">

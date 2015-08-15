@@ -71,7 +71,7 @@
             <li><a href="/edit">Make</a></li>
             <li><a href="/feedback">Feedback</a></li>
         </ul>
-        <p class="navbar-text navbar-right nav-about-text">Make Youtube Montages</p>
+        <p class="navbar-text navbar-right nav-about-text hidden-xs">Make Youtube Montages</p>
     </div>
 </nav>
 {block 'content'}{/block}
