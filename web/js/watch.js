@@ -198,7 +198,9 @@ $(function() {
       if (need_to_show_instructions && !iOS) {
         need_to_show_instructions = false;
         instructions.show();
-        return instructions.fadeOut(5000);
+        return window.setTimeout(function() {
+          return instructions.fadeOut(500);
+        }, 2500);
       }
     } else if (event.data === YT.PlayerState.ENDED) {
       if (player_index === 1) {

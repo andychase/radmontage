@@ -161,7 +161,9 @@ $ ->
             if need_to_show_instructions and not iOS
                 need_to_show_instructions = false
                 instructions.show()
-                instructions.fadeOut 5000
+                window.setTimeout ->
+                    instructions.fadeOut 500
+                , 2500
         else if event.data == YT.PlayerState.ENDED
             if player_index == 1
                 click_movie_function()

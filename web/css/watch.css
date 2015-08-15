@@ -52,7 +52,6 @@ html.video-done {
     width: 100%;
 }
 
-
 #overlay.ios {
     height: 60px;
     background-color: #f1e33c;
@@ -77,8 +76,7 @@ html.video-done {
     color: white;
     font-family: sans-serif;
     font-size: 44pt;
-    opacity: .9;
-    text-shadow: 1px 0px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     display: none;
     z-index: 100;
 }
@@ -100,6 +98,7 @@ html.video-done {
     bottom: 10px;
     right: 90px;
 }
+
 #instructions #video-info span {
     position: relative;
     top: 14px;
@@ -113,6 +112,7 @@ html.video-done {
     margin: 20px auto;
     width: 240px;
 }
+
 #end-splash #some-info ul {
     list-style: none;
 }
