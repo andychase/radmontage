@@ -64,11 +64,23 @@ class DB
         $output = [];
         $name = "";
 
-        foreach ($montage_data as $i => $video)
-            if ($i == 1)
+        $image_count = 0;
+        $images_in_output = [];
+        foreach ($montage_data as $i => $video) {
+            $first = $i == 1;
+            $already_seen = array_key_exists($video, $images_in_output);
+            $has_enough_videos = $image_count >= DB::truncate_videos_at;
+            $is_video_link = ($i - 2) % 3 == 0;
+            if ($has_enough_videos) {
+                break;
+            } else if ($first) {
                 $name = $video;
-            else if ($i > 1 && $i < DB::truncate_videos_at * 3 && ($i - 2) % 3 == 0)
+            } else if (!$already_seen && $is_video_link) {
                 $output[] = $video;
+                $images_in_output[$video] = 1;
+                $image_count++;
+            }
+        }
         return [$name, $montage_video_count, $output];
     }
 
