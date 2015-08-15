@@ -367,8 +367,6 @@ update_previous_montages = (link_data, remove_this_id) ->
         list_location.empty()
     for id in previous_ids
         list_location.append($("<li><a href='/edit/#{id}'>#{previous_titles[id]}</a></li>"))
-        if id + 1 < previous_ids.length
-            list_location.append($("<span>,</span>"))
 
 
 finishedSerializing = () ->

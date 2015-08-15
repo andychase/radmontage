@@ -422,12 +422,7 @@ update_previous_montages = function(link_data, remove_this_id) {
   results = [];
   for (k = 0, len1 = previous_ids.length; k < len1; k++) {
     id = previous_ids[k];
-    list_location.append($("<li><a href='/edit/" + id + "'>" + previous_titles[id] + "</a></li>"));
-    if (id + 1 < previous_ids.length) {
-      results.push(list_location.append($("<span>,</span>")));
-    } else {
-      results.push(void 0);
-    }
+    results.push(list_location.append($("<li><a href='/edit/" + id + "'>" + previous_titles[id] + "</a></li>")));
   }
   return results;
 };
