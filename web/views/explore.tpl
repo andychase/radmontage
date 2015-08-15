@@ -2,26 +2,14 @@
 {block 'content'}
     <div class="container main-container">
         <div class="row">
-            <div class="sidebar col-xs-12 col-md-3">
+            {*<div class="sidebar col-xs-12 col-md-3">*}
                 {*<h6>Categories</h6>*}
                 {*<ul class="nav nav-pills nav-stacked">*}
                     {*<li><a href="/explore/featured">Featured</a></li>*}
                     {*<li><a href="/explore/beyond-normal">Beyond Normal</a></li>*}
                 {*</ul>*}
-                <h6>Share RadMontage</h6>
-
-                <div id="social-buttons-area">
-                    <div class="social-button-twitter">
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-via="techstoreclub"
-                           data-count="none" data-dnt="true">Tweet</a>
-                    </div>
-                    <div class="fb-like" data-href="https://radmontage.com" data-width="212"
-                         data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-                </div>
-            </div>
-            <div class="mainbar col-xs-12 col-md-9">
-                <hr class="visible-xs-block">
-                <hr class="visible-sm-block">
+            {*</div>*}
+            <div class="mainbar col-xs-12 col-md-11 col-md-offset-1">
                 <div class="explore-intro-text">Explore and Create Captivating Youtube Montages</div>
                 {foreach $featured_videos as $video_id => $videos }
                 <div class="explore-video-block">
@@ -39,9 +27,7 @@
             </div>
         </div>
     </div>
-    <div class="footer">
-
-    </div>
+    <div class="footer"></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
