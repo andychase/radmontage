@@ -113,7 +113,6 @@ $ ->
     if iOS
         overlay.addClass("ios")
         instructions.addClass("ios")
-        overlay.html("<span><i class='fa fa-forward'></i></span>")
 
     # montage_name = videos[0]
     videos = videos.slice(1)

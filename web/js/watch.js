@@ -144,7 +144,6 @@ $(function() {
   if (iOS) {
     overlay.addClass("ios");
     instructions.addClass("ios");
-    overlay.html("<span><i class='fa fa-forward'></i></span>");
   }
   videos = videos.slice(1);
   not_end_of_videos = function() {

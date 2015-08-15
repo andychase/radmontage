@@ -5,7 +5,6 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>RadMontage: Make A Youtube Montage Today</title>
     <meta name="description" content="Make montages by pasting Youtube links">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="canonical" href="https://radmontage.com/"/>
 
     <!-- Favicons -->

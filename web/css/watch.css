@@ -53,20 +53,7 @@ html.video-done {
 }
 
 #overlay.ios {
-    height: 60px;
-    background-color: #f1e33c;
-    color: black;
-    font-size: 24pt;
-    vertical-align: bottom;
-}
-
-#overlay.ios span {
-    position: absolute;
-    bottom: 0;
-    right: 30pt;
-    font-weight: bold;
-    font-style: italic;
-    width: 20pt;
+    display: none;
 }
 
 /* Instructions */
