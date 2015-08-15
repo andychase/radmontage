@@ -1,10 +1,4 @@
 <script>
-    try {
-        Typekit.load({
-            async: true
-        });
-    } catch (e) {
-    }
     $(function () {
         window.fbAsyncInit = function () {
             FB.init({
