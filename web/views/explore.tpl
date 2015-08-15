@@ -1,4 +1,7 @@
 {extends 'base.tpl'}
+{block 'head' append}
+    <link rel="canonical" href="https://radmontage.com"/>
+{/block}
 {block 'content'}
     <div class="container main-container">
         <div class="row">

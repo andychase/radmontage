@@ -1,4 +1,5 @@
 {extends 'base.tpl'}
+{block 'title'}RadMontage: {$montage.title}{/block}
 {block 'content'}
     <div class="container main-container">
         <div class="row">
@@ -14,7 +15,7 @@
                     <div class="social-button-twitter">
                         <a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-dnt="true">Tweet</a>
                     </div>
-                    <div class="fb-like" data-href="https://radmontage.com/watch/{$montage_id}" data-width="190"
+                    <div class="fb-like" data-href="{$page_url}" data-width="190"
                          data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
                 </div>
             </div>
@@ -22,7 +23,7 @@
                 <hr class="visible-xs-block">
                 <hr class="visible-sm-block">
                 <iframe allowfullscreen webkitallowfullscreen mozallowfullscreen
-                        src="/watch_fullscreen/{$montage_id}?iframe=true" id="watch-video-iframe"></iframe>
+                        src="/watch_fullscreen/{$montage.id}?iframe=true" id="watch-video-iframe"></iframe>
                 <div class="btn-group watch–controls" role="group">
                     <button type="button" class="btn btn-default" id="watch-control-skip">Skip</button>
                     <button type="button" class="btn btn-default" id="watch-control-play-pause">Pause/Play</button>

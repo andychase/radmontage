@@ -2,10 +2,7 @@
 
 require_once('setup.php');
 
-function id_to_img($id)
-{
-    return "https://i.ytimg.com/vi/$id/mqdefault.jpg";
-}
+
 function not_found()
 {
     http_response_code(404);

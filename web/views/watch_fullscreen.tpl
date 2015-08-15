@@ -42,9 +42,9 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@techstoreclub" />
-    <meta property="twitter:title" content="<?php echo($name); ?>" />
-    <meta property="twitter:description" content="Watch this crazy montage that exists" />
-    <meta property="twitter:image" content="<?php echo(id_to_img($data[1])); ?>"/>
+    <meta property="twitter:title" content="{$montage_name}" />
+    <meta property="twitter:description" content="Watch this crazy cool montage" />
+    <meta property="twitter:image" content="{$montage_thumb}"/>
 
     <link rel="stylesheet" href="/css/watch.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">

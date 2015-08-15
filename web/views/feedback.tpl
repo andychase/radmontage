@@ -1,4 +1,5 @@
 {extends 'base.tpl'}
+{block 'title'}RadMontage: Feedback{/block}
 {block 'content'}
     <div class="container main-container">
     <div class="row">

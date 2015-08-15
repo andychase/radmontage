@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>RadMontage: Make A Youtube Montage Today</title>
-    <meta name="description" content="Make montages by pasting Youtube links">
-    <link rel="canonical" href="https://radmontage.com/"/>
+    <title>{block 'title'}RadMontage: Make A Youtube Montage Today{/block}</title>
+    {if isset($page_description_short)}
+        <meta name="description" content="{$page_description_short}">
+    {/if}
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
@@ -32,24 +33,31 @@
     <meta name="theme-color" content="#ffffff">
 
     <!-- Open Graph -->
-    <meta property="og:url" content="https://radmontage.com"/>
+    <meta property="og:url" content="{$page_url}"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:title" content="It's like an easy bake oven but for montages"/>
+    {if isset($page_title)}
+        <meta property="og:title" content="{$page_title}"/>
+    {/if}
     <meta property="og:site_name" content="RadMontage"/>
-    <meta property="og:description"
-          content="Okay so the site won't make you cookies, but it will let you make montages quickly by just pasting Youtube links. Afterwards you can see them share them or whatever. It's free so">
-    <meta property="og:image" content="https://radmontage.com/img/logo_card.png"/>
+    {if isset($page_description_long)}
+        <meta property="og:description" content="{$page_description_long}">
+    {/if}
+    <meta property="og:image" content="{$page_logo_card}"/>
     <meta property="fb:app_id" content="902780833133901"/>
     <!-- Twitter -->
     <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:site" content="@techstoreclub"/>
-    <meta property="twitter:url" content="https://radmontage.com"/>
-    <meta property="twitter:title" content="It's like an easy bake oven but for montages"/>
-    <meta property="twitter:description"
-          content="Okay so the site won't make you cookies, but it will let you make montages quickly by just pasting Youtube links. Afterwards you can see them share them or whatever. It's free so"/>
+    <meta name="twitter:site" content="@radmontage"/>
+    <meta property="twitter:url" content="{$page_url}"/>
+    {if isset($page_title)}
+        <meta property="twitter:title" content="{$page_title}"/>
+    {/if}
+    {if isset($page_description_long)}
+        <meta property="twitter:description" content="{$page_description_long}"/>
+    {/if}
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/make.css">
+    {block 'head'}{/block}
 </head>
 <body>
 <!--[if lt IE 8]>

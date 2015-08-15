@@ -1,3 +1,7 @@
+{block 'head' append}
+    <link rel="canonical" href="https://radmontage.com/edit"/>
+{/block}
+{block 'title'}RadMontage: Montage Editor{/block}
 {extends 'base.tpl'}
 {block 'content'}
     <div class="container main-container">

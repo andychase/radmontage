@@ -22,6 +22,15 @@ $smarty->setTemplateDir('views');
 $smarty->setCompileDir('views/compile');
 $smarty->setCacheDir('views/cache');
 
+$smarty->assign('page_description_short', "Explore and Create Captivating Youtube Montages");
+$smarty->assign('page_url', "https://radmontage.com");
+$smarty->assign('page_logo_card', "https://radmontage.com/img/logo_card.png");
+
+function id_to_img($id)
+{
+    return "https://i.ytimg.com/vi/$id/mqdefault.jpg";
+}
+
 class DB
 {
     const id_index = 'id_index';
@@ -43,6 +52,16 @@ class DB
     {
         global $redis;
         return explode(":", $redis->get($id));
+    }
+
+    static function get_montage_metadata($id)
+    {
+        $data = DB::get_montage($id);
+        return [
+            "id" => $id,
+            "title" => $data[1],
+            "first_video_image" => id_to_img($data[2]),
+        ];
     }
 
     static function get_montages($ids)
