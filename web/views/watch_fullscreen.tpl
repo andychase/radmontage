@@ -38,12 +38,12 @@
     <meta property="og:image" content="{$montage_thumb}"/>
     <meta property="og:url" content="https://radmontage.com/watch/{$montage_id}">
     <meta property="og:type" content="website">
-    <meta property="og:description" content="Watch this crazy montage that exists">
+    <meta property="og:description" content="Check out this crazy cool montage">
     <!-- Twitter -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@techstoreclub" />
     <meta property="twitter:title" content="{$montage_name}" />
-    <meta property="twitter:description" content="Watch this crazy cool montage" />
+    <meta property="twitter:description" content="Check out this crazy cool montage" />
     <meta property="twitter:image" content="{$montage_thumb}"/>
 
     <link rel="stylesheet" href="/css/watch.css">

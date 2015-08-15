@@ -25,6 +25,8 @@ $smarty->setCacheDir('views/cache');
 $smarty->assign('page_description_short', "Explore and Create Captivating Youtube Montages");
 $smarty->assign('page_url', "https://radmontage.com");
 $smarty->assign('page_logo_card', "https://radmontage.com/img/logo_card.png");
+$smarty->assign('page_title', "It's like an easy bake oven but for montages");
+$smarty->assign('page_description_long', "Okay so the site won't make you cookies, but it will let you make montages quickly by just pasting Youtube links. Afterwards you can see them share them or whatever.");
 
 function id_to_img($id)
 {

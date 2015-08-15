@@ -35,25 +35,17 @@
     <!-- Open Graph -->
     <meta property="og:url" content="{$page_url}"/>
     <meta property="og:type" content="website"/>
-    {if isset($page_title)}
-        <meta property="og:title" content="{$page_title}"/>
-    {/if}
+    <meta property="og:title" content="{$page_title}"/>
     <meta property="og:site_name" content="RadMontage"/>
-    {if isset($page_description_long)}
-        <meta property="og:description" content="{$page_description_long}">
-    {/if}
+    <meta property="og:description" content="{$page_description_long}">
     <meta property="og:image" content="{$page_logo_card}"/>
     <meta property="fb:app_id" content="902780833133901"/>
     <!-- Twitter -->
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:site" content="@radmontage"/>
     <meta property="twitter:url" content="{$page_url}"/>
-    {if isset($page_title)}
-        <meta property="twitter:title" content="{$page_title}"/>
-    {/if}
-    {if isset($page_description_long)}
-        <meta property="twitter:description" content="{$page_description_long}"/>
-    {/if}
+    <meta property="twitter:title" content="{$page_title}"/>
+    <meta property="twitter:description" content="{$page_description_long}"/>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/make.css">
