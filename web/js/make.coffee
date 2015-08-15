@@ -121,11 +121,11 @@ text_to_time = (value) ->
     value = value.replace(allowed_in_time_field, "")
     output = 0
     parts = value.split(":")
-    if parts.length > 0 and parseInt(parts[parts.length - 1])
+    if parts.length > 0
         output += parseInt(parts.pop())
-    if parts.length > 0 and parseInt(parts[parts.length - 1])
+    if parts.length > 0
         output += parseInt(parts.pop()) * 60
-    if parts.length > 0 and parseInt(parts[parts.length - 1])
+    if parts.length > 0
         output += parseInt(parts.pop()) * 60 * 60
     output
 
