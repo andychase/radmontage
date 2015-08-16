@@ -3,28 +3,7 @@
 {block 'content'}
     <div class="container main-container">
         <div class="row">
-            <div class="sidebar col-xs-12 col-md-3">
-                {*<h6>Categories</h6>*}
-                {*<ul class="nav nav-pills nav-stacked">*}
-                {*<li><a href="/explore/featured">Featured</a></li>*}
-                {*<li><a href="/explore/beyond-normal">Beyond Normal</a></li>*}
-                {*</ul>*}
-                <h6>Share this Montage</h6>
-
-                <div id="social-buttons-area">
-                    <div class="social-button-twitter">
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-count="none"
-                           data-dnt="true">Tweet</a>
-                    </div>
-                    <div class="fb-like" data-href="{$page_url}" data-width="190"
-                         data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
-                </div>
-            </div>
-            <div class="mainbar col-xs-12 col-md-9">
-                <hr class="visible-xs-block">
-                <hr class="visible-sm-block">
-                <h2 class="watch-montage-header">{$montage.title}</h2>
-
+            <div class="mainbar col-xs-12 col-md-10 col-md-offset-1">
                 <div class="watch-montage-container">
                     <iframe allowfullscreen webkitallowfullscreen mozallowfullscreen
                             src="/watch_fullscreen/{$montage.id}?iframe=true" id="watch-video-iframe"></iframe>
@@ -41,6 +20,18 @@
                             </button>
                         </div>
                     </div>
+                </div>
+                <h2 class="watch-montage-header">{$montage.title}</h2>
+
+                <h6>Share this Montage</h6>
+
+                <div id="social-buttons-area" class="visible-md">
+                    <div class="social-button-twitter">
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-count="none"
+                           data-dnt="true">Tweet</a>
+                    </div>
+                    <div class="fb-like" data-href="{$page_url}" data-width="190"
+                         data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
                 </div>
             </div>
         </div>
