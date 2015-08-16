@@ -37,7 +37,7 @@ do ->
             el.appendTo $container
 
         $viewport.bind 'mousemove', (evt) ->
-            x = evt.offsetX
+            x = Math.max(1, evt.offsetX)
             offset = Math.floor(x / (size / slides.length)) * size
             $container.css 'right', offset
             false
