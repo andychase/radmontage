@@ -31,14 +31,13 @@ html, body {
   }
 }
 
-.logo {
-  width: 42px;
+.navbar-main-logo {
+  padding-bottom: 0;
+  padding-top: 7px;
 }
 
-.navbar-main-logo {
-  height: 59px;
-  padding-bottom: 0;
-  padding-top: 11px;
+.navbar-watch-page.navbar {
+  margin-bottom: 5px;
 }
 
 .montageTitle {
@@ -156,14 +155,6 @@ ul.nav.navbar-nav {
 }
 
 // Watch video page
-
-#watch-video-iframe {
-  display: block;
-  height: 500px;
-  width: 100%;
-  border: none;
-  padding: 0;
-}
 
 .watch–controls {
   width: 100%;

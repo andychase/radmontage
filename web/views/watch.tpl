@@ -1,12 +1,15 @@
 {extends 'base.tpl'}
 {block 'title'}RadMontage: {$montage.title}{/block}
+{block 'navbar_class'}navbar-watch-page{/block}
 {block 'content'}
     <div class="container main-container">
         <div class="row">
             <div class="mainbar col-xs-12 col-md-10 col-md-offset-1">
                 <div class="watch-montage-container">
-                    <iframe allowfullscreen webkitallowfullscreen mozallowfullscreen
-                            src="/watch_fullscreen/{$montage.id}?iframe=true" id="watch-video-iframe"></iframe>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe allowfullscreen webkitallowfullscreen mozallowfullscreen class="embed-responsive-item"
+                                src="/watch_fullscreen/{$montage.id}?iframe=true" id="watch-video-iframe"></iframe>
+                    </div>
                     <div class="btn-group btn-group-justified watch–controls" role="group">
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-default" id="watch-control-skip">Skip</button>
@@ -25,7 +28,7 @@
 
                 <h6>Share this Montage</h6>
 
-                <div id="social-buttons-area" class="visible-md">
+                <div id="social-buttons-area">
                     <div class="social-button-twitter">
                         <a href="https://twitter.com/share" class="twitter-share-button" data-count="none"
                            data-dnt="true">Tweet</a>

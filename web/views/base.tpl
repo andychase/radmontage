@@ -57,11 +57,11 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default {block 'navbar_class'}{/block}">
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand navbar-main-logo" href="/"><img src="/img/logo.svg" class="logo" alt="RadMontage"
-                                                                   style="width: 42px; height: 47px;"/></a>
+                                                                   style="width: 35px; height: 39px;"/></a>
         </div>
         <div class="navbar-header">
             <a class="navbar-brand navbar-header-text" href="/"><span id="rad-montage-main-header">RadMontage</span></a>
