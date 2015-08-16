@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name=viewport content="width=device-width,initial-scale=1">
     <title>{block 'title'}RadMontage: Make A Youtube Montage Today{/block}</title>
     {if isset($page_description_short)}
         <meta name="description" content="{$page_description_short}">
