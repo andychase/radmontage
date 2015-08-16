@@ -3421,6 +3421,17 @@ ul.nav.navbar-nav a:hover {
 .watch–controls {
   width: 100%;
   margin-top: 10px; }
+  .watch–controls .btn:focus {
+    outline: none;
+    border-color: #95a3a6;
+    background: #95a3a6; }
+  .watch–controls .btn:focus {
+    outline: none;
+    border-color: #95a3a6;
+    background: #95a3a6; }
+  .watch–controls .btn:hover {
+    background-color: #798b8f;
+    border-color: #74868a; }
 
 .watch-montage-header {
   margin-top: 10px;

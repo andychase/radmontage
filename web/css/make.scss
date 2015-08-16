@@ -159,6 +159,20 @@ ul.nav.navbar-nav {
 .watch–controls {
   width: 100%;
   margin-top: 10px;
+  .btn:focus {
+    outline: none;
+    border-color: #95a3a6;
+    background: $btn-default-bg;
+  }
+  .btn:focus {
+    outline: none;
+    border-color: #95a3a6;
+    background: $btn-default-bg;
+  }
+  .btn:hover {
+    background-color: #798b8f;
+    border-color: #74868a;
+  }
 }
 
 .watch-montage-header {
