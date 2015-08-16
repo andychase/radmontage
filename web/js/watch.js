@@ -194,9 +194,11 @@ $(function() {
         });
       }
       player_html[player_index].css('z-index', 2);
+      player_html[player_index].css('visibility', 'visible');
       players[player_index].playVideo();
       toggle_player_index();
       player_html[player_index].css('z-index', 1);
+      player_html[player_index].css('visibility', 'hidden');
       video_index += 1;
       if (not_end_of_videos()) {
         players[player_index].loadVideoById({
