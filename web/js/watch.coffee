@@ -159,7 +159,7 @@ $ ->
                     videoId: get_video_url(videos, video_index)
                     startSeconds: get_video_start(videos, video_index)
                     endSeconds: get_video_end(videos, video_index)
-                    suggestedQuality: 'large'
+                    suggestedQuality: 'default'
             player_html[player_index].css('z-index', 2)
             players[player_index].playVideo()
             toggle_player_index()
@@ -170,7 +170,7 @@ $ ->
                     videoId: get_video_url(videos, video_index)
                     startSeconds: get_video_start(videos, video_index)
                     endSeconds: get_video_end(videos, video_index)
-                    suggestedQuality: 'large'
+                    suggestedQuality: 'default'
                 players[player_index].pauseVideo()
             else
                 players[player_index].stopVideo()
