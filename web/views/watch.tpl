@@ -23,6 +23,8 @@
             <div class="mainbar col-xs-12 col-md-9">
                 <hr class="visible-xs-block">
                 <hr class="visible-sm-block">
+                <h2 class="watch-montage-header">{$montage.title}</h2>
+
                 <div class="watch-montage-container">
                     <iframe allowfullscreen webkitallowfullscreen mozallowfullscreen
                             src="/watch_fullscreen/{$montage.id}?iframe=true" id="watch-video-iframe"></iframe>
