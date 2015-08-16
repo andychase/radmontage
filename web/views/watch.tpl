@@ -26,16 +26,7 @@
                 </div>
                 <h2 class="watch-montage-header">{$montage.title}</h2>
 
-                <h6>Share this Montage</h6>
-
-                <div id="social-buttons-area">
-                    <div class="social-button-twitter">
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-count="none"
-                           data-dnt="true">Tweet</a>
-                    </div>
-                    <div class="fb-like" data-href="{$page_url}" data-width="190"
-                         data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
-                </div>
+                <div class="addthis_sharing_toolbox"></div>
             </div>
         </div>
     </div>
