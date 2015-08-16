@@ -3396,15 +3396,22 @@ ul.nav.navbar-nav a:hover {
 
 #watch-video-iframe {
   display: block;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  padding: 10px;
-  box-shadow: 0 1px 3px -2px black;
   height: 500px;
-  width: 100%; }
+  width: 100%;
+  border: none;
+  padding: 0; }
 
 .watch–controls {
-  display: block;
-  width: 275px;
-  margin: 20px auto; }
+  width: 100%;
+  margin-top: 10px; }
+
+.watch-montage-header {
+  margin-top: 0;
+  margin-bottom: 15px; }
+
+.watch-montage-container {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  box-shadow: 0 1px 3px -2px black; }
 
 /*# sourceMappingURL=make.css.map */
