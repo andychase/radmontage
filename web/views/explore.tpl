@@ -14,14 +14,18 @@
             {*</div>*}
             <div class="mainbar col-xs-12 col-md-11 col-md-offset-1">
                 <div class="explore-intro-text">Explore and Create Captivating Youtube Montages</div>
-                {foreach $featured_videos as $video_id => $videos }
+                {foreach $featured_videos as $video_id => $videos}
                 <div class="explore-video-block">
                     <a href="/watch/{$video_id}">
                         <div class="explore-video-thumb" id="{$video_id}"></div>
                     </a>
                     <a href="/watch/{$video_id}">
-                        <span class="explore-video-title">{$featured_names[$video_id]}</span></a>
+                        <span class="explore-video-title">{$featured_names[$video_id]}</span>
+                    </a>
                     <span class="explore-video-video-count">{$featured_counts[$video_id]} Videos</span>
+                    {if $featured_explicits[$video_id]}
+                        <span class="explore-explicit-warning">explicit</span>
+                    {/if}
                 </div>
                 {/foreach}
             <span class="explore-featured-howto">

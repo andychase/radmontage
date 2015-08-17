@@ -117,16 +117,23 @@ class DB
         $featured_montages = $redis->get("featured:$page");
         $names = [];
         $counts = [];
+        $explicits = [];
         $videos = [];
         if ($featured_montages) {
             $ids = json_decode($featured_montages);
             foreach (DB::get_montages($ids) as $i => $m) {
                 $montage_name_and_videos = DB::get_montage_name_and_videos($m);
-                $names[$ids[$i]] = $montage_name_and_videos[0];
+                if (substr($montage_name_and_videos[0], -7) == " [nsfw]") {
+                    $explicits[$ids[$i]] = true;
+                    $names[$ids[$i]] = substr($montage_name_and_videos[0], 0, -7);
+                } else {
+                    $explicits[$ids[$i]] = false;
+                    $names[$ids[$i]] = $montage_name_and_videos[0];
+                }
                 $counts[$ids[$i]] = $montage_name_and_videos[1];
                 $videos[$ids[$i]] = $montage_name_and_videos[2];
             }
         }
-        return [$names, $counts, $videos];
+        return [$names, $counts, $explicits, $videos];
     }
 }

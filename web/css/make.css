@@ -3397,9 +3397,19 @@ ul.nav.navbar-nav a:hover {
 .explore-video-block {
   display: inline-block;
   border: 2px solid #ccc;
+  width: 324px;
+  vertical-align: top;
   border-radius: 4px;
   padding: 10px;
   margin: 10px; }
+  .explore-video-block .explore-explicit-warning {
+    color: red;
+    font-size: 6pt;
+    border: 1px solid red;
+    text-transform: uppercase;
+    position: relative;
+    bottom: 1px;
+    padding: 1px 2px 1px 1px; }
   .explore-video-block .explore-video-thumb {
     display: block;
     width: 300px;
