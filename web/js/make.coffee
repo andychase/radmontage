@@ -171,10 +171,10 @@ make_link_container = """
                 </div>
                 <div class="form-group">
                     <div class="btn-group montage-link-buttons" role="group">
-                        <a href="#" class="montage-delete btn btn-default"><i class="fa fa-times"></i></a>
-                        <a href="#" class="montage-up btn btn-default"><i class="fa fa-chevron-up"></i></a>
-                        <a href="#" class="montage-down btn btn-default"><i class="fa fa-chevron-down"></i></a>
-                        <a href="#" class="montage-add-here btn btn-default"><i class="fa fa-plus"></i></a>
+                        <a href="#" title="Delete this video" class="montage-delete btn btn-default"><i class="fa fa-times"></i></a>
+                        <a href="#" title="Move this video up" class="montage-up btn btn-default"><i class="fa fa-chevron-up"></i></a>
+                        <a href="#" title="Move this video down" class="montage-down btn btn-default"><i class="fa fa-chevron-down"></i></a>
+                        <a href="#" title="Insert video spot above" class="montage-add-here btn btn-default"><i class="fa fa-plus"></i></a>
                     </div>
                 </div>
             </div>
