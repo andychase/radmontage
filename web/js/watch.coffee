@@ -65,14 +65,14 @@ onPlayerReady2 = () ->
 onPlayerStateChange2 = () ->
 
 
-get_other_player_index = () ->
+get_currently_playing_id = () ->
     if player_index == 0
         1
     else
         0
 
 toggle_player_index = () ->
-    player_index = get_other_player_index()
+    player_index = get_currently_playing_id()
 
 if_zero_return_null = (i) ->
     if i == 0
@@ -123,7 +123,7 @@ $ ->
     # to avoid the "recommended videos" flash
     timer = null
     startTick = ->
-        current_player = players[get_other_player_index()]
+        current_player = players[get_currently_playing_id()]
         if get_video_end(videos, video_index-1)? and get_video_end(videos, video_index-1) != 0
             end_time = get_video_end(videos, video_index-1)
         else
@@ -140,9 +140,15 @@ $ ->
                     timeout_time = 50
                     tick()
                 else if current_time + .5 > end_time
+                    # Schedule a "skip" about 100 ms from close end to prevent end screen from showing
                     timeout_time = Math.floor((end_time - current_time - .1) * 1000)
                     next_tick_skips = true
                     tick()
+                    # Start pre-playing the next video to reduce black flashes
+                    players[player_index].playVideo()
+                    setTimeout ->
+                        players[player_index].pauseVideo()
+                    , 100
                 else
                     tick()
             , timeout_time
@@ -185,14 +191,14 @@ $ ->
     # These functions are control functions that can be called from a parent frame
     window.click_movie_function = click_movie_function
     window.play_pause_movie_function = () ->
-        player = players[get_other_player_index()]
+        player = players[get_currently_playing_id()]
         if player.getPlayerState() == YT.PlayerState.PLAYING
             player.pauseVideo()
         else if player.getPlayerState() == YT.PlayerState.PAUSED
             player.playVideo()
 
     onPlayerStateChange = (event) ->
-        if player_index == 1
+        if get_currently_playing_id() == 0
             stopTick()
             if event.data == YT.PlayerState.PLAYING
                 startTick()
@@ -206,7 +212,7 @@ $ ->
                 click_movie_function()
 
     onPlayerStateChange2 = (event) ->
-        if player_index == 0
+        if get_currently_playing_id() == 1
             stopTick()
             if event.data == YT.PlayerState.PLAYING
                 startTick()
