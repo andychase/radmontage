@@ -2,21 +2,11 @@
 
 require_once('setup.php');
 
-function clean($string)
-{
-    return preg_replace('/[^A-Za-z0-9_\- :]/', '', $string); // Removes special chars.
-}
-
-function is_valid($string)
-{
-    return strlen(clean($string)) == strlen($string);
-}
-
-$post_data = clean($_POST['data']);
+$post_data = $_POST['data'];
 $id = $_POST['id'];
 
 if ($post_data && $id && strlen($post_data) < 20010) {
-    if ($id && is_valid($id)) {
+    if ($id) {
         $user_data = explode(":", $post_data);
         $db_data = DB::get_montage($id);
         if (count($user_data) > 0 && hash_equals($user_data[0], $db_data[0])) {

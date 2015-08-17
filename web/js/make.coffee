@@ -14,7 +14,6 @@ montage_secret = null
 disable_saving = false
 
 allowed_in_time_field = /[^0-9:]/g
-allowed_in_title_field = /[^A-Za-z0-9_ ]/
 
 ## External Functions and Helpers
 ##
@@ -113,7 +112,7 @@ clear_video_title = (target) ->
 
 get_montage_title = ->
     if $("#montageName").val()?
-        $("#montageName").val().replace(allowed_in_title_field, "")
+        $("#montageName").val().replace(":", "")
     else
         ""
 
