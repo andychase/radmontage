@@ -3396,9 +3396,9 @@ ul.nav.navbar-nav a:hover {
 
 .explore-video-block {
   display: inline-block;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 2px solid #ccc;
+  border-radius: 4px;
   padding: 10px;
-  box-shadow: 0 1px 3px -2px black;
   margin: 10px; }
   .explore-video-block .explore-video-thumb {
     display: block;
@@ -3406,7 +3406,9 @@ ul.nav.navbar-nav a:hover {
     background-color: grey; }
   .explore-video-block .explore-video-title {
     display: block;
-    font-size: 13pt; }
+    font-size: 13pt;
+    padding-top: 10px;
+    font-weight: bold; }
   .explore-video-block .explore-video-video-count {
     color: grey;
     font-size: 10pt; }
