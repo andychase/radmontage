@@ -13,7 +13,7 @@
                 {*</ul>*}
             {*</div>*}
             <div class="mainbar col-xs-12 col-md-11 col-md-offset-1">
-                <div class="explore-intro-text">Explore and Create Captivating Youtube Montages</div>
+                <div class="explore-intro-text">Explore and Create Captivating YouTube Playlists</div>
                 {foreach $featured_videos as $video_id => $videos}
                 <div class="explore-video-block">
                     <a href="/watch/{$video_id}">
