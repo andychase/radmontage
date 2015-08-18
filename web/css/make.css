@@ -3434,6 +3434,10 @@ ul.nav.navbar-nav a:hover {
 .watch–controls {
   width: 100%;
   margin-top: 10px; }
+  .watch–controls button {
+    max-height: 45px; }
+  .watch–controls .fa {
+    font-size: 16pt; }
   .watch–controls .btn:focus {
     outline: none;
     border-color: #95a3a6;

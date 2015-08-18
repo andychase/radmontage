@@ -50,7 +50,7 @@
 })();
 
 $(function() {
-  var fullscreen, iframe, play_pause, skip, to_img;
+  var iframe, play_pause, previous_movie_function, skip, to_img;
   if (window.montage_images != null) {
     to_img = function(id) {
       return "https://i.ytimg.com/vi/" + id + "/mqdefault.jpg";
@@ -72,8 +72,8 @@ $(function() {
   }
   iframe = $("#watch-video-iframe");
   if (iframe != null) {
-    fullscreen = function() {
-      return iframe[0].contentWindow.toggleFullScreen();
+    previous_movie_function = function() {
+      return iframe[0].contentWindow.previous_movie_function();
     };
     play_pause = function() {
       return iframe[0].contentWindow.play_pause_movie_function();
@@ -81,8 +81,8 @@ $(function() {
     skip = function() {
       return iframe[0].contentWindow.click_movie_function();
     };
-    $("#watch-control-fullscreen").click(function() {
-      return fullscreen();
+    $("#watch-control-previous").click(function() {
+      return previous_movie_function();
     });
     $("#watch-control-play-pause").click(function() {
       return play_pause();

@@ -12,7 +12,13 @@
                     </div>
                     <div class="btn-group btn-group-justified watch–controls" role="group">
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default" id="watch-control-skip">Skip</button>
+                            <button type="button" class="btn btn-default" id="watch-control-previous"><i class="fa fa-arrow-left"></i></button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default" id="watch-control-play-pause"><i class="fa fa-pause"></i></button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default" id="watch-control-skip"><i class="fa fa-arrow-right"></i></button>
                         </div>
                     </div>
                 </div>

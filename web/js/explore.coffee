@@ -53,14 +53,14 @@ $ ->
 
     iframe = $("#watch-video-iframe")
     if iframe?
-        fullscreen = () ->
-            iframe[0].contentWindow.toggleFullScreen();
+        previous_movie_function = () ->
+            iframe[0].contentWindow.previous_movie_function();
         play_pause = () ->
             iframe[0].contentWindow.play_pause_movie_function()
         skip = () ->
             iframe[0].contentWindow.click_movie_function()
-        $("#watch-control-fullscreen").click ->
-            fullscreen()
+        $("#watch-control-previous").click ->
+            previous_movie_function()
         $("#watch-control-play-pause").click ->
             play_pause()
         $("#watch-control-skip").click ->

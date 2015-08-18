@@ -186,6 +186,23 @@ $ ->
 
     # These functions are control functions that can be called from a parent frame
     window.click_movie_function = click_movie_function
+    window.previous_movie_function = ->
+        if video_index == 1
+            if get_video_start(videos, 0)?
+                players[get_currently_playing_id()].seekTo get_video_start(videos, 0)
+            else
+                players[get_currently_playing_id()].seekTo 0
+        else
+            players[0].pauseVideo()
+            players[1].pauseVideo()
+            video_index -= 2
+            players[player_index].loadVideoById
+                videoId: get_video_url(videos, video_index)
+                startSeconds: get_video_start(videos, video_index)
+                endSeconds: get_video_end(videos, video_index)
+                suggestedQuality: 'default'
+            click_movie_function()
+
     window.play_pause_movie_function = () ->
         player = players[get_currently_playing_id()]
         if player.getPlayerState() == YT.PlayerState.PLAYING
