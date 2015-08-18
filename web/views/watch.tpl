@@ -14,14 +14,6 @@
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-default" id="watch-control-skip">Skip</button>
                         </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default" id="watch-control-play-pause">Pause/Play
-                            </button>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default" id="watch-control-fullscreen">Fullscreen
-                            </button>
-                        </div>
                     </div>
                 </div>
                 <h2 class="watch-montage-header">{$montage.title}</h2>

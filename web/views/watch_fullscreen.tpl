@@ -60,12 +60,6 @@
 <div id="container">
     <div id="player"></div>
     <div id="player2"></div>
-    <div id="instructions">
-        <div id="skip"><i class="fa fa-forward"></i></div>
-        <div id="pause"><i class="fa fa-pause"></i></div>
-        <div id="video-info"><i class="fa fa-file-video-o"></i><span>&rarr;</span></div>
-    </div>
-    <div id="overlay"></div>
 </div>
 <div id="end-splash" style="display:none;">
     <div id="some-info">

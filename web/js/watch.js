@@ -41,8 +41,6 @@ onYouTubeIframeAPIReady = function() {
   return $(function() {
     players.push(new YT.Player('player', {
       playerVars: {
-        controls: 0,
-        showinfo: 0,
         iv_load_policy: 3
       },
       events: {
@@ -56,8 +54,6 @@ onYouTubeIframeAPIReady = function() {
     }));
     return players.push(new YT.Player('player2', {
       playerVars: {
-        controls: 0,
-        showinfo: 0,
         iv_load_policy: 3
       },
       events: {
@@ -259,9 +255,8 @@ $(function() {
       }
     }
   };
-  overlay[0].addEventListener('click', click_movie_function, true);
   if (ready[0] && ready[1]) {
-    click_movie_function();
+    return click_movie_function();
   } else {
     onPlayerReady = function() {
       ready[0] = true;
@@ -270,7 +265,7 @@ $(function() {
         return click_movie_function();
       }
     };
-    onPlayerReady2 = function() {
+    return onPlayerReady2 = function() {
       ready[1] = true;
       if (ready[0] && ready[1]) {
         player_html = [$("#player"), $("#player2")];
@@ -278,25 +273,4 @@ $(function() {
       }
     };
   }
-  return (function() {
-    var cursorVisible, disappearCursor, mouseTimer;
-    overlay = $("#overlay");
-    mouseTimer = null;
-    cursorVisible = true;
-    disappearCursor = function() {
-      mouseTimer = null;
-      overlay.css('cursor', 'none');
-      return cursorVisible = false;
-    };
-    return document.onmousemove = function() {
-      if (mouseTimer) {
-        window.clearTimeout(mouseTimer);
-      }
-      if (!cursorVisible) {
-        overlay.css('cursor', "url('/img/forward_cursor.png') 0 0, e-resize");
-        cursorVisible = true;
-      }
-      return mouseTimer = window.setTimeout(disappearCursor, 3000);
-    };
-  })();
 });

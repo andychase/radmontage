@@ -30,8 +30,6 @@ onYouTubeIframeAPIReady = ->
     $ ->
         players.push new YT.Player('player',
             playerVars:
-                controls: 0
-                showinfo: 0
                 iv_load_policy: 3
 
             events:
@@ -41,8 +39,6 @@ onYouTubeIframeAPIReady = ->
 
         players.push new YT.Player('player2',
             playerVars:
-                controls: 0
-                showinfo: 0
                 iv_load_policy: 3
 
             events:
@@ -219,7 +215,6 @@ $ ->
             else if event.data == YT.PlayerState.ENDED
                 click_movie_function()
 
-    overlay[0].addEventListener 'click', click_movie_function, true
     if ready[0] and ready[1]
         click_movie_function()
     else
@@ -234,21 +229,21 @@ $ ->
                 player_html = [$("#player"), $("#player2")]
                 click_movie_function()
 
-    # Hide the cursor after 3 seconds
-    do ->
-        overlay = $("#overlay")
-        mouseTimer = null
-        cursorVisible = true
-
-        disappearCursor = ->
-            mouseTimer = null
-            overlay.css('cursor', 'none')
-            cursorVisible = false
-
-        document.onmousemove = ->
-            if mouseTimer
-                window.clearTimeout mouseTimer
-            if !cursorVisible
-                overlay.css('cursor', "url('/img/forward_cursor.png') 0 0, e-resize")
-                cursorVisible = true
-            mouseTimer = window.setTimeout(disappearCursor, 3000)
+#    # Hide the cursor after 3 seconds
+#    do ->
+#        overlay = $("#overlay")
+#        mouseTimer = null
+#        cursorVisible = true
+#
+#        disappearCursor = ->
+#            mouseTimer = null
+#            overlay.css('cursor', 'none')
+#            cursorVisible = false
+#
+#        document.onmousemove = ->
+#            if mouseTimer
+#                window.clearTimeout mouseTimer
+#            if !cursorVisible
+#                overlay.css('cursor', "url('/img/forward_cursor.png') 0 0, e-resize")
+#                cursorVisible = true
+#            mouseTimer = window.setTimeout(disappearCursor, 3000)

@@ -53,7 +53,7 @@ html.video-done {
     visibility: hidden;
 }
 
-#overlay.ios {
+#overlay, #overlay.ios {
     display: none;
 }
 
