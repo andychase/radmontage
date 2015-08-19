@@ -1,4 +1,7 @@
+# The api key below is a public key
+# It set to be "user-facing" and has a referrer-restriction set
 api_key = "AIzaSyDNunorfrD4Wp21oL0F96Ov_L8mb9rdw_s"
+
 youtube_api_endpoint = 'https://www.googleapis.com/youtube/v3/videos'
 youtube_video_link = "https://www.youtube.com/watch?v="
 youtube_channel_link = "https://www.youtube.com/channel/"
