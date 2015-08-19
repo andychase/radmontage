@@ -130,17 +130,13 @@ video_end = function(container, end_splash) {
 };
 
 $(function() {
-  var click_movie_function, end_splash, instructions, need_to_show_instructions, not_end_of_videos, overlay, player_html, startTick, stopTick, timer, video_index;
+  var click_movie_function, container, end_splash, instructions, need_to_show_instructions, not_end_of_videos, player_html, startTick, stopTick, timer, video_index;
   instructions = $("#instructions");
   need_to_show_instructions = true;
-  overlay = $('#overlay');
+  container = $('#container');
   end_splash = $('#end-splash');
   player_html = void 0;
   video_index = 0;
-  if (iOS) {
-    overlay.addClass("ios");
-    instructions.addClass("ios");
-  }
   videos = videos.slice(1);
   not_end_of_videos = function() {
     return video_index < (videos.length / 3);
@@ -215,7 +211,7 @@ $(function() {
       players[0].stopVideo();
       players[1].stopVideo();
       document.onmousemove = null;
-      return video_end(overlay.parent(), end_splash);
+      return video_end(container, end_splash);
     }
   };
   window.click_movie_function = click_movie_function;

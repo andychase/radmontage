@@ -101,14 +101,10 @@ video_end = (container, end_splash) ->
 $ ->
     instructions = $("#instructions")
     need_to_show_instructions = true
-    overlay = $('#overlay')
+    container = $('#container')
     end_splash = $('#end-splash')
     player_html = undefined # Must be calculated after players are ready
     video_index = 0
-
-    if iOS
-        overlay.addClass("ios")
-        instructions.addClass("ios")
 
     # montage_name = videos[0]
     videos = videos.slice(1)
@@ -182,7 +178,7 @@ $ ->
             players[0].stopVideo()
             players[1].stopVideo()
             document.onmousemove = null
-            video_end(overlay.parent(), end_splash)
+            video_end(container, end_splash)
 
     # These functions are control functions that can be called from a parent frame
     window.click_movie_function = click_movie_function
@@ -245,22 +241,3 @@ $ ->
             if ready[0] and ready[1]
                 player_html = [$("#player"), $("#player2")]
                 click_movie_function()
-
-#    # Hide the cursor after 3 seconds
-#    do ->
-#        overlay = $("#overlay")
-#        mouseTimer = null
-#        cursorVisible = true
-#
-#        disappearCursor = ->
-#            mouseTimer = null
-#            overlay.css('cursor', 'none')
-#            cursorVisible = false
-#
-#        document.onmousemove = ->
-#            if mouseTimer
-#                window.clearTimeout mouseTimer
-#            if !cursorVisible
-#                overlay.css('cursor', "url('/img/forward_cursor.png') 0 0, e-resize")
-#                cursorVisible = true
-#            mouseTimer = window.setTimeout(disappearCursor, 3000)
