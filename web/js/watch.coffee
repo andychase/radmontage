@@ -160,6 +160,8 @@ $ ->
                     suggestedQuality: 'default'
             player_html[player_index].css('z-index', 2)
             player_html[player_index].css('visibility', 'visible')
+            if window.location.search.replace("?", "").indexOf("slow=true") > -1
+                players[player_index].setPlaybackRate(0.5)
             players[player_index].playVideo()
             toggle_player_index()
             player_html[player_index].css('z-index', 1)

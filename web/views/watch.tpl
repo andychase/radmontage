@@ -8,7 +8,7 @@
                 <div class="watch-montage-container">
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe allowfullscreen webkitallowfullscreen mozallowfullscreen class="embed-responsive-item"
-                                src="/watch_fullscreen/{$montage.id}?iframe=true" id="watch-video-iframe"></iframe>
+                                src="/watch_fullscreen/{$montage.id}?iframe=true&slow={$slow}" id="watch-video-iframe"></iframe>
                     </div>
                     <div class="btn-group btn-group-justified watch–controls" role="group">
                         <div class="btn-group" role="group">
