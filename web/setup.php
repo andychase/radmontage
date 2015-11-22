@@ -1,19 +1,10 @@
 <?php
 
-require('../vendor/autoload.php');
+require_once('../vendor/autoload.php');
+require_once('db.php');
 
 $max_data_length = 20010;
 // ^ Calculated like so: len("789cae03b53fe955bc6746e7ee0663" + (":o331HlIeYrw:999:999"*999))
-
-$redis_url = getenv("REDIS_URL");
-if (!isset($redis_url) || !$redis_url)
-    $redis_url = "redis://h:@localhost:6379";
-
-$redis = new Predis\Client([
-    'host' => parse_url($redis_url, PHP_URL_HOST),
-    'port' => parse_url($redis_url, PHP_URL_PORT),
-    'password' => parse_url($redis_url, PHP_URL_PASS),
-]);
 
 date_default_timezone_set('UTC');
 $smarty = new Smarty();
@@ -35,25 +26,21 @@ function id_to_img($id)
 
 class DB
 {
-    const id_index = 'id_index';
     const truncate_videos_at = 6;
 
     static function get_next_id()
     {
-        global $redis;
-        return intval($redis->incr(DB::id_index));
+        return SQL::incr();
     }
 
-    static function db_initialize_id($id, $secret)
+    static function db_initialize_id($numeric_id, $id, $secret)
     {
-        global $redis;
-        return $redis->set($id, $secret);
+        SQL::set_name($numeric_id, $id, $secret);
     }
 
     static function get_montage($id)
     {
-        global $redis;
-        return explode(":", $redis->get($id));
+        return explode(":", SQL::get($id));
     }
 
     static function get_montage_metadata($id)
@@ -68,12 +55,9 @@ class DB
 
     static function get_montages($ids)
     {
-        global $redis;
-        $responses = $redis->pipeline(function (Predis\Pipeline\Pipeline $pipe) use ($ids) {
-            foreach ($ids as $id) {
-                $pipe->get($id);
-            }
-        });
+        $responses = array_map(function ($id) {
+            return SQL::get($id);
+        }, $ids);
         return array_map(function ($item) {
             return explode(":", $item);
         }, $responses);
@@ -107,14 +91,12 @@ class DB
 
     static function set_montage($id, $data)
     {
-        global $redis;
-        return $redis->set($id, $data);
+        SQL::set($id, $data);
     }
 
     static function get_featured_videos($page)
     {
-        global $redis;
-        $featured_montages = $redis->get("featured:$page");
+        $featured_montages = SQL::get("featured:$page");
         $names = [];
         $counts = [];
         $explicits = [];

@@ -4,57 +4,47 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8d20f0960068f9b51b8a7bed81bc54a9",
+    "hash": "25b0c727741b62f170c6b1eb0c3b9d40",
     "packages": [
         {
-            "name": "predis/predis",
-            "version": "v1.0.1",
+            "name": "lichtner/fluentpdo",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nrk/predis.git",
-                "reference": "7a170b3d8123c556597b4fbdb88631f99de180c2"
+                "url": "https://github.com/lichtner/fluentpdo.git",
+                "reference": "0092fc16dbef345a61ce2c448f98f75c99886b30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/7a170b3d8123c556597b4fbdb88631f99de180c2",
-                "reference": "7a170b3d8123c556597b4fbdb88631f99de180c2",
+                "url": "https://api.github.com/repos/lichtner/fluentpdo/zipball/0092fc16dbef345a61ce2c448f98f75c99886b30",
+                "reference": "0092fc16dbef345a61ce2c448f98f75c99886b30",
                 "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "suggest": {
-                "ext-curl": "Allows access to Webdis when paired with phpiredis",
-                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Predis\\": "src/"
-                }
+                "files": [
+                    "FluentPDO/FluentPDO.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT"
+                "Apache-2.0",
+                "GPL-2.0+"
             ],
             "authors": [
                 {
-                    "name": "Daniele Alessandri",
-                    "email": "suppakilla@gmail.com",
-                    "homepage": "http://clorophilla.net"
+                    "name": "Marek Lichtner",
+                    "homepage": "http://licht.sk/"
                 }
             ],
-            "description": "Flexible and feature-complete PHP client library for Redis",
-            "homepage": "http://github.com/nrk/predis",
+            "description": "FluentPDO is small PHP library for rapid query building. Killer feature is smart join builder which generates joins automatically.",
+            "homepage": "http://fluentpdo.com/",
             "keywords": [
-                "nosql",
-                "predis",
-                "redis"
+                "database",
+                "dbal",
+                "pdo"
             ],
-            "time": "2015-01-02 12:51:34"
+            "time": "2015-04-19 20:15:02"
         },
         {
             "name": "smarty/smarty",
@@ -115,16 +105,16 @@
     "packages-dev": [
         {
             "name": "heroku/heroku-buildpack-php",
-            "version": "v71",
+            "version": "v83",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heroku/heroku-buildpack-php.git",
-                "reference": "115ddf16d45cff621961d8dd57e14ba1ff1e41dd"
+                "reference": "71f0f07375eed9f0e8417d290192e9331cbbb4cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/115ddf16d45cff621961d8dd57e14ba1ff1e41dd",
-                "reference": "115ddf16d45cff621961d8dd57e14ba1ff1e41dd",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/71f0f07375eed9f0e8417d290192e9331cbbb4cd",
+                "reference": "71f0f07375eed9f0e8417d290192e9331cbbb4cd",
                 "shasum": ""
             },
             "bin": [
@@ -155,12 +145,14 @@
                 "nginx",
                 "php"
             ],
-            "time": "2015-07-14 00:38:23"
+            "time": "2015-11-16 16:11:11"
         }
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "lichtner/fluentpdo": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
