@@ -49,6 +49,8 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/make.css">
+    <meta name="verifyownership" content="df7b78474c18e1de0435a90d131dad65" />
+    
     {block 'head'}{/block}
 </head>
 <body>
